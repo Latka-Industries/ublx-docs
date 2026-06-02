@@ -65,6 +65,8 @@ See [Guides: Enhance policies](/guides/enhance-policies) for workflow examples.
 
 ## CLI flags (config-related)
 
+Headless flags that write or seed local config:
+
 ```text
 ublx --snapshot-only <DIR>     # headless index; writes local config if missing
 ublx --enhance-all ...         # with --snapshot-only: enable_enhance_all in new config
@@ -72,8 +74,4 @@ ublx --full-snapshot <DIR>     # --snapshot-only --enhance-all
 ublx --export <DIR>            # flat Zahir JSON under ublx-export/
 ```
 
-Full flag list: `ublx --help`. More detail in [Getting started](/getting-started).
-
-::: tip Source of truth
-Until every option is documented here, the [UBLX README configuration section](https://github.com/Latka-Industries/UBLX#configuration) remains authoritative for theme names and edge cases.
-:::
+Full synopsis, examples, and `--themes` / `--dev`: [CLI](/cli). First-run walkthrough: [Getting started](/getting-started).

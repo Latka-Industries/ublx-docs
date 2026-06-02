@@ -25,9 +25,10 @@ export default defineConfig({
     nav: [
       {
         text: 'UBLX',
-        activeMatch: '^/(getting-started|configuration|tui|themes)(\\.html)?(/|$)',
+        activeMatch: '^/(getting-started|cli|configuration|tui|themes)(\\.html)?(/|$)',
         items: [
           { text: 'Getting started', link: '/getting-started' },
+          { text: 'CLI', link: '/cli' },
           { text: 'Configuration', link: '/configuration' },
           tuiNavItem,
           themesNavItem,

@@ -61,7 +61,7 @@ UBLX is in **active development** — expect breaking changes. Watch the [UBLX r
 
 ## Something broke — where do I look?
 
-1. `ublx --help` and config in [Configuration](/configuration)
+1. [CLI](/cli) and [Configuration](/configuration)
 2. Snapshot vs enhance: [Path-only vs full enhance](/guides/path-only-vs-full-enhance)
 3. Keys and panes: [TUI overview](/tui/) and [Command mode & menus](/guides/command-mode-and-menus)
 4. Open an issue on the relevant GitHub repo (UBLX, Nefaxer, or ZahirScan)

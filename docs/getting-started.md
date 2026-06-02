@@ -89,6 +89,7 @@ For the most complete export, use `--full-snapshot` (or tune `[[enhance_policy]]
 
 ## Next steps
 
+- [CLI](/cli) — full `ublx --help` reference, headless flags, examples
 - [Configuration](/configuration) — `enable_enhance_all`, `[[enhance_policy]]`, themes, cache paths
 - [TUI & modes](/tui/) — Snapshot, Lenses, Delta, panes, keybindings
 - [ZahirScan](/zahirscan/) — metadata extraction and export
