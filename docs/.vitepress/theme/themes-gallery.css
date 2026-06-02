@@ -61,9 +61,26 @@
   background: var(--vp-c-bg-alt);
   border-top: 1px solid var(--vp-c-divider);
   border-radius: 0 0 12px 12px;
-  overflow-x: auto;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vp-c-text-3) var(--vp-c-bg-soft);
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.theme-gallery__toml::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.theme-gallery__toml::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: var(--vp-c-text-3);
+}
+
+.theme-gallery__toml::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-soft);
 }
 
 .theme-gallery__toml code {
