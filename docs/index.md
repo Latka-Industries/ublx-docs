@@ -30,6 +30,6 @@ features:
 | **[Nefaxer](https://github.com/Latka-Industries/nefaxer)** | Parallel directory indexer with SQLite snapshots |
 | **[ZahirScan](https://github.com/Latka-Industries/zahirscan)** | Metadata extraction and template mining |
 
-::: info Docs in progress
-This site is being set up. Crate API reference lives on [docs.rs](https://docs.rs).
+::: info API reference
+Rust crate APIs live on [docs.rs](https://docs.rs) (ublx, nefaxer, zahirscan). User guides on this site are expanded from the GitHub READMEs.
 :::

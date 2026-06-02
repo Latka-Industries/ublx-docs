@@ -1,28 +1,43 @@
 # ZahirScan
 
-[ZahirScan](https://github.com/Latka-Industries/zahirscan) extracts metadata and mines templates from files — logs, media, documents, tabular formats, and more. UBLX uses it for deep previews, writing stats, and export.
+[ZahirScan](https://github.com/Latka-Industries/zahirscan) is a high-performance Rust tool for **template-based content compression** and **metadata extraction** across logs, documents, tabular data, media, archives, models, and more.
 
-## Install
+UBLX uses ZahirScan for deep previews, Templates / Metadata / Writing panes, and flat JSON export. You can also run it standalone.
+
+## What it does
+
+| Capability | Summary |
+|------------|---------|
+| **Template mining** | Repeated patterns in logs and text → templates with placeholders |
+| **Metadata** | Per-format stats — media codecs, document properties, tabular schemas, SQLite schema, etc. |
+| **Size reduction** | Output JSON is typically **80–95% smaller** than raw while preserving structure |
+| **Performance** | Memory-mapped I/O, adaptive Rayon batching, fd-limit path batching |
+
+## Explore
+
+Use the sidebar to jump between topics:
+
+| Page | Contents |
+|------|----------|
+| [Install](/zahirscan/install) | `cargo install`, optional features, system deps |
+| [CLI](/zahirscan/cli) | Flags, output modes, `init` |
+| [Supported formats](/zahirscan/formats) | Full format list by category |
+| [Metadata extraction](/zahirscan/metadata) | What each format type returns |
+| [Template mining](/zahirscan/templates/) | Overview, [writing footprint](/zahirscan/templates/writing-footprint), [column stats](/zahirscan/templates/column-statistics) |
+| [Architecture](/zahirscan/architecture) | Phase 1 / Phase 2, batching, streaming sinks |
+| [Configuration](/zahirscan/configuration) | `zahirscan.toml`, filters, adaptive batching |
+| [Library](/zahirscan/library) | Rust API overview → [docs.rs](https://docs.rs/zahirscan) |
+| [UBLX integration](/zahirscan/ublx) | Batch vs on-demand enhance in the catalog stack |
+
+## Quick start
 
 ```bash
 cargo install zahirscan
+zahirscan -i /path/to/file.log -o ./out
 ```
 
-## Standalone usage
+Templates-only (default) vs full metadata: see [CLI](/zahirscan/cli).
 
-```bash
-zahirscan /path/to/file-or-dir
-```
-
-## With UBLX
-
-- Batch: set `enable_enhance_all = true` or an `[[enhance_policy]]` with `mode = "auto"`
-- On demand: **Enhance with ZahirScan** from the TUI quick actions menu
-
-## API
-
-Rust crate docs: [docs.rs/zahirscan](https://docs.rs/zahirscan)
-
-::: info
-Format support includes Parquet, Arrow, media files, PDFs, and [Tetration `.tet` files](https://github.com/Latka-Industries/tetration-docs) — documented on the Tetration site.
+::: tip Tetration `.tet` files
+Tensor store layout and the `.tet` format are documented on [tetration-docs](https://github.com/Latka-Industries/tetration-docs). ZahirScan extracts catalog, dataset, and column stats from `.tet` files for UBLX and standalone runs.
 :::

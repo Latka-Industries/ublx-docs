@@ -11,7 +11,7 @@ npm install
 npm run docs:dev
 ```
 
-Open [http://localhost:5173/ublx-docs/](http://localhost:5173/ublx-docs/) (base path matches GitHub Pages).
+Open [http://localhost:5173/ublx-docs/](http://localhost:5173/ublx-docs/) (base path matches GitHub Pages). Use the search box in the nav bar or **⌘K** / **Ctrl+K** for full-text search.
 
 ## Build
 
