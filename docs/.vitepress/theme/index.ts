@@ -1,0 +1,21 @@
+import DefaultTheme from 'vitepress/theme'
+import HomeImpls from './components/HomeImpls.vue'
+import ThemeGallery from './components/ThemeGallery.vue'
+import Layout from './Layout.vue'
+import NavBarTrailing from './components/NavBarTrailing.vue'
+import { restoreSiteTheme } from './composables/useUblxSiteTheme'
+import './shadcn.css'
+import './custom.css'
+import './themes-gallery.css'
+import './site-theme-picker.css'
+
+export default {
+  extends: DefaultTheme,
+  Layout,
+  enhanceApp({ app }) {
+    app.component('HomeImpls', HomeImpls)
+    app.component('ThemeGallery', ThemeGallery)
+    app.component('NavBarTrailing', NavBarTrailing)
+    if (typeof document !== 'undefined') restoreSiteTheme()
+  },
+}

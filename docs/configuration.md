@@ -23,7 +23,7 @@ Only keys present in each file override defaults. **Global-only** keys cannot be
 
 | Key | Type | Description |
 |-----|------|-------------|
-| `theme` | string | Theme name; run `ublx --themes` for available values |
+| `theme` | string | Palette display name — see [Themes & palettes](/themes); `ublx --themes` lists values |
 | `layout` | table | `left_pct`, `middle_pct`, `right_pct` (0–100, must sum to 100). Default: 10 / 30 / 60 |
 | `bg_opacity` | float (optional) | `0.0`–`1.0`; below `1.0` uses terminal default fill so wallpaper can show through |
 | `show_hidden_files` | bool | Include dotfiles in the index |

@@ -1,19 +1,34 @@
 import { defineConfig } from 'vitepress'
+import tailwindcss from '@tailwindcss/vite'
+import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
+import { themesNavItem, themesSidebarItem } from './themes-nav'
 
 export default defineConfig({
   title: 'UBLX',
   description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
   base: '/ublx-docs/',
+  head: [
+    [
+      'script',
+      { id: 'ublx-site-theme-init' },
+      buildThemeInitScript(),
+    ],
+  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   themeConfig: {
+    appearance: false,
     nav: [
       { text: 'Home', link: '/' },
       {
         text: 'UBLX',
-        activeMatch: '^/(getting-started|configuration|tui)(\\.html)?$',
+        activeMatch: '^/(getting-started|configuration|tui|themes)(\\.html)?$',
         items: [
           { text: 'Getting started', link: '/getting-started' },
           { text: 'Configuration', link: '/configuration' },
           { text: 'TUI & modes', link: '/tui' },
+          themesNavItem,
         ],
       },
       {
@@ -73,6 +88,7 @@ export default defineConfig({
           { text: 'Nefaxer', link: 'https://github.com/Latka-Industries/nefaxer' },
         ],
       },
+      { component: 'NavBarTrailing' },
     ],
     sidebar: {
       '/': [
@@ -83,6 +99,17 @@ export default defineConfig({
             { text: 'Getting started', link: '/getting-started' },
             { text: 'Configuration', link: '/configuration' },
             { text: 'TUI & modes', link: '/tui' },
+            themesSidebarItem,
+          ],
+        },
+      ],
+      '/themes': [
+        {
+          text: 'Themes & palettes',
+          items: [
+            { text: 'Overview', link: '/themes' },
+            { text: 'Dark themes', link: '/themes#dark-themes' },
+            { text: 'Light themes', link: '/themes#light-themes' },
           ],
         },
       ],
@@ -143,9 +170,6 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/Latka-Industries/ublx-docs' },
-    ],
     footer: {
       message: 'UBLX · Nefaxer · ZahirScan',
       copyright: 'Copyright © 2026 Alexander Hurowitz',
