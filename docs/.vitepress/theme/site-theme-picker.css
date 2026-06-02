@@ -100,6 +100,20 @@
   padding: 0.2rem 0.45rem;
 }
 
+.palette-mini-swatch__brand {
+  font-size: 6px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--swatch-text);
+  font-family: var(--vp-font-family-mono);
+  white-space: nowrap;
+}
+
+.palette-mini-swatch--md .palette-mini-swatch__brand {
+  font-size: 7px;
+}
+
 .palette-mini-swatch__dots {
   display: inline-flex;
   gap: 2px;

@@ -34,7 +34,7 @@ const text = computed(() => props.colors.text?.hex ?? '#fff')
   <div class="theme-swatch" :style="{ '--swatch-bg': bg, '--swatch-text': text }">
     <div class="theme-swatch__preview">
       <span v-if="defaultTheme" class="theme-swatch__badge">Default</span>
-      <span class="theme-swatch__sample" aria-hidden="true">Aa</span>
+      <span class="theme-swatch__sample" aria-hidden="true">UuBbLlXx</span>
     </div>
     <div class="theme-swatch__chips" role="list" aria-label="Palette colors">
       <div
