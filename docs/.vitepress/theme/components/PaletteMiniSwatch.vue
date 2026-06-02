@@ -13,13 +13,9 @@ const accentKeys = ['focused_border', 'tab_active_bg', 'title_brand', 'hint'] as
   <span
     class="palette-mini-swatch"
     :class="size === 'md' ? 'palette-mini-swatch--md' : 'palette-mini-swatch--sm'"
-    :style="{
-      '--swatch-bg': palette.colors.background?.hex ?? '#000',
-      '--swatch-text': palette.colors.text?.hex ?? '#fff',
-    }"
+    :style="{ '--swatch-bg': palette.colors.background?.hex ?? '#000' }"
     aria-hidden="true"
   >
-    <span class="palette-mini-swatch__brand">UuBbLlXx</span>
     <span class="palette-mini-swatch__dots">
       <span
         v-for="key in accentKeys"

@@ -90,7 +90,7 @@ For the most complete export, use `--full-snapshot` (or tune `[[enhance_policy]]
 ## Next steps
 
 - [Configuration](/configuration) — `enable_enhance_all`, `[[enhance_policy]]`, themes, cache paths
-- [TUI & modes](/tui) — Snapshot, Lenses, Delta, panes, keybindings
+- [TUI & modes](/tui/) — Snapshot, Lenses, Delta, panes, keybindings
 - [ZahirScan](/zahirscan/) — metadata extraction and export
 - [Nefaxer](/nefaxer/) — install, CLI, architecture, UBLX integration
 - [Guides](/guides/) — path-only vs full enhance, policies, large trees

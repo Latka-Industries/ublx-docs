@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import { Check, ChevronDown, ChevronLeft, ChevronRight } from '@lucide/vue'
 import { useUblxSiteTheme } from '../composables/useUblxSiteTheme'
 import PaletteMiniSwatch from './PaletteMiniSwatch.vue'
+import Button from './ui/Button.vue'
+import DropdownMenu from './ui/DropdownMenu.vue'
+import DropdownMenuContent from './ui/DropdownMenuContent.vue'
+import DropdownMenuItem from './ui/DropdownMenuItem.vue'
+import DropdownMenuLabel from './ui/DropdownMenuLabel.vue'
+import DropdownMenuSeparator from './ui/DropdownMenuSeparator.vue'
+import DropdownMenuTrigger from './ui/DropdownMenuTrigger.vue'
 
 const {
   selectedName,
@@ -13,35 +20,16 @@ const {
   stepTheme,
 } = useUblxSiteTheme()
 
-const root = ref<HTMLElement | null>(null)
-const open = ref(false)
-
-function toggle() {
-  open.value = !open.value
-}
-
-function close() {
-  open.value = false
-}
+const dropdownRef = ref<{ close: () => void } | null>(null)
 
 function pick(name: string) {
   applyByName(name)
-  close()
-}
-
-function prev() {
-  stepTheme(-1)
-}
-
-function next() {
-  stepTheme(1)
+  dropdownRef.value?.close()
 }
 
 function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape') close()
+  if (e.key === 'Escape') dropdownRef.value?.close()
 }
-
-onClickOutside(root, close)
 
 onMounted(() => document.addEventListener('keydown', onKeydown))
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))
@@ -49,86 +37,72 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 
 <template>
   <div
-    ref="root"
-    class="site-theme-picker"
+    class="site-theme-picker flex items-center gap-1"
     title="Site color scheme from UBLX palettes"
   >
-    <button
-      type="button"
-      class="site-theme-picker__step"
+    <Button
+      variant="outline"
+      size="icon"
       aria-label="Previous palette"
-      @click="prev"
+      @click="stepTheme(-1)"
     >
-      <span class="vpi-chevron-left" aria-hidden="true" />
-    </button>
+      <ChevronLeft class="size-3.5" aria-hidden="true" />
+    </Button>
 
-    <div class="site-theme-picker__menu" :class="{ 'is-open': open }">
-      <button
-        type="button"
+    <DropdownMenu ref="dropdownRef" class="site-theme-picker__dropdown">
+      <DropdownMenuTrigger
         id="ublx-site-theme-trigger"
-        class="site-theme-picker__trigger"
-        aria-haspopup="listbox"
-        :aria-expanded="open"
         aria-label="Choose UBLX palette for site colors"
-        @click="toggle"
       >
-        <PaletteMiniSwatch
-          v-if="selectedPalette"
-          :palette="selectedPalette"
-        />
-        <span class="site-theme-picker__name">{{ selectedName }}</span>
-        <span class="site-theme-picker__chevron vpi-chevron-down" aria-hidden="true" />
-      </button>
+        <PaletteMiniSwatch v-if="selectedPalette" :palette="selectedPalette" />
+        <span class="site-theme-picker__dropdown-label">{{ selectedName }}</span>
+        <ChevronDown class="site-theme-picker__dropdown-chevron" aria-hidden="true" />
+      </DropdownMenuTrigger>
 
-      <div
-        v-show="open"
-        class="site-theme-picker__panel"
-        role="listbox"
-        aria-labelledby="ublx-site-theme-trigger"
-      >
-        <div class="site-theme-picker__group">
-          <div class="site-theme-picker__group-label">Dark</div>
-          <button
-            v-for="theme in darkThemes"
-            :key="theme.name"
-            type="button"
-            class="site-theme-picker__option"
-            :class="{ 'is-active': theme.name === selectedName }"
-            role="option"
-            :aria-selected="theme.name === selectedName"
-            @click="pick(theme.name)"
-          >
-            <PaletteMiniSwatch :palette="theme" size="md" />
-            <span class="site-theme-picker__option-name">{{ theme.name }}</span>
-          </button>
-        </div>
+      <DropdownMenuContent class="site-theme-picker__dropdown-panel">
+        <DropdownMenuLabel>Dark</DropdownMenuLabel>
+        <DropdownMenuItem
+          v-for="theme in darkThemes"
+          :key="theme.name"
+          :active="theme.name === selectedName"
+          @click="pick(theme.name)"
+        >
+          <PaletteMiniSwatch :palette="theme" size="md" />
+          <span class="site-theme-picker__menu-item-name">{{ theme.name }}</span>
+          <Check
+            v-if="theme.name === selectedName"
+            class="size-3.5 shrink-0 text-primary"
+            aria-hidden="true"
+          />
+        </DropdownMenuItem>
 
-        <div class="site-theme-picker__group">
-          <div class="site-theme-picker__group-label">Light</div>
-          <button
-            v-for="theme in lightThemes"
-            :key="theme.name"
-            type="button"
-            class="site-theme-picker__option"
-            :class="{ 'is-active': theme.name === selectedName }"
-            role="option"
-            :aria-selected="theme.name === selectedName"
-            @click="pick(theme.name)"
-          >
-            <PaletteMiniSwatch :palette="theme" size="md" />
-            <span class="site-theme-picker__option-name">{{ theme.name }}</span>
-          </button>
-        </div>
-      </div>
-    </div>
+        <DropdownMenuSeparator />
 
-    <button
-      type="button"
-      class="site-theme-picker__step"
+        <DropdownMenuLabel>Light</DropdownMenuLabel>
+        <DropdownMenuItem
+          v-for="theme in lightThemes"
+          :key="theme.name"
+          :active="theme.name === selectedName"
+          @click="pick(theme.name)"
+        >
+          <PaletteMiniSwatch :palette="theme" size="md" />
+          <span class="site-theme-picker__menu-item-name">{{ theme.name }}</span>
+          <Check
+            v-if="theme.name === selectedName"
+            class="size-3.5 shrink-0 text-primary"
+            aria-hidden="true"
+          />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+
+    <Button
+      variant="outline"
+      size="icon"
       aria-label="Next palette"
-      @click="next"
+      @click="stepTheme(1)"
     >
-      <span class="vpi-chevron-right" aria-hidden="true" />
-    </button>
+      <ChevronRight class="size-3.5" aria-hidden="true" />
+    </Button>
   </div>
 </template>

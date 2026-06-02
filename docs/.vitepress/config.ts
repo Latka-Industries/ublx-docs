@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from '@tailwindcss/vite'
 import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
-import { themesNavItem, themesSidebarItem } from './themes-nav'
+import { themesNavItem } from './themes-nav'
+import { tuiNavItem } from './tui-nav'
+import { ublxSidebar } from './ublx-nav'
 
 export default defineConfig({
   title: 'UBLX',
@@ -23,11 +25,11 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       {
         text: 'UBLX',
-        activeMatch: '^/(getting-started|configuration|tui|themes)(\\.html)?$',
+        activeMatch: '^/(getting-started|configuration|tui|themes)(\\.html)?(/|$)',
         items: [
           { text: 'Getting started', link: '/getting-started' },
           { text: 'Configuration', link: '/configuration' },
-          { text: 'TUI & modes', link: '/tui' },
+          tuiNavItem,
           themesNavItem,
         ],
       },
@@ -91,28 +93,9 @@ export default defineConfig({
       { component: 'NavBarTrailing' },
     ],
     sidebar: {
-      '/': [
-        {
-          text: 'UBLX',
-          items: [
-            { text: 'Introduction', link: '/' },
-            { text: 'Getting started', link: '/getting-started' },
-            { text: 'Configuration', link: '/configuration' },
-            { text: 'TUI & modes', link: '/tui' },
-            themesSidebarItem,
-          ],
-        },
-      ],
-      '/themes': [
-        {
-          text: 'Themes & palettes',
-          items: [
-            { text: 'Overview', link: '/themes' },
-            { text: 'Dark themes', link: '/themes#dark-themes' },
-            { text: 'Light themes', link: '/themes#light-themes' },
-          ],
-        },
-      ],
+      '/': [ublxSidebar()],
+      '/tui/': [ublxSidebar({ expandTui: true })],
+      '/themes': [ublxSidebar({ expandThemes: true })],
       '/zahirscan/': [
         {
           text: 'ZahirScan',

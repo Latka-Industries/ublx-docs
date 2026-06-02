@@ -8,6 +8,7 @@ import './shadcn.css'
 import './custom.css'
 import './themes-gallery.css'
 import './site-theme-picker.css'
+import './doc-toc-sidebar.css'
 
 export default {
   extends: DefaultTheme,

@@ -2,7 +2,7 @@
 
 **Lenses** are named, saved lists of paths in your indexed project — focused subsets of the catalog (e.g. “papers to read”, “API surface”, “assets for v2”). They live in the per-project SQLite index (under your `ubli/` cache), not as loose files until you export them.
 
-The **Lenses** tab appears in the TUI only after at least one lens exists. See [TUI & modes](/tui) for pane layout and global keys.
+The **Lenses** tab appears in the TUI only after at least one lens exists. See [TUI & modes](/tui/) for pane layout and global keys.
 
 ## What a lens is
 
@@ -92,4 +92,4 @@ If you see *“No lenses to export — create a lens in the Lenses tab first”*
 
 - [Path-only vs full enhance](/guides/path-only-vs-full-enhance) — enrich lens files before export if you want Zahir detail in previews
 - [Headless snapshot + export](/guides/headless-snapshot-export) — Zahir JSON export (`ublx-export/`) is separate from lens Markdown
-- [TUI & modes](/tui) — Command Mode **x** (Zahir JSON) vs **l** (lenses)
+- [TUI & modes](/tui/) — Command Mode **x** (Zahir JSON) vs **l** (lenses)

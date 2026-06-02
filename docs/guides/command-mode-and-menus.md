@@ -154,7 +154,7 @@ On **Settings**, **Space** does not open file quick actions. Useful keys:
 
 ## Related guides
 
-- [TUI & modes](/tui) — three-pane layout and main tabs
+- [TUI & modes](/tui/) — three-pane layout and main tabs
 - [Making and exporting lenses](/guides/lenses)
 - [Path-only vs full enhance](/guides/path-only-vs-full-enhance)
 - [Enhance policies](/guides/enhance-policies)
