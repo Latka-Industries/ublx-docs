@@ -8,9 +8,9 @@ const githubUrl = 'https://github.com/Latka-Industries/ublx-docs'
 
 <template>
   <div class="nav-bar-trailing flex items-center">
-    <Separator orientation="vertical" class="ml-4 mr-4 h-6" />
+    <Separator orientation="vertical" class="nav-bar-trailing__sep ml-4 mr-4 h-6" />
     <SiteThemePicker class="site-theme-picker--inline mr-2" />
-    <Separator orientation="vertical" class="mx-2 h-6" />
+    <Separator orientation="vertical" class="nav-bar-trailing__sep mx-2 h-6" />
     <VPSocialLink
       class="nav-bar-trailing__github"
       icon="github"

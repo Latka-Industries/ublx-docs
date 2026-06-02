@@ -129,5 +129,5 @@ Most behavior (theme, layout, `[[enhance_policy]]`, `hash`, excludes, etc.) live
 
 ## Related
 
-- [Getting started](/getting-started) — install, prerequisites, first run
+- [Install](/getting-started) — Homebrew, Cargo, prerequisites, first run
 - [API (docs.rs)](https://docs.rs/ublx) — Rust crate

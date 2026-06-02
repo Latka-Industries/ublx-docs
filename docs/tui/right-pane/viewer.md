@@ -27,7 +27,7 @@ Footer shows **size** and **last modified** when available.
 
 ## Dependencies
 
-Optional tools improve previews (see [Getting started](/getting-started)): `tree`, image backends, etc.
+Optional tools improve previews (see [Install](/getting-started)): `tree`, image backends, etc.
 
 ## Without ZahirScan JSON
 

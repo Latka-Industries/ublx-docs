@@ -47,7 +47,7 @@ const features: HomeFeature[] = [
         accent: '#7C3AED',
         body: 'Turns each snapshot into a flat TUI catalog: Viewer, lenses, Delta tab, and per-root cache under ubli/.',
         link: '/getting-started',
-        linkLabel: 'Getting started',
+        linkLabel: 'Install',
       },
     ],
   },

@@ -70,7 +70,7 @@ The CLI merges this file over the embedded default on each run. The library API 
 | **Templates** (default) | *(none)* | Templates, writing footprint, and format metadata (see [Supported formats](/zahirscan/formats) and [Metadata](/zahirscan/metadata)) |
 | **Full** | `-f` / `--full` | Templates mode **plus** per-file stats, timing, and compressed vs raw size comparison |
 
-UBLX stores Zahir JSON from enhance runs in its catalog cache. For headless export from UBLX, see [Getting started](/getting-started) and [Headless snapshot + export](/guides/headless-snapshot-export).
+UBLX stores Zahir JSON from enhance runs in its catalog cache. For headless export from UBLX, see [CLI](/cli) and [Headless snapshot + export](/guides/headless-snapshot-export).
 
 ## Examples
 

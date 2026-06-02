@@ -14,7 +14,7 @@ UBLX is a **terminal catalog** for a project directory: index once, browse paths
 | **ZahirScan** | Template mining and per-format metadata when you batch- or on-demand enhance |
 | **UBLX** | TUI, lenses, Delta tab, config, headless `--snapshot-only` / `--export`, per-root cache |
 
-See [Getting started](/getting-started), [Nefaxer UBLX integration](/nefaxer/ublx), and [ZahirScan UBLX integration](/zahirscan/ublx).
+See [Install](/getting-started), [Nefaxer UBLX integration](/nefaxer/ublx), and [ZahirScan UBLX integration](/zahirscan/ublx).
 
 ## Why is my catalog “path-only”?
 
@@ -53,7 +53,7 @@ UBLX bundles the stack for normal use. You may install **nefaxer** or **zahirsca
 
 ## What terminal do I need?
 
-Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Getting started](/getting-started#prerequisites).
+Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Install](/getting-started#prerequisites).
 
 ## Is UBLX stable?
 

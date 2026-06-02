@@ -11,7 +11,7 @@ export function ublxSidebar(options: UblxSidebarOptions = {}) {
     text: 'UBLX',
     items: [
       { text: 'Introduction', link: '/' },
-      { text: 'Getting started', link: '/getting-started' },
+      { text: 'Install', link: '/getting-started' },
       { text: 'CLI', link: '/cli' },
       { text: 'Configuration', link: '/configuration' },
       { ...tuiSidebarItem, collapsed: options.expandTui ? false : tuiSidebarItem.collapsed },

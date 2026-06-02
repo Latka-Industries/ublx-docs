@@ -1,4 +1,4 @@
-# Getting started
+# Install
 
 UBLX turns a directory into a flat, browsable catalog in the terminal. Indexing is powered by [Nefaxer](/nefaxer/); deep metadata comes from [ZahirScan](/zahirscan/) when you enhance.
 
@@ -53,30 +53,7 @@ ublx /path/to/your/project
 
 UBLX indexes the tree, stores a per-root SQLite snapshot under your user cache (`ubli/`), and opens the catalog. By default you get **path + filetype** only — fast and lightweight. Run **Enhance with ZahirScan** (or enable full enhance in config) when you need rich previews and metadata.
 
-### Headless snapshot
-
-Index without the TUI — useful for CI or warming a catalog:
-
-```bash
-ublx --snapshot-only /path/to/your/project
-```
-
-If the directory has no local config yet, UBLX writes one. Pair with full metadata:
-
-```bash
-ublx --full-snapshot /path/to/your/project
-# same as: ublx --snapshot-only --enhance-all /path/to/your/project
-```
-
-### Headless export
-
-Write flat Zahir JSON files to `ublx-export/`:
-
-```bash
-ublx --snapshot-only --export /path/to/your/project
-```
-
-For the most complete export, use `--full-snapshot` (or tune `[[enhance_policy]]` in config). See [Guides: Headless snapshot + export](/guides/headless-snapshot-export).
+Headless flags (`--snapshot-only`, `--full-snapshot`, `--export`): [CLI](/cli).
 
 ## What you get on day one
 

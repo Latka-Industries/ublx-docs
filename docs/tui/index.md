@@ -45,6 +45,6 @@ Focus: **v** / **t** / **m** / **w**. **Shift+Tab** cycles. **Shift+F** fullscre
 
 ## Related
 
-- [Getting started](/getting-started) — first snapshot
+- [Install](/getting-started) — first snapshot
 - [Configuration](/configuration) — keys that change TUI behavior
 - [Path-only vs full enhance](/guides/path-only-vs-full-enhance) — what fills Metadata / Templates / Writing

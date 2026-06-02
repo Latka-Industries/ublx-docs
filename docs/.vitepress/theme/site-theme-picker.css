@@ -45,6 +45,31 @@
   }
 }
 
+@media (max-width: 767px) {
+  .site-theme-picker--inline {
+    display: none !important;
+  }
+
+  /* Picker hidden on mobile; drop orphaned dividers beside GitHub in the menu row */
+  .nav-bar-trailing__sep {
+    display: none !important;
+  }
+
+  /* GitHub is the only item left in the hamburger menu row — center it */
+  .VPNavScreenMenu .nav-bar-trailing {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .VPNavScreenMenu .nav-bar-trailing__github {
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+}
+
 .site-theme-picker__dropdown {
   display: inline-block;
   position: relative;
