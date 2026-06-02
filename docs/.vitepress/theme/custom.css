@@ -1,4 +1,4 @@
-/* Home: shadcn cards sit between hero and feature cards */
+/* Home: markdown container holds feature cards, then repo cards */
 .VPHome {
   display: flex;
   flex-direction: column;
@@ -8,10 +8,6 @@
   order: 1;
   margin-top: 0;
   padding-top: 0;
-}
-
-.VPHome .VPFeatures {
-  order: 2;
 }
 
 /* Hero epigraph (UBLX README ubik reference) */
@@ -54,4 +50,21 @@
     background: hsl(var(--accent));
     color: hsl(var(--accent-foreground));
   }
+}
+
+/* Nav dropdown: docs.rs quick link separated from site pages */
+.VPMenu .VPMenuLink:has(a[href^='https://docs.rs/']) {
+  margin: 12px -12px 0;
+  border-top: 1px solid var(--vp-c-divider);
+  padding: 12px 12px 0;
+}
+
+.VPMenu .VPMenuLink:has(a[href^='https://docs.rs/']) .link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.VPMenu .VPMenuLink:has(a[href^='https://docs.rs/']) .vp-external-link-icon::after {
+  color: var(--vp-c-text-2);
 }

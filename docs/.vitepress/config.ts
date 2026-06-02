@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from '@tailwindcss/vite'
+import { docsRsNavItem } from './docs-rs-nav'
 import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
 import { themesNavItem } from './themes-nav'
 import { tuiNavItem } from './tui-nav'
@@ -30,6 +31,7 @@ export default defineConfig({
           { text: 'Configuration', link: '/configuration' },
           tuiNavItem,
           themesNavItem,
+          docsRsNavItem('ublx'),
         ],
       },
       {
@@ -53,6 +55,7 @@ export default defineConfig({
           { text: 'Configuration', link: '/zahirscan/configuration' },
           { text: 'Library', link: '/zahirscan/library' },
           { text: 'UBLX integration', link: '/zahirscan/ublx' },
+          docsRsNavItem('zahirscan'),
         ],
       },
       {
@@ -67,6 +70,7 @@ export default defineConfig({
           { text: 'Database schema', link: '/nefaxer/database' },
           { text: 'Library', link: '/nefaxer/library' },
           { text: 'UBLX integration', link: '/nefaxer/ublx' },
+          docsRsNavItem('nefaxer'),
         ],
       },
       {
@@ -74,6 +78,7 @@ export default defineConfig({
         activeMatch: '^/guides/',
         items: [
           { text: 'Overview', link: '/guides/' },
+          { text: 'FAQ', link: '/guides/faq' },
           { text: 'Path-only vs full enhance', link: '/guides/path-only-vs-full-enhance' },
           { text: 'Enhance policies', link: '/guides/enhance-policies' },
           { text: 'Headless snapshot + export', link: '/guides/headless-snapshot-export' },
@@ -140,6 +145,7 @@ export default defineConfig({
           text: 'Guides',
           items: [
             { text: 'Overview', link: '/guides/' },
+            { text: 'FAQ', link: '/guides/faq' },
             { text: 'Path-only vs full enhance', link: '/guides/path-only-vs-full-enhance' },
             { text: 'Enhance policies', link: '/guides/enhance-policies' },
             { text: 'Headless snapshot + export', link: '/guides/headless-snapshot-export' },

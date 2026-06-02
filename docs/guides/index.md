@@ -4,6 +4,7 @@ Cross-tool workflows for UBLX, Nefaxer, and ZahirScan.
 
 ## Available
 
+- [FAQ](/guides/faq) — common questions about the stack
 - [Path-only vs full enhance](/guides/path-only-vs-full-enhance) — defaults, tradeoffs, when to batch
 - [Enhance policies](/guides/enhance-policies) — `auto` vs `manual` per path prefix
 - [Headless snapshot + export](/guides/headless-snapshot-export) — CI-friendly `ublx --snapshot-only --export`

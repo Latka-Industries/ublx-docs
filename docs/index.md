@@ -10,20 +10,13 @@ hero:
       text: Get started
       link: /getting-started
     - theme: alt
-      text: View on GitHub
+      text: FAQ
+      link: /guides/faq
+    - theme: alt
+      text: GitHub
       link: https://github.com/Latka-Industries/UBLX
-
-features:
-  - title: Snapshot & browse
-    details: Index a directory once, then navigate a flat catalog with previews, lenses, and delta views.
-  - title: Path-only or full enhance
-    details: Lightweight path catalogs by default; batch or on-demand ZahirScan enrichment when you need depth.
-  - title: Built for project trees
-    details: Fast diffs, duplicate detection, and export — not a file manager replacement.
 ---
 
-<HomeImpls />
+<HomeFeatures />
 
-::: info API reference
-Rust crate APIs live on [docs.rs](https://docs.rs) (ublx, nefaxer, zahirscan). User guides on this site are expanded from the GitHub READMEs.
-:::
+<HomeImpls />
