@@ -60,6 +60,10 @@
   grid-template-columns: auto 1fr auto;
 }
 
+.site-theme-picker--inline .site-theme-picker__dropdown {
+  width: 11.5rem;
+}
+
 .site-theme-picker__dropdown-trigger {
   box-sizing: border-box;
   display: inline-grid;
@@ -97,9 +101,16 @@
   outline-offset: 2px;
 }
 
+.site-theme-picker--inline .site-theme-picker__dropdown-trigger {
+  width: 11.5rem;
+  max-width: 11.5rem;
+  grid-template-columns: auto 1fr auto;
+}
+
 .site-theme-picker__dropdown-label {
   overflow: hidden;
-  max-width: 8rem;
+  min-width: 0;
+  max-width: none;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
