@@ -1,5 +1,7 @@
 /* Hide VitePress light/dark toggle — palette picker controls appearance */
 .VPNavBarAppearance,
+.VPNavScreenAppearance,
+.VPNavBarExtra,
 .VPSwitchAppearance {
   display: none !important;
 }

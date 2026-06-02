@@ -53,6 +53,19 @@ export function stepSiteTheme(delta: 1 | -1): void {
   applySiteThemeByName(allThemes[next]!.name)
 }
 
+export function shuffleSiteTheme(): void {
+  if (allThemes.length === 0) return
+  if (allThemes.length === 1) {
+    applySiteThemeByName(allThemes[0]!.name)
+    return
+  }
+  let next = selectedName.value
+  while (next === selectedName.value) {
+    next = allThemes[Math.floor(Math.random() * allThemes.length)]!.name
+  }
+  applySiteThemeByName(next)
+}
+
 export function useUblxSiteTheme() {
   const selectedPalette = computed(() => findPalette(selectedName.value))
 
@@ -64,6 +77,7 @@ export function useUblxSiteTheme() {
     lightThemes: paletteData.light as PaletteEntry[],
     applyByName: applySiteThemeByName,
     stepTheme: stepSiteTheme,
+    shuffleTheme: shuffleSiteTheme,
     restore: restoreSiteTheme,
   }
 }

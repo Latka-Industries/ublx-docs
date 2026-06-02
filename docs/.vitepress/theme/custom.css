@@ -14,6 +14,19 @@
   order: 2;
 }
 
+/* Hero epigraph (UBLX README ubik reference) */
+.VPHero .tagline .hero-epigraph {
+  font-style: italic;
+  color: inherit;
+  text-decoration: none;
+}
+
+.VPHero .tagline .hero-epigraph:hover {
+  color: var(--vp-c-text-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Top nav: shadcn-style link treatment */
 @media (min-width: 768px) {
   .VPNavBarMenu .VPNavBarMenuLink {

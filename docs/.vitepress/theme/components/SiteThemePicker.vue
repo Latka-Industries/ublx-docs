@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { Check, ChevronDown, ChevronLeft, ChevronRight } from '@lucide/vue'
+import { Check, ChevronDown, ChevronLeft, ChevronRight, Shuffle } from '@lucide/vue'
 import { useUblxSiteTheme } from '../composables/useUblxSiteTheme'
 import PaletteMiniSwatch from './PaletteMiniSwatch.vue'
 import Button from './ui/Button.vue'
@@ -18,6 +18,7 @@ const {
   lightThemes,
   applyByName,
   stepTheme,
+  shuffleTheme,
 } = useUblxSiteTheme()
 
 const dropdownRef = ref<{ close: () => void } | null>(null)
@@ -103,6 +104,15 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
       @click="stepTheme(1)"
     >
       <ChevronRight class="size-3.5" aria-hidden="true" />
+    </Button>
+
+    <Button
+      variant="outline"
+      size="icon"
+      aria-label="Random palette"
+      @click="shuffleTheme()"
+    >
+      <Shuffle class="size-3.5" aria-hidden="true" />
     </Button>
   </div>
 </template>

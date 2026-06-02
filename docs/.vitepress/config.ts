@@ -6,9 +6,10 @@ import { tuiNavItem } from './tui-nav'
 import { ublxSidebar } from './ublx-nav'
 
 export default defineConfig({
-  title: 'UBLX',
+  title: 'UBLX & Co',
   description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
   base: '/ublx-docs/',
+  appearance: false,
   head: [
     [
       'script',
@@ -20,9 +21,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   themeConfig: {
-    appearance: false,
     nav: [
-      { text: 'Home', link: '/' },
       {
         text: 'UBLX',
         activeMatch: '^/(getting-started|configuration|tui|themes)(\\.html)?(/|$)',
