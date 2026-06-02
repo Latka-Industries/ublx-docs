@@ -1,0 +1,1370 @@
+{
+  "dark": [
+    {
+      "name": "Archival Simulacra",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000"
+        },
+        "text": {
+          "rgb": [
+            68,
+            255,
+            106
+          ],
+          "hex": "#44ff6a"
+        },
+        "focused_border": {
+          "rgb": [
+            140,
+            255,
+            120
+          ],
+          "hex": "#8cff78"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            72,
+            255,
+            112
+          ],
+          "hex": "#48ff70"
+        },
+        "search_text": {
+          "rgb": [
+            48,
+            220,
+            88
+          ],
+          "hex": "#30dc58"
+        },
+        "hint": {
+          "rgb": [
+            0,
+            140,
+            54
+          ],
+          "hex": "#008c36"
+        },
+        "title_brand": {
+          "rgb": [
+            110,
+            255,
+            130
+          ],
+          "hex": "#6eff82"
+        }
+      }
+    },
+    {
+      "name": "Babel Blend",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            12,
+            22,
+            46
+          ],
+          "hex": "#0c162e"
+        },
+        "text": {
+          "rgb": [
+            236,
+            172,
+            158
+          ],
+          "hex": "#ecac9e"
+        },
+        "focused_border": {
+          "rgb": [
+            255,
+            145,
+            62
+          ],
+          "hex": "#ff913e"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            168,
+            42,
+            48
+          ],
+          "hex": "#a82a30"
+        },
+        "search_text": {
+          "rgb": [
+            255,
+            178,
+            92
+          ],
+          "hex": "#ffb25c"
+        },
+        "hint": {
+          "rgb": [
+            232,
+            96,
+            88
+          ],
+          "hex": "#e86058"
+        },
+        "title_brand": {
+          "rgb": [
+            255,
+            118,
+            58
+          ],
+          "hex": "#ff763a"
+        }
+      }
+    },
+    {
+      "name": "Burning Glyph",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            42,
+            0,
+            0
+          ],
+          "hex": "#2a0000"
+        },
+        "text": {
+          "rgb": [
+            249,
+            233,
+            170
+          ],
+          "hex": "#f9e9aa"
+        },
+        "focused_border": {
+          "rgb": [
+            246,
+            130,
+            130
+          ],
+          "hex": "#f68282"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            82,
+            44,
+            18
+          ],
+          "hex": "#522c12"
+        },
+        "search_text": {
+          "rgb": [
+            237,
+            98,
+            98
+          ],
+          "hex": "#ed6262"
+        },
+        "hint": {
+          "rgb": [
+            237,
+            181,
+            98
+          ],
+          "hex": "#edb562"
+        },
+        "title_brand": {
+          "rgb": [
+            237,
+            181,
+            98
+          ],
+          "hex": "#edb562"
+        }
+      }
+    },
+    {
+      "name": "Frozen Phrase",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            46,
+            52,
+            64
+          ],
+          "hex": "#2e3440"
+        },
+        "text": {
+          "rgb": [
+            216,
+            232,
+            252
+          ],
+          "hex": "#d8e8fc"
+        },
+        "focused_border": {
+          "rgb": [
+            129,
+            178,
+            208
+          ],
+          "hex": "#81b2d0"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            206,
+            216,
+            233
+          ],
+          "hex": "#ced8e9"
+        },
+        "search_text": {
+          "rgb": [
+            143,
+            188,
+            188
+          ],
+          "hex": "#8fbcbc"
+        },
+        "hint": {
+          "rgb": [
+            172,
+            186,
+            207
+          ],
+          "hex": "#acbacf"
+        },
+        "title_brand": {
+          "rgb": [
+            180,
+            200,
+            224
+          ],
+          "hex": "#b4c8e0"
+        }
+      }
+    },
+    {
+      "name": "Garden Unseen",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            0,
+            42,
+            21
+          ],
+          "hex": "#002a15"
+        },
+        "text": {
+          "rgb": [
+            194,
+            150,
+            132
+          ],
+          "hex": "#c29684"
+        },
+        "focused_border": {
+          "rgb": [
+            130,
+            246,
+            198
+          ],
+          "hex": "#82f6c6"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            24,
+            92,
+            75
+          ],
+          "hex": "#185c4b"
+        },
+        "search_text": {
+          "rgb": [
+            98,
+            237,
+            181
+          ],
+          "hex": "#62edb5"
+        },
+        "hint": {
+          "rgb": [
+            102,
+            94,
+            70
+          ],
+          "hex": "#665e46"
+        },
+        "title_brand": {
+          "rgb": [
+            73,
+            67,
+            44
+          ],
+          "hex": "#49432c"
+        }
+      }
+    },
+    {
+      "name": "Golden Delirium",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            42,
+            42,
+            0
+          ],
+          "hex": "#2a2a00"
+        },
+        "text": {
+          "rgb": [
+            253,
+            196,
+            199
+          ],
+          "hex": "#fdc4c7"
+        },
+        "focused_border": {
+          "rgb": [
+            246,
+            246,
+            130
+          ],
+          "hex": "#f6f682"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            36,
+            64,
+            40
+          ],
+          "hex": "#244028"
+        },
+        "search_text": {
+          "rgb": [
+            237,
+            237,
+            98
+          ],
+          "hex": "#eded62"
+        },
+        "hint": {
+          "rgb": [
+            167,
+            107,
+            78
+          ],
+          "hex": "#a76b4e"
+        },
+        "title_brand": {
+          "rgb": [
+            167,
+            107,
+            78
+          ],
+          "hex": "#a76b4e"
+        }
+      }
+    },
+    {
+      "name": "Oblivion Ink",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            10,
+            25,
+            47
+          ],
+          "hex": "#0a192f"
+        },
+        "text": {
+          "rgb": [
+            200,
+            235,
+            230
+          ],
+          "hex": "#c8ebe6"
+        },
+        "focused_border": {
+          "rgb": [
+            100,
+            255,
+            218
+          ],
+          "hex": "#64ffda"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            22,
+            58,
+            92
+          ],
+          "hex": "#163a5c"
+        },
+        "search_text": {
+          "rgb": [
+            100,
+            255,
+            218
+          ],
+          "hex": "#64ffda"
+        },
+        "hint": {
+          "rgb": [
+            164,
+            95,
+            250
+          ],
+          "hex": "#a45ffa"
+        },
+        "title_brand": {
+          "rgb": [
+            164,
+            95,
+            250
+          ],
+          "hex": "#a45ffa"
+        }
+      }
+    },
+    {
+      "name": "Purple Haze",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            13,
+            0,
+            26
+          ],
+          "hex": "#0d001a"
+        },
+        "text": {
+          "rgb": [
+            205,
+            114,
+            125
+          ],
+          "hex": "#cd727d"
+        },
+        "focused_border": {
+          "rgb": [
+            241,
+            130,
+            246
+          ],
+          "hex": "#f182f6"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            58,
+            18,
+            118
+          ],
+          "hex": "#3a1276"
+        },
+        "search_text": {
+          "rgb": [
+            221,
+            98,
+            237
+          ],
+          "hex": "#dd62ed"
+        },
+        "hint": {
+          "rgb": [
+            116,
+            80,
+            240
+          ],
+          "hex": "#7450f0"
+        },
+        "title_brand": {
+          "rgb": [
+            116,
+            80,
+            240
+          ],
+          "hex": "#7450f0"
+        }
+      }
+    },
+    {
+      "name": "Resin Record",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            18,
+            12,
+            0
+          ],
+          "hex": "#120c00"
+        },
+        "text": {
+          "rgb": [
+            248,
+            176,
+            142
+          ],
+          "hex": "#f8b08e"
+        },
+        "focused_border": {
+          "rgb": [
+            230,
+            170,
+            60
+          ],
+          "hex": "#e6aa3c"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            245,
+            176,
+            74
+          ],
+          "hex": "#f5b04a"
+        },
+        "search_text": {
+          "rgb": [
+            255,
+            190,
+            92
+          ],
+          "hex": "#ffbe5c"
+        },
+        "hint": {
+          "rgb": [
+            168,
+            120,
+            58
+          ],
+          "hex": "#a8783a"
+        },
+        "title_brand": {
+          "rgb": [
+            214,
+            140,
+            52
+          ],
+          "hex": "#d68c34"
+        }
+      }
+    },
+    {
+      "name": "Shadow Index",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000"
+        },
+        "text": {
+          "rgb": [
+            235,
+            236,
+            242
+          ],
+          "hex": "#ebecf2"
+        },
+        "focused_border": {
+          "rgb": [
+            153,
+            153,
+            153
+          ],
+          "hex": "#999999"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            48,
+            52,
+            68
+          ],
+          "hex": "#303444"
+        },
+        "search_text": {
+          "rgb": [
+            128,
+            128,
+            128
+          ],
+          "hex": "#808080"
+        },
+        "hint": {
+          "rgb": [
+            128,
+            128,
+            153
+          ],
+          "hex": "#808099"
+        },
+        "title_brand": {
+          "rgb": [
+            128,
+            128,
+            153
+          ],
+          "hex": "#808099"
+        }
+      }
+    },
+    {
+      "name": "Tangerine Memory",
+      "appearance": "dark",
+      "colors": {
+        "background": {
+          "rgb": [
+            42,
+            26,
+            0
+          ],
+          "hex": "#2a1a00"
+        },
+        "text": {
+          "rgb": [
+            246,
+            163,
+            142
+          ],
+          "hex": "#f6a38e"
+        },
+        "focused_border": {
+          "rgb": [
+            246,
+            198,
+            130
+          ],
+          "hex": "#f6c682"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            72,
+            38,
+            52
+          ],
+          "hex": "#482634"
+        },
+        "search_text": {
+          "rgb": [
+            237,
+            155,
+            98
+          ],
+          "hex": "#ed9b62"
+        },
+        "hint": {
+          "rgb": [
+            226,
+            169,
+            157
+          ],
+          "hex": "#e2a99d"
+        },
+        "title_brand": {
+          "rgb": [
+            226,
+            169,
+            157
+          ],
+          "hex": "#e2a99d"
+        }
+      }
+    }
+  ],
+  "light": [
+    {
+      "name": "Asterion Code",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            232,
+            240,
+            242
+          ],
+          "hex": "#e8f0f2"
+        },
+        "text": {
+          "rgb": [
+            10,
+            72,
+            96
+          ],
+          "hex": "#0a4860"
+        },
+        "focused_border": {
+          "rgb": [
+            26,
+            128,
+            168
+          ],
+          "hex": "#1a80a8"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            16,
+            82,
+            108
+          ],
+          "hex": "#10526c"
+        },
+        "search_text": {
+          "rgb": [
+            42,
+            108,
+            138
+          ],
+          "hex": "#2a6c8a"
+        },
+        "hint": {
+          "rgb": [
+            118,
+            92,
+            72
+          ],
+          "hex": "#765c48"
+        },
+        "title_brand": {
+          "rgb": [
+            18,
+            96,
+            128
+          ],
+          "hex": "#126080"
+        }
+      }
+    },
+    {
+      "name": "Barley Bound",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            251,
+            241,
+            199
+          ],
+          "hex": "#fbf1c7"
+        },
+        "text": {
+          "rgb": [
+            60,
+            56,
+            54
+          ],
+          "hex": "#3c3836"
+        },
+        "focused_border": {
+          "rgb": [
+            69,
+            133,
+            136
+          ],
+          "hex": "#458588"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            80,
+            73,
+            69
+          ],
+          "hex": "#504945"
+        },
+        "search_text": {
+          "rgb": [
+            121,
+            116,
+            14
+          ],
+          "hex": "#79740e"
+        },
+        "hint": {
+          "rgb": [
+            124,
+            111,
+            100
+          ],
+          "hex": "#7c6f64"
+        },
+        "title_brand": {
+          "rgb": [
+            214,
+            93,
+            14
+          ],
+          "hex": "#d65d0e"
+        }
+      }
+    },
+    {
+      "name": "Cryptic Chai",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            247,
+            238,
+            222
+          ],
+          "hex": "#f7eede"
+        },
+        "text": {
+          "rgb": [
+            58,
+            38,
+            28
+          ],
+          "hex": "#3a261c"
+        },
+        "focused_border": {
+          "rgb": [
+            152,
+            92,
+            48
+          ],
+          "hex": "#985c30"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            78,
+            48,
+            36
+          ],
+          "hex": "#4e3024"
+        },
+        "search_text": {
+          "rgb": [
+            124,
+            88,
+            68
+          ],
+          "hex": "#7c5844"
+        },
+        "hint": {
+          "rgb": [
+            108,
+            98,
+            72
+          ],
+          "hex": "#6c6248"
+        },
+        "title_brand": {
+          "rgb": [
+            138,
+            72,
+            42
+          ],
+          "hex": "#8a482a"
+        }
+      }
+    },
+    {
+      "name": "Faded Echo",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            244,
+            236,
+            222
+          ],
+          "hex": "#f4ecde"
+        },
+        "text": {
+          "rgb": [
+            72,
+            62,
+            50
+          ],
+          "hex": "#483e32"
+        },
+        "focused_border": {
+          "rgb": [
+            126,
+            108,
+            86
+          ],
+          "hex": "#7e6c56"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            98,
+            82,
+            64
+          ],
+          "hex": "#625240"
+        },
+        "search_text": {
+          "rgb": [
+            118,
+            98,
+            80
+          ],
+          "hex": "#766250"
+        },
+        "hint": {
+          "rgb": [
+            112,
+            106,
+            96
+          ],
+          "hex": "#706a60"
+        },
+        "title_brand": {
+          "rgb": [
+            156,
+            104,
+            58
+          ],
+          "hex": "#9c683a"
+        }
+      }
+    },
+    {
+      "name": "Infinite Rose",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            232,
+            235,
+            240
+          ],
+          "hex": "#e8ebf0"
+        },
+        "text": {
+          "rgb": [
+            112,
+            68,
+            76
+          ],
+          "hex": "#70444c"
+        },
+        "focused_border": {
+          "rgb": [
+            196,
+            128,
+            118
+          ],
+          "hex": "#c48076"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            88,
+            46,
+            54
+          ],
+          "hex": "#582e36"
+        },
+        "search_text": {
+          "rgb": [
+            148,
+            98,
+            102
+          ],
+          "hex": "#946266"
+        },
+        "hint": {
+          "rgb": [
+            118,
+            108,
+            122
+          ],
+          "hex": "#766c7a"
+        },
+        "title_brand": {
+          "rgb": [
+            178,
+            108,
+            98
+          ],
+          "hex": "#b26c62"
+        }
+      }
+    },
+    {
+      "name": "Obdurate Noon",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            253,
+            246,
+            227
+          ],
+          "hex": "#fdf6e3"
+        },
+        "text": {
+          "rgb": [
+            101,
+            123,
+            131
+          ],
+          "hex": "#657b83"
+        },
+        "focused_border": {
+          "rgb": [
+            42,
+            161,
+            152
+          ],
+          "hex": "#2aa198"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            38,
+            139,
+            210
+          ],
+          "hex": "#268bd2"
+        },
+        "search_text": {
+          "rgb": [
+            38,
+            139,
+            210
+          ],
+          "hex": "#268bd2"
+        },
+        "hint": {
+          "rgb": [
+            108,
+            113,
+            196
+          ],
+          "hex": "#6c71c4"
+        },
+        "title_brand": {
+          "rgb": [
+            181,
+            137,
+            0
+          ],
+          "hex": "#b58900"
+        }
+      }
+    },
+    {
+      "name": "Ochre Thread",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            250,
+            242,
+            228
+          ],
+          "hex": "#faf2e4"
+        },
+        "text": {
+          "rgb": [
+            110,
+            50,
+            22
+          ],
+          "hex": "#6e3216"
+        },
+        "focused_border": {
+          "rgb": [
+            178,
+            88,
+            34
+          ],
+          "hex": "#b25822"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            92,
+            44,
+            24
+          ],
+          "hex": "#5c2c18"
+        },
+        "search_text": {
+          "rgb": [
+            148,
+            96,
+            68
+          ],
+          "hex": "#946044"
+        },
+        "hint": {
+          "rgb": [
+            88,
+            102,
+            118
+          ],
+          "hex": "#586676"
+        },
+        "title_brand": {
+          "rgb": [
+            162,
+            74,
+            30
+          ],
+          "hex": "#a24a1e"
+        }
+      }
+    },
+    {
+      "name": "Pale Mirror",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            242,
+            245,
+            253
+          ],
+          "hex": "#f2f5fd"
+        },
+        "text": {
+          "rgb": [
+            42,
+            30,
+            56
+          ],
+          "hex": "#2a1e38"
+        },
+        "focused_border": {
+          "rgb": [
+            118,
+            78,
+            152
+          ],
+          "hex": "#764e98"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            74,
+            48,
+            102
+          ],
+          "hex": "#4a3066"
+        },
+        "search_text": {
+          "rgb": [
+            108,
+            92,
+            132
+          ],
+          "hex": "#6c5c84"
+        },
+        "hint": {
+          "rgb": [
+            138,
+            88,
+            118
+          ],
+          "hex": "#8a5876"
+        },
+        "title_brand": {
+          "rgb": [
+            96,
+            68,
+            128
+          ],
+          "hex": "#604480"
+        }
+      }
+    },
+    {
+      "name": "Parched Page",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            253,
+            248,
+            240
+          ],
+          "hex": "#fdf8f0"
+        },
+        "text": {
+          "rgb": [
+            24,
+            78,
+            52
+          ],
+          "hex": "#184e34"
+        },
+        "focused_border": {
+          "rgb": [
+            52,
+            130,
+            88
+          ],
+          "hex": "#348258"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            38,
+            92,
+            64
+          ],
+          "hex": "#265c40"
+        },
+        "search_text": {
+          "rgb": [
+            72,
+            115,
+            88
+          ],
+          "hex": "#487358"
+        },
+        "hint": {
+          "rgb": [
+            130,
+            98,
+            62
+          ],
+          "hex": "#82623e"
+        },
+        "title_brand": {
+          "rgb": [
+            48,
+            105,
+            72
+          ],
+          "hex": "#306948"
+        }
+      }
+    },
+    {
+      "name": "Silent Sheet",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "hex": "#ffffff"
+        },
+        "text": {
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000"
+        },
+        "focused_border": {
+          "rgb": [
+            77,
+            77,
+            77
+          ],
+          "hex": "#4d4d4d"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            58,
+            68,
+            92
+          ],
+          "hex": "#3a445c"
+        },
+        "search_text": {
+          "rgb": [
+            102,
+            102,
+            102
+          ],
+          "hex": "#666666"
+        },
+        "hint": {
+          "rgb": [
+            102,
+            92,
+            82
+          ],
+          "hex": "#665c52"
+        },
+        "title_brand": {
+          "rgb": [
+            102,
+            92,
+            82
+          ],
+          "hex": "#665c52"
+        }
+      }
+    },
+    {
+      "name": "Verglas Trace",
+      "appearance": "light",
+      "colors": {
+        "background": {
+          "rgb": [
+            236,
+            239,
+            244
+          ],
+          "hex": "#eceff4"
+        },
+        "text": {
+          "rgb": [
+            46,
+            52,
+            64
+          ],
+          "hex": "#2e3440"
+        },
+        "focused_border": {
+          "rgb": [
+            94,
+            129,
+            172
+          ],
+          "hex": "#5e81ac"
+        },
+        "tab_active_bg": {
+          "rgb": [
+            59,
+            66,
+            82
+          ],
+          "hex": "#3b4252"
+        },
+        "search_text": {
+          "rgb": [
+            129,
+            161,
+            193
+          ],
+          "hex": "#81a1c1"
+        },
+        "hint": {
+          "rgb": [
+            76,
+            86,
+            106
+          ],
+          "hex": "#4c566a"
+        },
+        "title_brand": {
+          "rgb": [
+            136,
+            192,
+            208
+          ],
+          "hex": "#88c0d0"
+        }
+      }
+    }
+  ]
+}
