@@ -9,7 +9,7 @@ defineProps<{ class?: string }>()
     <div
       :class="
         cn(
-          'scroll-area-viewport size-full max-h-[inherit] overflow-auto',
+          'scroll-area-viewport size-full max-h-[inherit] overflow-y-auto overflow-x-hidden',
         )
       "
     >
@@ -20,34 +20,21 @@ defineProps<{ class?: string }>()
 
 <style scoped>
 .scroll-area-viewport {
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--muted-foreground) / 0.45) hsl(var(--muted) / 0.65);
+  scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
 }
 
 .scroll-area-viewport::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
 }
 
 .scroll-area-viewport::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: hsl(var(--muted-foreground) / 0.45);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.scroll-area-viewport::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.6);
-  background-clip: padding-box;
+  background: hsl(var(--muted-foreground) / 0.35);
 }
 
 .scroll-area-viewport::-webkit-scrollbar-track {
-  background: hsl(var(--muted) / 0.65);
-  border-radius: 9999px;
-}
-
-.scroll-area-viewport::-webkit-scrollbar-corner {
-  background: hsl(var(--muted) / 0.65);
+  background: transparent;
 }
 </style>
