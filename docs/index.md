@@ -22,13 +22,7 @@ features:
     details: Fast diffs, duplicate detection, and export — not a file manager replacement.
 ---
 
-## The stack
-
-| Tool | Role |
-|------|------|
-| **[UBLX](https://github.com/Latka-Industries/UBLX)** | Terminal UI — browse, enrich, export |
-| **[Nefaxer](https://github.com/Latka-Industries/nefaxer)** | Parallel directory indexer with SQLite snapshots |
-| **[ZahirScan](https://github.com/Latka-Industries/zahirscan)** | Metadata extraction and template mining |
+<HomeImpls />
 
 ::: info API reference
 Rust crate APIs live on [docs.rs](https://docs.rs) (ublx, nefaxer, zahirscan). User guides on this site are expanded from the GitHub READMEs.
