@@ -11,7 +11,7 @@ npm install
 npm run docs:dev
 ```
 
-Open [http://localhost:5173/ublx-docs/](http://localhost:5173/ublx-docs/) (base path matches GitHub Pages). Use the search box in the nav bar or **⌘K** / **Ctrl+K** for full-text search.
+Open [http://localhost:5173/](http://localhost:5173/) after `npm run docs:dev`. Use the search box in the nav bar or **⌘K** / **Ctrl+K** for full-text search.
 
 ## Build
 
@@ -26,8 +26,8 @@ Pushes to `main` deploy to GitHub Pages via `.github/workflows/deploy.yml`.
 
 | Environment | URL |
 |-------------|-----|
-| GitHub Pages (current) | `https://latka-industries.github.io/ublx-docs/` |
-| Custom domain (future) | `https://ublx.dev` |
+| Production | [https://ublx.dev](https://ublx.dev) |
+| GitHub Pages (legacy) | `https://latka-industries.github.io/ublx-docs/` (redirect or retire after DNS cutover) |
 
 ## Site structure
 

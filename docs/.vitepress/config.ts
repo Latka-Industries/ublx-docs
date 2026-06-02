@@ -9,7 +9,7 @@ import { ublxSidebar } from './ublx-nav'
 export default defineConfig({
   title: 'UBLX & Co',
   description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
-  base: '/ublx-docs/',
+  base: '/',
   appearance: false,
   head: [
     [
