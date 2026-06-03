@@ -10,9 +10,9 @@ The tab appears only when the database has **at least one lens**.
 |------|---------|
 | **Left** | Lens names |
 | **Middle** | Paths in the selected lens |
-| **Right** | *(unused — no Viewer / Templates / Metadata / Writing tabs)* |
+| **Right** | [Right-pane tabs](/tui/right-pane/viewer) for the selected path — same as **Snapshot** |
 
-Use **Snapshot** if you need right-pane previews for a lens path; lenses themselves are for curated lists and export.
+Select a file in the middle pane to preview it here; **v** / **t** / **m** / **w** and **Shift+Tab** work like on **Snapshot**.
 
 ## Creating & editing lenses
 

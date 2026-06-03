@@ -8,10 +8,10 @@ Shared navigation and input behavior across main tabs unless a tab doc says othe
 |-----|--------|
 | **Tab** | Toggle focus: left (categories) ↔ middle (contents) |
 | **h** / **l** | Focus left or middle pane |
-| **v** / **t** / **m** / **w** | Focus right-pane tab: Viewer, Templates, Metadata, Writing *(Snapshot / Delta file rows)* |
+| **v** / **t** / **m** / **w** | Focus right-pane tab: Viewer, Templates, Metadata, Writing *(Snapshot / Lenses / Duplicates file rows)* |
 | **Shift+Tab** | Cycle right-pane tabs |
 
-The right pane is driven by the **middle** selection on Snapshot and Delta when viewing a file row.
+The right pane is driven by the **middle** selection on **Snapshot**, **Lenses**, and **Duplicates** when viewing a file row. On **Delta**, the right pane shows snapshot overview text only.
 
 ## Catalog search
 

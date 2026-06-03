@@ -102,23 +102,60 @@ Background enhance and delete operations show **toasts** when they finish.
 
 **Command Mode** is a global “leader” chord: press **Ctrl+A**, then a second key. If you pause (~½s), a centered menu lists the same shortcuts.
 
-Unavailable while **/** search is active or another modal is open.
+Unavailable while **/** search is active or another modal is open. **Esc** cancels without running an action.
 
-| Key | Action |
-|-----|--------|
-| **d** | Run **duplicate detection** (background). **Duplicates** tab appears when groups exist |
-| **t** | **Theme selector** — writes theme to local config on confirm |
-| **s** | **Take snapshot** (background) — re-index the project |
-| **r** | **Reload config** from disk (global + local `ublx.toml`) |
-| **x** | Export Zahir JSON to **`ublx-export/`** — see [Headless snapshot + export](/guides/headless-snapshot-export) |
-| **l** | Export lenses to **`ublx-lenses/`** — see [Making and exporting lenses](/guides/lenses) |
-| **p** | **Switch project** — recents / other indexed roots under `ubli/` |
-
-**Esc** cancels Command Mode without running an action.
+| Key | Action | Toast / result |
+|-----|--------|----------------|
+| **d** | Run **duplicate detection** (background) | **No duplicates found**, or groups load and the **Duplicates** tab can appear |
+| **t** | **Theme selector** — writes theme to local config on confirm | Confirmation when the theme is saved |
+| **s** | **Take snapshot** (background) — re-index the project | **Snapshot finished**, then **No changes** or diff counts — [below](#snapshot-re-index) |
+| **r** | **Reload config** from disk (global + local `ublx.toml`) | **Config reloaded** (or validation errors if the file is invalid) |
+| **x** | Export Zahir JSON to **`ublx-export/`** | Exported *N* file(s), nothing to export, or error — [Headless snapshot + export](/guides/headless-snapshot-export) |
+| **l** | Export lenses to **`ublx-lenses/`** | Exported *N* lens file(s), **No lenses to export**, or error — [Making and exporting lenses](/guides/lenses) |
+| **p** | **Switch project** — recents / other indexed roots under `ubli/` | Error toast if the switch fails; otherwise the new root loads (snapshot per config) |
 
 ::: tip Viewer search is not Command Mode
 In-pane preview search uses **Shift+S** in the Viewer tab, not **Ctrl+A**.
 :::
+
+::: tip Enhance is not Command Mode
+**Enhance with ZahirScan** is **Space** → **z** on a row, or bulk **a** → **z** in multi-select — not a **Ctrl+A** chord.
+:::
+
+---
+
+## Toast notifications
+
+UBLX shows short **toasts** when background work completes. They appear in the toast area (same region used for config reload and other status lines). Only the latest message for a given operation type is kept — a new snapshot replaces prior snapshot toasts.
+
+### Snapshot (re-index)
+
+After **Ctrl+A** → **s** (or a startup snapshot when switching projects), you get:
+
+| Line | Meaning |
+|------|---------|
+| **Snapshot finished** | The Nefaxer walk completed |
+| **No changes** | No paths added, modified, or removed vs the previous snapshot — **Delta** has nothing new for this run; batch ZahirScan at index time is skipped for unchanged files |
+| **`N added, M modified, R removed`** | Diff counts — open **Delta** to inspect paths |
+
+First snapshot on a new root has no prior walk to compare against; diff counts apply from the **second** snapshot onward.
+
+When the second line is **No changes**, the snapshot still completes (the catalog is refreshed), but nothing diff-driven is queued — you do not need to switch tabs or wait for enhance work tied to edits.
+
+When counts are non-zero, open **Delta** rather than re-running the snapshot.
+
+### Quick actions, bulk menu, and lens picker
+
+These are **not** Command Mode chords; they use **Space** or multi-select **a**:
+
+| Source | Typical toast |
+|--------|----------------|
+| **Space** → **z** or bulk **z** | Enhance finished (or error) for the selected path(s) |
+| **Space** → **d** or bulk **d** | Delete completed (or error) |
+| **Space** → **l** (lens picker) | e.g. **Added to lens "…"** — [Making and exporting lenses](/guides/lenses) |
+| Bulk **r** | Bulk rename result |
+
+Command Mode actions (**Ctrl+A** → **d** / **s** / **x** / **l** / …) are listed in the [Command Mode](#command-mode-ctrla) table above.
 
 ---
 

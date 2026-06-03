@@ -17,16 +17,16 @@ Main tabs run **left to right** when available. Cycle them with **`~`**.
 | Tab | When shown | Left · Middle · Right |
 |-----|------------|------------------------|
 | [Snapshot](/tui/snapshot) | Always | Categories · files · [right-pane tabs](/tui/right-pane/viewer) |
-| [Lenses](/tui/lenses) | DB has lenses | Lens names · paths in lens · *(no right-pane tabs)* |
+| [Lenses](/tui/lenses) | DB has lenses | Lens names · paths in lens · [right-pane tabs](/tui/right-pane/viewer) |
 | [Delta](/tui/delta) | Prior snapshot exists | Change buckets · changed paths · delta overview |
-| [Duplicates](/tui/duplicates) | Groups exist | Group names · member paths · group summary |
+| [Duplicates](/tui/duplicates) | Groups exist | Group names · member paths · [right-pane tabs](/tui/right-pane/viewer) |
 | [Settings](/tui/settings) | Always | Global / Local · option rows · description / preview |
 
 **Lenses** and **Duplicates** tabs appear only when the database has lenses or duplicate groups respectively.
 
-## Right pane (Snapshot & Delta)
+## Right pane (Snapshot, Lenses & Duplicates)
 
-On **Snapshot**, the right side shows ZahirScan-backed tabs for the selected file:
+On **Snapshot**, **Lenses**, and **Duplicates**, selecting a file row in the middle pane fills the right side with ZahirScan-backed tabs when JSON exists:
 
 | Tab | Doc |
 |-----|-----|

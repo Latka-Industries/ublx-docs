@@ -36,6 +36,8 @@ Selecting a row in the middle updates all four right-pane tabs when Zahir JSON e
 
 ## Related
 
+- [Snapshot & browse](/guides/snapshot-and-browse)
+- [Right-pane previews](/guides/right-pane-previews)
 - [Layout & keys](/tui/layout-and-keys)
 - [Delta](/tui/delta) — same panes, diff-focused middle list
 - [Configuration](/configuration) — `show_hidden_files`, layout percentages, enhance flags

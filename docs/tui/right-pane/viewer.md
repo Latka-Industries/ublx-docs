@@ -2,7 +2,7 @@
 
 The **Viewer** right-pane tab shows a **preview** of the selected file. Focus with **v** or **Shift+Tab**.
 
-Available on [Snapshot](/tui/snapshot) and [Delta](/tui/delta) when a file row is selected.
+Available on [Snapshot](/tui/snapshot), [Lenses](/tui/lenses), and [Duplicates](/tui/duplicates) when a file row is selected.
 
 ## What fills the pane
 

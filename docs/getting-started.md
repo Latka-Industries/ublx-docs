@@ -71,4 +71,4 @@ Headless flags (`--snapshot-only`, `--full-snapshot`, `--export`): [CLI](/cli).
 - [TUI & modes](/tui/) — Snapshot, Lenses, Delta, panes, keybindings
 - [ZahirScan](/zahirscan/) — metadata extraction and export
 - [Nefaxer](/nefaxer/) — install, CLI, architecture, UBLX integration
-- [Guides](/guides/) — path-only vs full enhance, policies, large trees
+- [Guides](/guides/) — snapshot & browse, previews, change & duplicates, project trees

@@ -14,9 +14,9 @@ Run duplicate detection from **Command Mode**: **Ctrl+A**, then **d** (see in-ap
 |------|---------|
 | **Left** | Duplicate group identifiers |
 | **Middle** | Member paths in the selected group |
-| **Right** | Summary for the group (counts, hash context) |
+| **Right** | [Right-pane tabs](/tui/right-pane/viewer) for the selected member path — same as **Snapshot** |
 
-There are **no** Viewer / Templates / Metadata / Writing tabs on this main tab.
+There are **no** multi-select bulk actions on this main tab. Previews for a member path use the same right-pane tabs as **Snapshot**.
 
 ## Actions
 
@@ -31,5 +31,6 @@ Multi-select (**Ctrl+Space**) is **not** available on Duplicates.
 
 ## Related
 
+- [Change & duplicates](/guides/change-and-duplicates)
 - [Command mode & context menus](/guides/command-mode-and-menus#duplicates-tab)
 - [Snapshot](/tui/snapshot)
