@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Badge from './ui/Badge.vue'
 import Card from './ui/Card.vue'
 import ScrollArea from './ui/ScrollArea.vue'
-import { cn } from '../lib/utils'
 
 type StackNote = {
+  id: string
   product: 'UBLX' | 'Nefaxer' | 'ZahirScan'
   accent: string
   body: string
+  hint?: string
   link: string
   linkLabel: string
+  secondaryLink?: string
+  secondaryLinkLabel?: string
 }
 
 type HomeFeature = {
@@ -36,6 +39,7 @@ const features: HomeFeature[] = [
     backTitle: 'Index with Nefaxer, browse in UBLX',
     stacks: [
       {
+        id: 'snapshot-nefaxer',
         product: 'Nefaxer',
         accent: '#0EA5E9',
         body: 'Parallel directory walks write SQLite snapshots and diffs — paths, sizes, optional Blake3 hashes.',
@@ -43,11 +47,25 @@ const features: HomeFeature[] = [
         linkLabel: 'Nefaxer docs',
       },
       {
+        id: 'snapshot-ublx',
         product: 'UBLX',
         accent: '#7C3AED',
-        body: 'Turns each snapshot into a flat TUI catalog: Viewer, lenses, Delta tab, and per-root cache under ubli/.',
+        body: 'Turns each snapshot into a flat TUI catalog: Snapshot tab, per-root cache under ubli/, and main tabs when data exists.',
         link: '/getting-started',
         linkLabel: 'Install',
+        secondaryLink: '/tui/snapshot',
+        secondaryLinkLabel: 'Snapshot tab',
+      },
+      {
+        id: 'snapshot-zahir',
+        product: 'ZahirScan',
+        accent: '#DEA584',
+        body: 'Enhance fills Viewer, Templates, Metadata, and Writing; path-only snapshots still get basic Viewer previews from disk.',
+        hint: 'Cycle main tabs with ~ · right-pane tabs: v / t / m / w',
+        link: '/tui/right-pane/viewer',
+        linkLabel: 'Viewer tab',
+        secondaryLink: '/zahirscan/formats',
+        secondaryLinkLabel: 'Supported formats',
       },
     ],
   },
@@ -59,6 +77,7 @@ const features: HomeFeature[] = [
     backTitle: 'Fast index first, ZahirScan when you need depth',
     stacks: [
       {
+        id: 'enhance-nefaxer',
         product: 'Nefaxer',
         accent: '#0EA5E9',
         body: 'Default snapshot is path + filetype only — a quick walk without opening every file.',
@@ -66,6 +85,7 @@ const features: HomeFeature[] = [
         linkLabel: 'Path-only vs full enhance',
       },
       {
+        id: 'enhance-zahir',
         product: 'ZahirScan',
         accent: '#DEA584',
         body: 'Batch or on-demand runs extract templates, metadata, and writing stats into Zahir JSON for previews.',
@@ -73,177 +93,401 @@ const features: HomeFeature[] = [
         linkLabel: 'ZahirScan overview',
       },
       {
+        id: 'enhance-ublx',
         product: 'UBLX',
         accent: '#7C3AED',
         body: 'enable_enhance_all and [[enhance_policy]] let you scope auto vs manual enhance per subtree.',
         link: '/configuration',
         linkLabel: 'UBLX configuration',
+        secondaryLink: '/guides/enhance-policies',
+        secondaryLinkLabel: 'Enhance policies',
+      },
+    ],
+  },
+  {
+    id: 'previews',
+    title: 'Right-pane previews',
+    details: 'Viewer, Templates, Metadata, and Writing tabs for the selected file.',
+    backTitle: 'What fills the Snapshot right pane',
+    stacks: [
+      {
+        id: 'previews-zahir',
+        product: 'ZahirScan',
+        accent: '#DEA584',
+        body: 'Full enhance writes Zahir JSON — templates, typed metadata columns, and writing stats extracted per format.',
+        link: '/zahirscan/metadata',
+        linkLabel: 'Metadata extraction',
+        secondaryLink: '/zahirscan/templates/',
+        secondaryLinkLabel: 'Template mining',
+      },
+      {
+        id: 'previews-ublx',
+        product: 'UBLX',
+        accent: '#7C3AED',
+        body: 'UBLX renders markdown, code, images, and .tet summaries; Zahir-backed tabs light up after enhance.',
+        hint: 'Available on Snapshot and Delta when a file row is selected.',
+        link: '/tui/right-pane/viewer',
+        linkLabel: 'Viewer tab',
+        secondaryLink: '/tui/layout-and-keys',
+        secondaryLinkLabel: 'Layout & keys',
+      },
+    ],
+  },
+  {
+    id: 'lenses',
+    title: 'Lenses & export',
+    details: 'Saved path lists and Markdown export — curated subsets of the catalog.',
+    backTitle: 'Focus on a subset, export to share',
+    stacks: [
+      {
+        id: 'lenses-ublx',
+        product: 'UBLX',
+        accent: '#7C3AED',
+        body: 'The Lenses tab lists saved path sets; add from Snapshot with l or bulk a, then export to ublx-lenses/ Markdown.',
+        hint: 'Tab appears when the database has at least one lens.',
+        link: '/tui/lenses',
+        linkLabel: 'Lenses tab',
+        secondaryLink: '/guides/lenses',
+        secondaryLinkLabel: 'Making & exporting lenses',
+      },
+    ],
+  },
+  {
+    id: 'changes',
+    title: 'Change & duplicates',
+    details: 'Diff snapshots over time and review hash duplicate groups.',
+    backTitle: 'Delta when history exists; Duplicates after detection',
+    stacks: [
+      {
+        id: 'changes-nefaxer',
+        product: 'Nefaxer',
+        accent: '#0EA5E9',
+        body: 'Each snapshot compares to the prior walk — added, modified, and removed paths land in the database for UBLX.',
+        hint: 'Delta tab appears when a prior snapshot exists.',
+        link: '/nefaxer/database',
+        linkLabel: 'Database schema',
+      },
+      {
+        id: 'changes-ublx',
+        product: 'UBLX',
+        accent: '#7C3AED',
+        body: 'Delta tab buckets changed paths; Duplicates tab groups files by Blake3 hash after Ctrl+A → d detection.',
+        hint: 'Duplicates tab appears when duplicate groups exist.',
+        link: '/tui/delta',
+        linkLabel: 'Delta tab',
+        secondaryLink: '/tui/duplicates',
+        secondaryLinkLabel: 'Duplicates tab',
       },
     ],
   },
   {
     id: 'trees',
     title: 'Built for project trees',
-    details: 'Fast diffs, duplicate detection, and export — not a file manager replacement.',
-    backTitle: 'What UBLX optimizes for',
+    details: 'Command mode, bulk actions, and repo-scale navigation — not a file manager replacement.',
+    backTitle: 'Navigate large trees efficiently',
     stacks: [
       {
+        id: 'trees-ublx',
         product: 'UBLX',
         accent: '#7C3AED',
-        body: 'Project-scale navigation: command mode, saved lenses, headless --export, and duplicate detection from hashes.',
-        link: '/guides/headless-snapshot-export',
-        linkLabel: 'Headless snapshot + export',
+        body: 'Space and Ctrl+A command mode, multi-select bulk actions, and saved lenses for recurring path sets.',
+        hint: 'Press ? in the TUI for context help on the active tab.',
+        link: '/guides/command-mode-and-menus',
+        linkLabel: 'Command mode & menus',
+        secondaryLink: '/tui/index',
+        secondaryLinkLabel: 'TUI & modes',
       },
       {
+        id: 'trees-nefaxer',
         product: 'Nefaxer',
         accent: '#0EA5E9',
-        body: 'Snapshot diffs drive the Delta tab — added, modified, and removed paths without re-walking blind.',
-        link: '/tui/delta',
-        linkLabel: 'Delta tab',
+        body: 'Parallel walks keep snapshots fast on deep project trees; optional Blake3 hashes feed duplicate detection.',
+        link: '/nefaxer/architecture',
+        linkLabel: 'Nefaxer architecture',
+      },
+    ],
+  },
+  {
+    id: 'headless',
+    title: 'Headless & export',
+    details: 'Snapshot-only runs and catalog export for CI and scripts.',
+    backTitle: 'UBLX without the TUI',
+    stacks: [
+      {
+        id: 'headless-ublx',
+        product: 'UBLX',
+        accent: '#7C3AED',
+        body: 'ublx --snapshot-only --export writes catalog output without opening the TUI — handy for pipelines and reviews.',
+        link: '/guides/headless-snapshot-export',
+        linkLabel: 'Headless snapshot + export',
+        secondaryLink: '/cli',
+        secondaryLinkLabel: 'UBLX CLI',
+      },
+      {
+        id: 'headless-nefaxer',
+        product: 'Nefaxer',
+        accent: '#0EA5E9',
+        body: 'Run nefaxer directly for indexing-only jobs; UBLX picks up the SQLite snapshot on the next launch or export pass.',
+        link: '/nefaxer/cli',
+        linkLabel: 'Nefaxer CLI',
       },
     ],
   },
 ]
 
-const flipped = ref<Record<string, boolean>>({})
+const selectedFeatureId = ref(features[0]!.id)
+const selectedStackId = ref(features[0]!.stacks[0]!.id)
 
-function isFlipped(id: string) {
-  return !!flipped.value[id]
+const selectedFeature = computed(
+  () => features.find((feature) => feature.id === selectedFeatureId.value) ?? features[0]!,
+)
+
+const selectedStack = computed(() => {
+  const stacks = selectedFeature.value.stacks
+  return stacks.find((stack) => stack.id === selectedStackId.value) ?? stacks[0]!
+})
+
+function selectFeature(id: string) {
+  selectedFeatureId.value = id
+  const feature = features.find((item) => item.id === id)
+  if (feature?.stacks[0]) selectedStackId.value = feature.stacks[0].id
 }
 
-function toggle(id: string) {
-  flipped.value = { ...flipped.value, [id]: !flipped.value[id] }
+function selectStack(id: string) {
+  selectedStackId.value = id
 }
 </script>
 
 <template>
-  <section class="home-features tet-shadcn" aria-label="UBLX highlights">
-    <div class="home-features__grid">
-      <button
-        v-for="feature in features"
-        :key="feature.id"
-        type="button"
-        class="home-features__item feature-flip h-full w-full"
-        :aria-label="
-          isFlipped(feature.id)
-            ? `Show summary for ${feature.title}`
-            : `Show stack details for ${feature.title}`
-        "
-        :aria-pressed="isFlipped(feature.id)"
-        @click="toggle(feature.id)"
-      >
-        <div
-          class="feature-flip__inner"
-          :class="{ 'feature-flip__inner--flipped': isFlipped(feature.id) }"
-        >
-          <Card
-            :class="
-              cn(
-                'feature-flip__face feature-flip__face--front flex h-full flex-col p-6 text-left transition-colors',
-                'hover:border-primary/40 hover:shadow-md',
-              )
-            "
-          >
-            <h3 class="text-base font-semibold leading-snug text-card-foreground">
-              {{ feature.title }}
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-relaxed text-muted-foreground">
-              {{ feature.details }}
-            </p>
-          </Card>
-
-          <Card class="feature-flip__face feature-flip__face--back h-full overflow-hidden p-0 text-left">
-            <ScrollArea class="feature-flip__scroll h-full p-4">
-              <p class="text-sm font-semibold text-card-foreground">{{ feature.backTitle }}</p>
-              <ul class="mt-3 space-y-3 pb-1">
-                <li
-                  v-for="stack in feature.stacks"
-                  :key="stack.product"
-                  class="space-y-1.5 border-l-2 pl-3"
-                  :style="{ borderColor: `${stack.accent}66` }"
+  <section class="home-features tet-shadcn" aria-label="UBLX stack explorer">
+    <Card class="home-features__shell overflow-hidden p-0">
+      <div class="home-features__panes">
+        <nav class="home-features__pane home-features__pane--left" aria-label="Workflows">
+          <p class="home-features__pane-label">Workflow</p>
+          <ScrollArea class="home-features__scroll min-h-0 flex-1">
+            <ul class="home-features__list">
+              <li v-for="feature in features" :key="feature.id">
+                <button
+                  type="button"
+                  class="home-features__row"
+                  :class="{ 'home-features__row--active': feature.id === selectedFeatureId }"
+                  :aria-pressed="feature.id === selectedFeatureId"
+                  @click="selectFeature(feature.id)"
                 >
-                  <Badge :variant="productBadgeVariant[stack.product]">
-                    {{ stack.product }}
-                  </Badge>
-                  <p class="text-sm leading-snug text-muted-foreground">{{ stack.body }}</p>
-                  <a
-                    :href="stack.link"
-                    class="text-xs font-medium text-primary hover:underline"
-                    @click.stop
-                  >
-                    {{ stack.linkLabel }} →
+                  <span class="home-features__row-title">{{ feature.title }}</span>
+                  <span class="home-features__row-detail">{{ feature.details }}</span>
+                </button>
+              </li>
+            </ul>
+          </ScrollArea>
+        </nav>
+
+        <nav class="home-features__pane home-features__pane--middle" aria-label="Stack">
+          <p class="home-features__pane-label">Stack</p>
+          <ul class="home-features__list">
+            <li v-for="stack in selectedFeature.stacks" :key="stack.id">
+              <button
+                type="button"
+                class="home-features__row home-features__row--compact"
+                :class="{ 'home-features__row--active': stack.id === selectedStackId }"
+                :aria-pressed="stack.id === selectedStackId"
+                @click="selectStack(stack.id)"
+              >
+                <span
+                  class="home-features__product-dot"
+                  :style="{ backgroundColor: stack.accent }"
+                  aria-hidden="true"
+                />
+                <span class="home-features__row-title">{{ stack.product }}</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="home-features__pane home-features__pane--right" aria-label="Viewer">
+          <p class="home-features__pane-label">Viewer</p>
+          <ScrollArea class="home-features__viewer h-full min-h-0 flex-1">
+            <div class="home-features__viewer-inner">
+              <p class="text-sm font-semibold text-card-foreground">
+                {{ selectedFeature.backTitle }}
+              </p>
+              <div
+                class="home-features__viewer-note mt-4 space-y-2 border-l-2 pl-3"
+                :style="{ borderColor: `${selectedStack.accent}66` }"
+              >
+                <Badge :variant="productBadgeVariant[selectedStack.product]">
+                  {{ selectedStack.product }}
+                </Badge>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  {{ selectedStack.body }}
+                </p>
+                <p v-if="selectedStack.hint" class="home-features__hint">
+                  {{ selectedStack.hint }}
+                </p>
+                <div class="home-features__links">
+                  <a :href="selectedStack.link" class="text-xs font-medium text-primary hover:underline">
+                    {{ selectedStack.linkLabel }} →
                   </a>
-                </li>
-              </ul>
-            </ScrollArea>
-          </Card>
+                  <a
+                    v-if="selectedStack.secondaryLink && selectedStack.secondaryLinkLabel"
+                    :href="selectedStack.secondaryLink"
+                    class="text-xs font-medium text-primary hover:underline"
+                  >
+                    {{ selectedStack.secondaryLinkLabel }} →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ScrollArea>
         </div>
-      </button>
-    </div>
+      </div>
+    </Card>
   </section>
 </template>
 
 <style scoped>
 .home-features {
-  --feature-card-height: 14rem;
   margin: 2rem auto 0;
-  max-width: 72rem;
+  max-width: 80rem;
   padding: 0 1.5rem;
 }
 
-.home-features__grid {
+.home-features__shell {
+  min-height: 18rem;
+}
+
+.home-features__panes {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  min-height: 18rem;
 }
 
-.home-features__item {
-  height: var(--feature-card-height);
+.home-features__pane {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: left;
+}
+
+.home-features__pane--left,
+.home-features__pane--middle {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.home-features__pane-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.home-features__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-features__row {
+  display: block;
   width: 100%;
-  border: none;
+  margin: 0;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) - 2px);
   background: transparent;
   cursor: pointer;
-  text-align: inherit;
+  text-align: left;
   font: inherit;
   color: inherit;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
 }
 
-.feature-flip {
-  height: 100%;
-  perspective: 1000px;
+.home-features__row--compact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.feature-flip__inner {
-  position: relative;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.55s ease-in-out;
+.home-features__row:hover:not(.home-features__row--active) {
+  background: hsl(var(--muted));
 }
 
-.feature-flip__inner--flipped {
-  transform: rotateY(180deg);
+.home-features__row--active {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
 }
 
-.feature-flip__face {
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+.home-features__row--active .home-features__row-detail {
+  color: hsl(var(--primary-foreground) / 0.85);
 }
 
-.feature-flip__face--back {
-  position: absolute;
-  inset: 0;
-  transform: rotateY(180deg);
+.home-features__row-title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.feature-flip__scroll {
-  height: 100%;
+.home-features__row-detail {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: hsl(var(--muted-foreground));
+}
+
+.home-features__product-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+}
+
+.home-features__viewer-inner {
+  padding-right: 0.25rem;
+}
+
+.home-features__hint {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: hsl(var(--muted-foreground));
+}
+
+.home-features__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.home-features__scroll :deep(.scroll-area-viewport) {
+  max-height: 16rem;
 }
 
 @media (min-width: 768px) {
-  .home-features__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .home-features__scroll :deep(.scroll-area-viewport) {
+    max-height: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-features__panes {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.78fr) minmax(0, 1.42fr);
+  }
+
+  .home-features__pane--left,
+  .home-features__pane--middle {
+    border-bottom: none;
+    border-right: 1px solid hsl(var(--border));
   }
 }
 
@@ -255,7 +499,7 @@ function toggle(id: string) {
 
 @media (min-width: 960px) {
   .home-features {
-    padding: 0 4rem;
+    padding: 0 2.5rem;
   }
 }
 
@@ -265,28 +509,5 @@ function toggle(id: string) {
 
 .tet-shadcn a.text-primary {
   color: hsl(var(--primary));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .feature-flip__inner {
-    transition: none;
-    transform-style: flat;
-  }
-
-  .feature-flip__inner:not(.feature-flip__inner--flipped) .feature-flip__face--back {
-    visibility: hidden;
-  }
-
-  .feature-flip__inner--flipped .feature-flip__face--front {
-    visibility: hidden;
-  }
-
-  .feature-flip__inner--flipped {
-    transform: none;
-  }
-
-  .feature-flip__face--back {
-    transform: none;
-  }
 }
 </style>

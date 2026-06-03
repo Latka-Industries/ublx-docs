@@ -155,7 +155,7 @@ export function paletteToCssVars(entry: PaletteEntry): Record<string, string> {
     '--muted': rgbToHslParts(bgAlt),
     '--muted-foreground': rgbToHslParts(hint),
     '--accent': rgbToHslParts(tab),
-    '--accent-foreground': rgbToHslParts(text),
+    '--accent-foreground': rgbToHslParts(isDark ? bg : [255, 255, 255]),
     '--border': rgbToHslParts(border),
     '--input': rgbToHslParts(border),
     '--ring': rgbToHslParts(focus),
