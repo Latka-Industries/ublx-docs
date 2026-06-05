@@ -53,9 +53,7 @@ ZahirScan detects format from content and path, then runs the appropriate metada
 
 | Format | Extensions | Notes |
 |--------|------------|-------|
-| Python pickle | `.pickle` | Always detected as pickle |
-| Python pickle (sniffed) | `.pkl` | Binary or text protocol 0/1 when bytes look like Python serialization |
-| [Apple Pkl](https://pkl-lang.org) source | `.pkl` | UTF-8 config source → **Code** (not pickle); `script_type: "pkl"` |
+| Python pickle | `.pickle`, `.pkl` | `.pickle` always; `.pkl` when bytes look like Python serialization |
 
 ZahirScan **does not unpickle** files. It walks opcodes read-only (like `pickletools`) and records protocol, import references, frame stats, and a heuristic `content_hint` (`tabular`, `ml_model`, `numeric_array`, `builtin_containers`). Large array payloads are skipped by length.
 
@@ -85,7 +83,6 @@ See [Metadata extraction — Python pickle](/zahirscan/metadata#python-pickle).
 | Format | Extensions |
 |--------|------------|
 | Linguist-style source (by extension) | `.py`, `.rs`, `.js`, `.ts`, `.go`, `.java`, … |
-| Apple Pkl config source | `.pkl` (when UTF-8 source, not Python pickle bytes) |
 | Makefile | `Makefile` |
 | Dockerfile | `Dockerfile` |
 | Shell / script (shebang) | `.sh`, `.bash`, `.zsh`, `.py`, `.rb`, `.pl` |

@@ -40,7 +40,7 @@ Row/column counts, column names, types, delimiter, quote/escape, null percentage
 
 ### Python pickle
 
-**`.pickle`**, and **`.pkl`** when sniffed as Python serialization (not Apple Pkl source). Read-only opcode scan — **no unpickling**, no imports, no code execution.
+**`.pickle`** and **`.pkl`**. Read-only opcode scan — **no unpickling**, no imports, no code execution.
 
 | Field | Meaning |
 |-------|---------|
@@ -52,8 +52,6 @@ Row/column counts, column names, types, delimiter, quote/escape, null percentage
 | `builtin_types` | Subset under `builtins.*`, `__builtin__.*`, `collections.*` |
 | `content_hint` | Heuristic: `tabular` (pandas), `ml_model` (sklearn/torch/xgboost), `numeric_array` (numpy), `builtin_containers` |
 | `scan_truncated`, `scan_error` | Scan stopped early (opcode cap, unknown opcode, truncated operand) |
-
-Apple Pkl **source text** at `.pkl` is routed as **Code** with linguist `script_type: "pkl"` — see [Code / scripts](#code-scripts).
 
 ### Models
 
