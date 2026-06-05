@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { docsRsNavItem } from './docs-rs-nav'
 import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
 import { themesNavItem } from './themes-nav'
-import { metadataNavItem, metadataNavItems } from './metadata-nav'
+import { metadataNavLink, metadataNavItems } from './metadata-nav'
 import { tuiNavItem } from './tui-nav'
 import { ublxSidebar } from './ublx-nav'
 
@@ -53,7 +53,7 @@ export default defineConfig({
           { text: 'Install', link: '/zahirscan/install' },
           { text: 'CLI', link: '/zahirscan/cli' },
           { text: 'Supported formats', link: '/zahirscan/formats' },
-          metadataNavItem,
+          metadataNavLink,
           { text: 'Template mining', link: '/zahirscan/templates' },
           { text: 'Writing footprint', link: '/zahirscan/writing-footprint' },
           { text: 'Architecture', link: '/zahirscan/architecture' },

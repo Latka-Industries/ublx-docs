@@ -17,7 +17,8 @@ export const metadataNavItems = [
   { text: 'Archives', link: '/zahirscan/metadata/archives' },
 ]
 
-export const metadataNavItem = {
+/** Top nav: single link — nested submenu is too tall and hides items below. */
+export const metadataNavLink = {
   text: 'Metadata extraction',
-  items: metadataNavItems,
+  link: '/zahirscan/metadata/',
 }
