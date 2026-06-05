@@ -119,7 +119,7 @@ const features: HomeFeature[] = [
         body: 'Full enhance writes Zahir JSON — templates, typed metadata columns, and writing stats extracted per format.',
         link: '/guides/right-pane-previews',
         linkLabel: 'Right-pane previews',
-        secondaryLink: '/zahirscan/metadata',
+        secondaryLink: '/zahirscan/metadata/',
         secondaryLinkLabel: 'Metadata extraction',
       },
       {

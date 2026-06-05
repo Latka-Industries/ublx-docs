@@ -57,7 +57,7 @@ ZahirScan detects format from content and path, then runs the appropriate metada
 
 ZahirScan **does not unpickle** files. It walks opcodes read-only (like `pickletools`) and records protocol, import references, frame stats, and a heuristic `content_hint` (`tabular`, `ml_model`, `numeric_array`, `builtin_containers`). Large array payloads are skipped by length.
 
-See [Metadata extraction — Python pickle](/zahirscan/metadata#python-pickle).
+See [Python pickle metadata](/zahirscan/metadata/pickle).
 
 ## Models
 
@@ -101,4 +101,4 @@ See [Metadata extraction — Python pickle](/zahirscan/metadata#python-pickle).
 |--------|------------|
 | SQLite | `.db`, `.sqlite`, `.sqlite3` |
 
-What each category extracts is summarized on [Metadata extraction](/zahirscan/metadata).
+What each category extracts is summarized under [Metadata extraction](/zahirscan/metadata/).

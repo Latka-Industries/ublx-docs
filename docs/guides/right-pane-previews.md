@@ -30,9 +30,9 @@ ZahirScan writes JSON into the snapshot DB; UBLX reads it on row select — it d
 
 | Tab | Source |
 |-----|--------|
-| Templates | [Template mining](/zahirscan/templates/) — headers, patterns, column snippets |
-| Metadata | [Metadata extraction](/zahirscan/metadata) — format-specific fields |
-| Writing | [Writing footprint](/zahirscan/templates/writing-footprint) — counts and stats |
+| Templates | [Template mining](/zahirscan/templates) — headers, patterns, column snippets |
+| Metadata | [Metadata extraction](/zahirscan/metadata/) — format-specific fields |
+| Writing | [Writing footprint](/zahirscan/writing-footprint) — counts and stats |
 
 Deep format docs live under [ZahirScan](/zahirscan/). UBLX integration: [ZahirScan UBLX integration](/zahirscan/ublx).
 

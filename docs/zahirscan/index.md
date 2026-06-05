@@ -22,8 +22,9 @@ Use the sidebar to jump between topics:
 | [Install](/zahirscan/install) | `cargo install`, optional features, system deps |
 | [CLI](/zahirscan/cli) | Flags, output modes, `init` |
 | [Supported formats](/zahirscan/formats) | Full format list by category |
-| [Metadata extraction](/zahirscan/metadata) | What each format type returns |
-| [Template mining](/zahirscan/templates/) | Overview, [writing footprint](/zahirscan/templates/writing-footprint), [column stats](/zahirscan/templates/column-statistics) |
+| [Metadata extraction](/zahirscan/metadata/) | Per-format `*_metadata` blocks and [column statistics](/zahirscan/metadata/column-statistics) |
+| [Template mining](/zahirscan/templates) | Repeated patterns, compression, placeholders |
+| [Writing footprint](/zahirscan/writing-footprint) | Prose style metrics for text-like files |
 | [Architecture](/zahirscan/architecture) | Phase 1 / Phase 2, batching, streaming sinks |
 | [Configuration](/zahirscan/configuration) | `zahirscan.toml`, filters, adaptive batching |
 | [Library](/zahirscan/library) | Rust API overview → [docs.rs](https://docs.rs/zahirscan) |
