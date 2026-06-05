@@ -12,7 +12,7 @@ Not every format produces templates. Many files return `templates: []` and inste
 |-------|------|
 | Templates, compression, categories | This page |
 | [Writing footprint](/zahirscan/templates/writing-footprint) | Prose/style metrics (not templates) |
-| [Column statistics](/zahirscan/templates/column-statistics) | Tabular & SQLite column profiles |
+| [Column statistics](/zahirscan/templates/column-statistics) | Tabular `columns[]`, SQLite profiles, [arrays & catalogs without columns](/zahirscan/templates/column-statistics#array-and-catalog-stats) |
 
 ## Templates
 
@@ -110,7 +110,7 @@ Typical reduction on template-eligible content is **80–95%**. Column-heavy fil
 |----------|---------|---------------------|
 | **Delimited text** | CSV, TSV, tab, psv | `csv_metadata` + [column stats](/zahirscan/templates/column-statistics) |
 | **Columnar binary** | Parquet, Arrow, Avro, ORC | `parquet_metadata`, `arrow_ipc_metadata`, … + `columns` |
-| **Scientific arrays** | NumPy, HDF5, NetCDF, Zarr, `.tet`, MATLAB, MTX | Format-specific `*_metadata` (shapes, dtypes, catalogs) |
+| **Scientific arrays** | NumPy, HDF5, NetCDF, Zarr, `.tet`, MATLAB, MTX | Format-specific `*_metadata` — see [arrays & catalogs without `columns`](/zahirscan/templates/column-statistics#array-and-catalog-stats) |
 | **Documents** | DOCX, XLSX, PPTX, PDF, EPUB (metadata path) | `docx_metadata`, `pdf_metadata`, … |
 | **Settings** | INI, TOML, YAML, XML | Recursive schema stats, no line templates |
 | **SQLite** | `.db`, … | `sqlite_metadata` with per-table column info |

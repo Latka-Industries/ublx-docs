@@ -119,9 +119,67 @@ Sampling scales with file size, table width, and **bytes-per-row** when row coun
 | `null_percentage`, `unique_count` | Sampled null % and distinct count |
 | `numeric_stats`, `date_stats`, `boolean_stats`, `text_stats`, `blob_stats` | Typed stats (boolean vs numeric are mutually exclusive) |
 
-## Column stats without `columns`
+## Shapes and dtypes instead of `columns` {#array-and-catalog-stats}
 
-Some formats expose shapes and dtypes instead of a `columns` array — NumPy (`.npy`/`.npz`), HDF5, NetCDF, Zarr, Matrix Market, MATLAB, Tetration `.tet`, model files. See [Metadata extraction](/zahirscan/metadata).
+Not every numeric file is a **named table**. CSV and columnar binaries have schema columns you can profile row-by-row. Array containers, hierarchical stores, and model files instead expose **layout** (shape, dtype, paths) and sometimes **global** or **per-axis** stats — not a `columns` array.
+
+### When you get `columns` vs when you do not
+
+| Pattern | Formats | JSON shape |
+|---------|---------|------------|
+| **Named columns, row sampling** | CSV/TSV/tab/psv; Parquet, Arrow IPC, Avro, ORC | Flattened `ColumnarCommonFields`: `row_count`, `column_count`, `stats_rows_sampled`, `columns[]` |
+| **Matrix with logical columns** | Matrix Market (`.mtx`) | Same `columns[]`, plus `storage`, `symmetry`, `numeric_stats_include_implicit_zeros` on `mtx_metadata` |
+| **2-D arrays treated as tables** | NumPy (`.npy`/`.npz` members), Zarr arrays, Tetration datasets (rank ≤ 2, numeric dtype) | `layout.shape` + dtype **and** optional `columns[]` from flattened `common` (same `ColumnStat` objects, names often omitted) |
+| **Layout + catalog only** | HDF5, NetCDF, Zarr store (directory), MATLAB `.mat` (multi-variable) | Per-dataset or per-variable entries with `shape`, dtype/class, paths — no row-wise column profiles |
+| **Global array stats** | MATLAB entries (non-scalar arrays) | `global` on each `MatArrayEntrySummary`: one `num` / `date` / `bool` block for the whole array, not per column |
+| **Tensor / graph inventory** | ONNX, GGUF, TFLite, Safetensors | Tensor or operator summaries — names, dtypes, shapes, counts |
+| **Pickle** | `.pickle`, `.pkl` | `pickle_metadata`: import references and `content_hint`, not column stats |
+
+Rank **> 2** NumPy/Zarr/Tetration arrays keep **`layout.shape`** only; ZahirScan does not flatten them into a `columns` list. Object, structured, and char dtypes skip column profiling.
+
+### `ArrayLayoutSummary` (shared layout block)
+
+Used inside `npy_metadata`, `npz` member entries, Zarr array entries, Tetration dataset summaries, and MATLAB array entries:
+
+| Field | Meaning |
+|-------|---------|
+| `format_version` | Container version when known (NumPy header version, MAT level, …) |
+| `dtype` | Element type (`descr` string, MATLAB class, HDF5 label, …) |
+| `shape` | Dimension lengths — **authoritative size** when `row_count` / `column_count` are omitted on flattened `common` |
+| `fortran_order` | Column-major layout when applicable |
+| `header_region_bytes`, `data_offset`, `data_region_bytes` | Where payload bytes live in the file or member |
+| `expected_data_bytes_from_dtype` | `itemsize × num_elements` when inferable |
+
+For rank 0–2, parsers may derive table dims from `shape` for sampling; higher rank uses `prod(shape)` as a flat element count.
+
+### Hierarchical and scientific catalogs
+
+**HDF5** (`hdf5_metadata`): superblock summary, bounded group walk, `datasets[]` with `path`, `shape`, `datatype_class`.
+
+**NetCDF** (`netcdf_metadata`): global attributes, dimension list, `variables[]` with `shape`, `dimension_names`, `vartype`, variable attributes.
+
+**Zarr** (`zarr_metadata`): store version, `arrays[]` each with `name`, nested `layout`, optional flattened `common` when an array is sampled as 2-D numeric.
+
+**MATLAB** (`mat_metadata`): `entries[]` per variable — `layout`, optional `global` stats, `struct_subtree` for nested struct/cell walks; v7.3 HDF5 MAT flagged without full variable decode.
+
+**Tetration** (`tetration_metadata`): file catalog, chunk index, per-dataset `layout` + optional `common` / `tensor3d` plane stats — see [tetration-docs](https://github.com/Latka-Industries/tetration-docs).
+
+### Models (no tabular columns)
+
+Model parsers return graph/tensor **inventories**, not CSV-style profiles:
+
+| Block | Typical contents |
+|-------|------------------|
+| `onnx_metadata` | Opset imports, op-type counts, graph I/O summaries, node/initializer counts |
+| `gguf_metadata` | Metadata KV, tensor table |
+| `tflite_metadata` | Subgraphs, operators, tensor descriptors |
+| `safetensors_metadata` | Tensor names, dtypes, shapes, optional `__metadata__` |
+
+### Pickle (references, not columns)
+
+`pickle_metadata` reports opcode-walk **import references** (`referenced_globals`) and a heuristic `content_hint` (`tabular`, `ml_model`, `numeric_array`, …). There is no shape decode and no `columns` array. See [Metadata — Python pickle](/zahirscan/metadata#python-pickle).
+
+Field-level detail for each format: [Metadata extraction](/zahirscan/metadata).
 
 ## UBLX display
 

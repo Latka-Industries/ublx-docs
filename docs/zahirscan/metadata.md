@@ -96,6 +96,6 @@ For text, markdown, and HTML body: vocabulary richness, sentence structure, temp
 
 ### Column statistics
 
-Tabular and SQLite outputs include per-column profiles (`columns` compact array or `ColumnInfo`). See [Column statistics](/zahirscan/templates/column-statistics).
+Tabular and SQLite outputs include per-column profiles (`columns` compact array or `ColumnInfo`). Array, hierarchical, model, and pickle formats use other metadata shapes — see [Column statistics — shapes and dtypes](/zahirscan/templates/column-statistics#array-and-catalog-stats).
 
 Full field-level API types: [docs.rs/zahirscan](https://docs.rs/zahirscan).
