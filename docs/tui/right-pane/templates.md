@@ -22,6 +22,6 @@ Content comes from the snapshot’s Zahir JSON — not recomputed on every keypr
 
 ## Related docs
 
-- [ZahirScan: Template mining](/zahirscan/templates/)
+- [ZahirScan: Template mining](/zahirscan/templates)
 - [Metadata](/tui/right-pane/metadata) — typed fields alongside templates
 - [Snapshot](/tui/snapshot)

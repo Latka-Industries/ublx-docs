@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { docsRsNavItem } from './docs-rs-nav'
 import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
 import { themesNavItem } from './themes-nav'
+import { metadataNavItem, metadataNavItems } from './metadata-nav'
 import { tuiNavItem } from './tui-nav'
 import { ublxSidebar } from './ublx-nav'
 
@@ -52,15 +53,9 @@ export default defineConfig({
           { text: 'Install', link: '/zahirscan/install' },
           { text: 'CLI', link: '/zahirscan/cli' },
           { text: 'Supported formats', link: '/zahirscan/formats' },
-          { text: 'Metadata extraction', link: '/zahirscan/metadata' },
-          {
-            text: 'Template mining',
-            items: [
-              { text: 'Mining overview', link: '/zahirscan/templates/' },
-              { text: 'Writing footprint', link: '/zahirscan/templates/writing-footprint' },
-              { text: 'Column statistics', link: '/zahirscan/templates/column-statistics' },
-            ],
-          },
+          metadataNavItem,
+          { text: 'Template mining', link: '/zahirscan/templates' },
+          { text: 'Writing footprint', link: '/zahirscan/writing-footprint' },
           { text: 'Architecture', link: '/zahirscan/architecture' },
           { text: 'Configuration', link: '/zahirscan/configuration' },
           { text: 'Library', link: '/zahirscan/library' },
@@ -122,16 +117,13 @@ export default defineConfig({
             { text: 'Install', link: '/zahirscan/install' },
             { text: 'CLI', link: '/zahirscan/cli' },
             { text: 'Supported formats', link: '/zahirscan/formats' },
-            { text: 'Metadata extraction', link: '/zahirscan/metadata' },
             {
-              text: 'Template mining',
+              text: 'Metadata extraction',
               collapsed: false,
-              items: [
-                { text: 'Mining overview', link: '/zahirscan/templates/' },
-                { text: 'Writing footprint', link: '/zahirscan/templates/writing-footprint' },
-                { text: 'Column statistics', link: '/zahirscan/templates/column-statistics' },
-              ],
+              items: metadataNavItems,
             },
+            { text: 'Template mining', link: '/zahirscan/templates' },
+            { text: 'Writing footprint', link: '/zahirscan/writing-footprint' },
             { text: 'Architecture', link: '/zahirscan/architecture' },
             { text: 'Configuration', link: '/zahirscan/configuration' },
             { text: 'Library', link: '/zahirscan/library' },

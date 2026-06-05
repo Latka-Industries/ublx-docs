@@ -23,7 +23,7 @@ Adjust in [Settings](/tui/settings) or [Configuration](/configuration).
 
 ## Format coverage
 
-Per-format fields differ (media, office, sqlite, csv, …). See [ZahirScan metadata extraction](/zahirscan/metadata).
+Per-format fields differ (media, office, sqlite, csv, …). See [ZahirScan metadata extraction](/zahirscan/metadata/).
 
 ## Related
 

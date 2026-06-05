@@ -9,7 +9,7 @@ Focus with **w**.
 | Stat | Typical sources |
 |------|-----------------|
 | Word / character counts | Prose documents, markdown, plain text |
-| Footprint summaries | [Writing footprint](/zahirscan/templates/writing-footprint) mining |
+| Footprint summaries | [Writing footprint](/zahirscan/writing-footprint) mining |
 
 If the file type does not produce writing stats, the tab may be empty or minimal.
 
@@ -19,6 +19,6 @@ Requires enhanced snapshot JSON (not path-only). Use **Enhance with ZahirScan** 
 
 ## Related
 
-- [ZahirScan: Writing footprint](/zahirscan/templates/writing-footprint)
+- [ZahirScan: Writing footprint](/zahirscan/writing-footprint)
 - [Metadata](/tui/right-pane/metadata)
 - [Templates](/tui/right-pane/templates)

@@ -4,15 +4,9 @@ outline: deep
 
 # Template mining
 
-ZahirScan compresses repetitive structure into **templates** and attaches **metadata** blocks per file type. Use the sidebar under **Template mining** to jump between topics.
+ZahirScan compresses repetitive structure into **templates** and attaches **metadata** blocks per file type. Prose style metrics live separately under [Writing footprint](/zahirscan/writing-footprint). Format-specific fields and [column statistics](/zahirscan/metadata/column-statistics) are under [Metadata extraction](/zahirscan/metadata/).
 
 Not every format produces templates. Many files return `templates: []` and instead ship **metadata** (including `columns` stats for tables). UBLX maps these fields to the **Templates**, **Writing**, and **Metadata** panes.
-
-| Topic | Page |
-|-------|------|
-| Templates, compression, categories | This page |
-| [Writing footprint](/zahirscan/templates/writing-footprint) | Prose/style metrics (not templates) |
-| [Column statistics](/zahirscan/templates/column-statistics) | Tabular & SQLite column profiles |
 
 ## Templates
 
@@ -57,7 +51,7 @@ Phase 2 builds a **`MiningResult`** (embedded in Zahir output alongside top-leve
 | `original_tokens` | Estimated source tokens |
 | `compressed_tokens` | Estimated tokens after template representation |
 | `token_reduction_percent` | Percent reduction vs original |
-| `writing_footprint` | Optional — see [Writing footprint](/zahirscan/templates/writing-footprint) |
+| `writing_footprint` | Optional — see [Writing footprint](/zahirscan/writing-footprint) |
 
 Top-level **`Output`** always includes `templates`. **Full mode** (`-f`) also adds file-level stats and `compression`:
 
@@ -71,7 +65,7 @@ Top-level **`Output`** always includes `templates`. **Full mode** (`-f`) also ad
 }
 ```
 
-Typical reduction on template-eligible content is **80–95%**. Column-heavy files gain more from [column statistics](/zahirscan/templates/column-statistics) than from templates.
+Typical reduction on template-eligible content is **80–95%**. Column-heavy files gain more from [column statistics](/zahirscan/metadata/column-statistics) than from templates.
 
 ## Results per category
 
@@ -108,16 +102,16 @@ Typical reduction on template-eligible content is **80–95%**. Column-heavy fil
 
 | Category | Formats | Primary JSON blocks |
 |----------|---------|---------------------|
-| **Delimited text** | CSV, TSV, tab, psv | `csv_metadata` + [column stats](/zahirscan/templates/column-statistics) |
+| **Delimited text** | CSV, TSV, tab, psv | `csv_metadata` + [column stats](/zahirscan/metadata/column-statistics) |
 | **Columnar binary** | Parquet, Arrow, Avro, ORC | `parquet_metadata`, `arrow_ipc_metadata`, … + `columns` |
-| **Scientific arrays** | NumPy, HDF5, NetCDF, Zarr, `.tet`, MATLAB, MTX | Format-specific `*_metadata` (shapes, dtypes, catalogs) |
+| **Scientific arrays** | NumPy, HDF5, NetCDF, Zarr, `.tet`, MATLAB, MTX | Format-specific `*_metadata` — see [scientific arrays](/zahirscan/metadata/scientific-arrays) |
 | **Documents** | DOCX, XLSX, PPTX, PDF, EPUB (metadata path) | `docx_metadata`, `pdf_metadata`, … |
 | **Settings** | INI, TOML, YAML, XML | Recursive schema stats, no line templates |
 | **SQLite** | `.db`, … | `sqlite_metadata` with per-table column info |
 | **Models** | ONNX, GGUF, TFLite, Safetensors | Graph/tensor summaries |
 | **Archives / media / code** | ZIP, TAR, images, video, audio, source files | Entry lists, probes, `code_metadata` |
 
-See [Metadata extraction](/zahirscan/metadata) for field-by-field descriptions.
+See [Metadata extraction](/zahirscan/metadata/) for field-by-field descriptions.
 
 ## Output modes
 
@@ -132,4 +126,4 @@ Use **full** for debugging; use **templates-only** for production, UBLX enhance,
 
 `-r` / `--redact` replaces filesystem paths with `***/filename.ext` in output JSON.
 
-Related: [Writing footprint](/zahirscan/templates/writing-footprint), [Column statistics](/zahirscan/templates/column-statistics), [Metadata extraction](/zahirscan/metadata), [CLI](/zahirscan/cli).
+Related: [Writing footprint](/zahirscan/writing-footprint), [Metadata extraction](/zahirscan/metadata/), [CLI](/zahirscan/cli).
