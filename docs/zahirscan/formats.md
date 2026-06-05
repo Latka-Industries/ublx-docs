@@ -4,48 +4,104 @@ ZahirScan detects format from content and path, then runs the appropriate metada
 
 ## Logs & text
 
-- Plain text logs, JSON-formatted logs, structured log files
-- **TXT**, **Markdown** (`.md`)
+| Format | Extensions |
+|--------|------------|
+| Logs (plain or structured) | `.log` |
+| JSON-formatted logs | `.json` |
+| Plain text | `.txt` |
+| Markdown | `.md`, `.markdown` |
 
 ## Documents
 
-- **DOCX**, **XLSX**, **PPTX**, **PDF**, **EPUB**
+| Format | Extensions |
+|--------|------------|
+| Word documents | `.docx` |
+| Excel workbooks | `.xlsx` |
+| PowerPoint decks | `.pptx` |
+| PDF | `.pdf` |
+| EPUB e-books | `.epub` |
 
 ## Settings & structured text
 
-- **INI** (`.ini`, `.cfg`), **TOML** (`.toml`, `.lock`), **YAML** (`.yaml`, `.yml`), **XML** (`.xml`)
-- **CSV / TSV / tab / psv**, **JSON**, **HTML** (`.html`, `.htm`)
+| Format | Extensions |
+|--------|------------|
+| INI / config | `.ini`, `.cfg` |
+| TOML | `.toml`, `.lock` |
+| YAML | `.yaml`, `.yml` |
+| XML | `.xml` |
+| Value delimited | `.csv`, `.tsv`, `.tab`, `.psv` |
+| JSON / JSON-lines | `.json` |
+| HTML | `.html`, `.htm` |
 
 ## Tabular & columnar
 
-- **Parquet**; **Arrow IPC / Feather** (`.arrow`, `.feather`, `.ipc`); **Avro**; **ORC**
-- **NumPy** (`.npy`, `.npz`); **HDF5** (`.h5`, `.hdf5`); **NetCDF** (`.nc`, `.cdf`)
-- **Matrix Market** (`.mtx`); **MATLAB** (`.mat`); **Zarr** (`.zarr`)
-- **[Tetration](https://github.com/Latka-Industries/tetration)** (`.tet`) — see [tetration-docs](https://github.com/Latka-Industries/tetration-docs)
+| Format | Extensions |
+|--------|------------|
+| Parquet | `.parquet` |
+| Arrow IPC / Feather | `.arrow`, `.feather`, `.ipc` |
+| Avro | `.avro` |
+| ORC | `.orc` |
+| NumPy | `.npy`, `.npz` |
+| HDF5 | `.h5`, `.hdf5` |
+| NetCDF | `.nc`, `.cdf` |
+| Matrix Market | `.mtx` |
+| MATLAB | `.mat` |
+| Zarr | `.zarr` |
+| [Tetration](https://github.com/Latka-Industries/tetration) | `.tet` |
+
+## Python pickle
+
+| Format | Extensions | Notes |
+|--------|------------|-------|
+| Python pickle | `.pickle` | Always detected as pickle |
+| Python pickle (sniffed) | `.pkl` | Binary or text protocol 0/1 when bytes look like Python serialization |
+| [Apple Pkl](https://pkl-lang.org) source | `.pkl` | UTF-8 config source → **Code** (not pickle); `script_type: "pkl"` |
+
+ZahirScan **does not unpickle** files. It walks opcodes read-only (like `pickletools`) and records protocol, import references, frame stats, and a heuristic `content_hint` (`tabular`, `ml_model`, `numeric_array`, `builtin_containers`). Large array payloads are skipped by length.
+
+See [Metadata extraction — Python pickle](/zahirscan/metadata#python-pickle).
 
 ## Models
 
-- **ONNX** (`.onnx`), **GGUF** (`.gguf`), **TensorFlow Lite** (`.tflite`), **Safetensors** (`.safetensors`)
+| Format | Extensions |
+|--------|------------|
+| ONNX | `.onnx` |
+| GGUF | `.gguf` |
+| TensorFlow Lite | `.tflite` |
+| Safetensors | `.safetensors` |
 
 ## Archives
 
-- **ZIP** (`.zip`)
-- **TAR** family (`.tar`, `.tar.gz`, `.tgz`, `.tar.bz2`, `.tar.xz`)
+| Format | Extensions |
+|--------|------------|
+| ZIP | `.zip` |
+| TAR | `.tar` |
+| TAR.GZ | `.tar.gz`, `.tgz` |
+| TAR.BZ2 | `.tar.bz2` |
+| TAR.XZ | `.tar.xz` |
 
 ## Code & scripts
 
-Common source and config extensions (e.g. `.py`, `.rs`, `.js`, `.ts`, `.sh`, `Makefile`, `Dockerfile`, …) via linguist-style detection plus optional shebang.
+| Format | Extensions |
+|--------|------------|
+| Linguist-style source (by extension) | `.py`, `.rs`, `.js`, `.ts`, `.go`, `.java`, … |
+| Apple Pkl config source | `.pkl` (when UTF-8 source, not Python pickle bytes) |
+| Makefile | `Makefile` |
+| Dockerfile | `Dockerfile` |
+| Shell / script (shebang) | `.sh`, `.bash`, `.zsh`, `.py`, `.rb`, `.pl` |
 
 ## Media
 
-| Type | Examples |
-|------|----------|
-| **Images** | JPEG, PNG, GIF, WebP, BMP, TIFF |
-| **Video** | MP4, MKV, AVI, MOV, WMV, FLV, WebM, M4V, 3GP, OGV |
-| **Audio** | MP3, FLAC, WAV, M4A, AAC, OGG, Opus, WMA, APE, DSD, DSF |
+| Format | Extensions |
+|--------|------------|
+| Images | `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.bmp`, `.tif`, `.tiff`, `.ico`, `.svg` |
+| Video | `.mp4`, `.mkv`, `.avi`, `.mov`, `.wmv`, `.flv`, `.webm`, `.m4v`, `.3gp`, `.ogv` |
+| Audio | `.mp3`, `.flac`, `.wav`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.ape`, `.dsd`, `.dsf`, `.aif`, `.aiff`, `.aifc` |
 
 ## Databases
 
-- **SQLite** (`.db`, `.sqlite`, `.sqlite3`)
+| Format | Extensions |
+|--------|------------|
+| SQLite | `.db`, `.sqlite`, `.sqlite3` |
 
 What each category extracts is summarized on [Metadata extraction](/zahirscan/metadata).

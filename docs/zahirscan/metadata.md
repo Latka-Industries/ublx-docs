@@ -38,6 +38,23 @@ Row/column counts, column names, types, delimiter, quote/escape, null percentage
 
 **`.tet` (Tetration)**: catalog, datasets, chunk index, query-derived column/tensor stats.
 
+### Python pickle
+
+**`.pickle`**, and **`.pkl`** when sniffed as Python serialization (not Apple Pkl source). Read-only opcode scan — **no unpickling**, no imports, no code execution.
+
+| Field | Meaning |
+|-------|---------|
+| `protocol` | First `\x80` + protocol byte when present (binary pickles) |
+| `encoding` | `binary` (protocol 2+ or non-UTF-8) or `text` (protocol 0/1 ASCII) |
+| `protocols_seen` | Every `PROTO` opcode in the stream |
+| `frame_count`, `frame_bytes_total` | Protocol 4+ `FRAME` opcodes and declared payload sizes |
+| `referenced_globals` | Deduplicated `module.name` from `GLOBAL`, `INST`, `STACK_GLOBAL` |
+| `builtin_types` | Subset under `builtins.*`, `__builtin__.*`, `collections.*` |
+| `content_hint` | Heuristic: `tabular` (pandas), `ml_model` (sklearn/torch/xgboost), `numeric_array` (numpy), `builtin_containers` |
+| `scan_truncated`, `scan_error` | Scan stopped early (opcode cap, unknown opcode, truncated operand) |
+
+Apple Pkl **source text** at `.pkl` is routed as **Code** with linguist `script_type: "pkl"` — see [Code / scripts](#code-scripts).
+
 ### Models
 
 | Format | Extracts |
