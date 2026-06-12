@@ -19,6 +19,7 @@ const {
   applyByName,
   stepTheme,
   shuffleTheme,
+  restore: restoreSiteTheme,
 } = useUblxSiteTheme()
 
 const dropdownRef = ref<{ close: () => void } | null>(null)
@@ -32,7 +33,10 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') dropdownRef.value?.close()
 }
 
-onMounted(() => document.addEventListener('keydown', onKeydown))
+onMounted(() => {
+  restoreSiteTheme()
+  document.addEventListener('keydown', onKeydown)
+})
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 </script>
 
@@ -55,7 +59,11 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
         id="ublx-site-theme-trigger"
         aria-label="Choose UBLX palette for site colors"
       >
-        <PaletteMiniSwatch v-if="selectedPalette" :palette="selectedPalette" />
+        <PaletteMiniSwatch
+          v-if="selectedPalette"
+          :key="selectedName"
+          :palette="selectedPalette"
+        />
         <span class="site-theme-picker__dropdown-label">{{ selectedName }}</span>
         <ChevronDown class="site-theme-picker__dropdown-chevron" aria-hidden="true" />
       </DropdownMenuTrigger>

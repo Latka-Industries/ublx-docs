@@ -19,7 +19,28 @@ export function findPalette(name: string): PaletteEntry | undefined {
   return byName.get(name)
 }
 
-export const selectedName = ref(DEFAULT_THEME_NAME)
+function resolveStoredThemeName(): string {
+  if (typeof document === 'undefined') return DEFAULT_THEME_NAME
+
+  const applied = document.documentElement.dataset.ublxTheme
+  if (applied && findPalette(applied)) return applied
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored && findPalette(stored)) return stored
+  } catch {
+    /* private mode */
+  }
+
+  const pending = document.documentElement.dataset.ublxThemePending
+  if (pending && findPalette(pending)) return pending
+
+  return DEFAULT_THEME_NAME
+}
+
+export const selectedName = ref(
+  typeof document !== 'undefined' ? resolveStoredThemeName() : DEFAULT_THEME_NAME,
+)
 
 export function applySiteThemeByName(name: string): void {
   if (typeof document === 'undefined') return
@@ -36,13 +57,10 @@ export function applySiteThemeByName(name: string): void {
 
 export function restoreSiteTheme(): void {
   if (typeof document === 'undefined') return
-  let name = DEFAULT_THEME_NAME
-  try {
-    name = localStorage.getItem(STORAGE_KEY) ?? DEFAULT_THEME_NAME
-  } catch {
-    /* ignore */
+  const name = resolveStoredThemeName()
+  if (name === selectedName.value && document.documentElement.dataset.ublxTheme === name) {
+    return
   }
-  if (!findPalette(name)) name = DEFAULT_THEME_NAME
   applySiteThemeByName(name)
 }
 

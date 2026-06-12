@@ -168,7 +168,6 @@
   align-items: center;
   border: 1px solid rgba(127, 127, 127, 0.35);
   border-radius: 4px;
-  background: var(--swatch-bg);
   flex-shrink: 0;
 }
 
