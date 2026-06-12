@@ -22,9 +22,6 @@ export function findPalette(name: string): PaletteEntry | undefined {
 function resolveStoredThemeName(): string {
   if (typeof document === 'undefined') return DEFAULT_THEME_NAME
 
-  const applied = document.documentElement.dataset.ublxTheme
-  if (applied && findPalette(applied)) return applied
-
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored && findPalette(stored)) return stored
@@ -34,6 +31,9 @@ function resolveStoredThemeName(): string {
 
   const pending = document.documentElement.dataset.ublxThemePending
   if (pending && findPalette(pending)) return pending
+
+  const applied = document.documentElement.dataset.ublxTheme
+  if (applied && findPalette(applied)) return applied
 
   return DEFAULT_THEME_NAME
 }
@@ -58,9 +58,10 @@ export function applySiteThemeByName(name: string): void {
 export function restoreSiteTheme(): void {
   if (typeof document === 'undefined') return
   const name = resolveStoredThemeName()
-  if (name === selectedName.value && document.documentElement.dataset.ublxTheme === name) {
-    return
-  }
+  const root = document.documentElement
+  const cssApplied =
+    root.classList.contains('ublx-site-theme') && root.dataset.ublxTheme === name
+  if (cssApplied && name === selectedName.value) return
   applySiteThemeByName(name)
 }
 
@@ -104,5 +105,5 @@ const darkThemeNames = (paletteData.dark as PaletteEntry[]).map((t) => t.name)
 
 export function buildThemeInitScript(): string {
   const darkSet = JSON.stringify(darkThemeNames)
-  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;r.dataset.ublxTheme=n;}catch(e){}})();`
+  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;}catch(e){}})();`
 }
