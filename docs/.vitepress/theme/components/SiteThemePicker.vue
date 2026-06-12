@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onBeforeMount, onMounted, onUnmounted, ref } from 'vue'
 import { Check, ChevronDown, ChevronLeft, ChevronRight, Shuffle } from '@lucide/vue'
 import { useUblxSiteTheme } from '../composables/useUblxSiteTheme'
 import PaletteMiniSwatch from './PaletteMiniSwatch.vue'
@@ -23,6 +23,8 @@ const {
 } = useUblxSiteTheme()
 
 const dropdownRef = ref<{ close: () => void } | null>(null)
+/** Avoid SSR/hydration baking the default swatch into static HTML (production). */
+const clientReady = ref(false)
 
 function pick(name: string) {
   applyByName(name)
@@ -33,8 +35,12 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') dropdownRef.value?.close()
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   restoreSiteTheme()
+  clientReady.value = true
+})
+
+onMounted(() => {
   document.addEventListener('keydown', onKeydown)
 })
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))
@@ -60,11 +66,19 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
         aria-label="Choose UBLX palette for site colors"
       >
         <PaletteMiniSwatch
-          v-if="selectedPalette"
+          v-if="clientReady && selectedPalette"
           :key="selectedName"
           :palette="selectedPalette"
         />
-        <span class="site-theme-picker__dropdown-label">{{ selectedName }}</span>
+        <span
+          v-if="clientReady"
+          class="site-theme-picker__dropdown-label"
+        >{{ selectedName }}</span>
+        <span
+          v-else
+          class="site-theme-picker__dropdown-label site-theme-picker__dropdown-label--placeholder"
+          aria-hidden="true"
+        >&nbsp;</span>
         <ChevronDown class="site-theme-picker__dropdown-chevron" aria-hidden="true" />
       </DropdownMenuTrigger>
 

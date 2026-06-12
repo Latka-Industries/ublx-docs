@@ -104,5 +104,5 @@ const darkThemeNames = (paletteData.dark as PaletteEntry[]).map((t) => t.name)
 
 export function buildThemeInitScript(): string {
   const darkSet = JSON.stringify(darkThemeNames)
-  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;}catch(e){}})();`
+  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;r.dataset.ublxTheme=n;}catch(e){}})();`
 }
