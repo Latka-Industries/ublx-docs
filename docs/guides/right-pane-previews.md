@@ -43,9 +43,11 @@ Some previews work from disk alone:
 - Plain text, logs, code (syntax highlighting)
 - Markdown rendering
 - Images (terminal image backends)
+- **SVG** — needs `resvg` on `PATH`
+- **PDF** / **video** — need `pdftoppm`/`mutool` and `ffmpeg`
 - **`.tet`** — catalog-style summary before enhance
 
-Optional host tools (`tree`, PDF rasterizers, `ffmpeg`, …): [Install](/getting-started#optional-tools-improve-previews).
+Optional host tools (`tree`, `resvg`, PDF rasterizers, `ffmpeg`, …): [Install](/getting-started#optional-tools-improve-previews).
 
 ## Tabs not on every main tab
 

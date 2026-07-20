@@ -4,13 +4,13 @@ outline: deep
 
 # Media metadata
 
-Rich **video** and **audio** metadata needs **ffprobe** on `PATH`. Images use built-in decoders.
+Rich **video** and **audio** metadata needs **ffprobe** on `PATH`. Raster images use built-in decoders. **SVG** is classified as Image but the Rust `image` crate cannot read SVG headers, so `width`/`height` may be `0` until [THI-163](https://linear.app/thicclatka/issue/THI-163/parse-svg-dimensions-stop-writing-widthheight-0) / [zahirscan#16](https://github.com/Latka-Industries/zahirscan/issues/16) lands — UBLX hides those placeholder zeros in Metadata.
 
 ## `image_metadata`
 
 | Field | Meaning |
 |-------|---------|
-| `width`, `height` | Pixel dimensions |
+| `width`, `height` | Pixel dimensions (SVG may be `0` today — see note above) |
 | `aspect_ratio` | Width ÷ height |
 | `stream_size` | File size in bytes |
 | `format` | Detected format (e.g. `Jpeg`, `Png`) |

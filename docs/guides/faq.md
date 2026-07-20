@@ -53,7 +53,7 @@ UBLX bundles the stack for normal use. You may install **nefaxer** or **zahirsca
 
 ## What terminal do I need?
 
-Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Install](/getting-started#prerequisites).
+Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `resvg`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Install](/getting-started#prerequisites). Over SSH from WezTerm, prefer `wezterm ssh` (or set `WEZTERM_EXECUTABLE=1` if the Viewer falls back to halfblocks).
 
 ## Is UBLX stable?
 
