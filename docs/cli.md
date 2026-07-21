@@ -114,6 +114,7 @@ List or inspect snapshot rows (and related tables) without the TUI. Useful for a
 | `--lenses` / `--lens <NAME>` | List lens names, or paths in a lens |
 | `--delta` / `--delta-type` | List `delta_log` (`added` / `mod` / `removed`; `modified` accepted as alias for `mod`) |
 | `--json` | Machine-readable JSON (pretty-printed) |
+| `--url <BASE>` | Talk to a running `ublx serve` instead of local `DIR` (also env `UBLX_URL`) |
 
 ```bash
 ublx query --categories
@@ -132,6 +133,7 @@ Diagnose the expected `.ublx` path, sidecars (`tmp` / `wal` / `shm`), schema, st
 | `--json` | Emit the full report as JSON |
 | `--fix` | Remove leftover **tmp / wal / shm** aux files (not the main `.ublx` DB) |
 | `--force` | Run even if a snapshot appears in progress (`.ublx_tmp` + tmp wal/shm) |
+| `--url <BASE>` | `GET /doctor` on a running serve (also `UBLX_URL`); `--fix` / `--force` are local-only |
 
 Doctor is **blocked** while a snapshot looks active unless you pass `--force`. Do not `--fix` during a live snapshot write.
 
@@ -140,6 +142,27 @@ ublx doctor .
 ublx doctor --json .
 ublx doctor --fix .
 ```
+
+### Remote client (`--url` / `UBLX_URL`)
+
+`query` and `doctor` can use the same flags against a running [`ublx serve`](#ublx-serve) over HTTP(S). Local `DIR` is ignored when a URL is set. Typical setup: serve on a remote host, SSH tunnel to loopback, **or** point `--url` at an `https://` endpoint.
+
+```bash
+# remote (or local)
+ublx serve /path/to/project --port 8787
+
+# local — tunnel if serve is only on the remote loopback
+ssh -N -L 8787:127.0.0.1:8787 user@host
+
+export UBLX_URL=http://127.0.0.1:8787
+# or: export UBLX_URL=https://serve.example.com
+ublx query --contains src --json
+ublx query --path README.md --zahir
+ublx doctor --json
+# equivalent: ublx query --url http://127.0.0.1:8787 --contains src
+```
+
+Server needs `ublx serve` (**v0.1.13+**). The `--url` client needs **v0.1.14+**.
 
 ### `ublx serve`
 
