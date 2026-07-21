@@ -13,5 +13,5 @@ Cross-tool workflows for UBLX, Nefaxer, and ZahirScan.
 - [Built for project trees](/guides/project-trees) — large-tree strategy, navigation, what UBLX is for
 - [Enhance policies](/guides/enhance-policies) — `auto` vs `manual` per path prefix
 - [Headless snapshot + export](/guides/headless-snapshot-export) — CI-friendly `ublx --snapshot-only --export`
-- [CLI](/cli) — also `ublx query` / `ublx doctor` for catalog read and diagnosis
+- [CLI](/cli) — also `ublx query` / `ublx doctor` / `ublx serve` for catalog read, diagnosis, and local HTTP
 - [Command mode & context menus](/guides/command-mode-and-menus) — Space, Ctrl+Space, Ctrl+leader (default Ctrl+A)
