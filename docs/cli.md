@@ -147,6 +147,8 @@ ublx doctor --fix .
 
 `query` and `doctor` can use the same flags against a running [`ublx serve`](#ublx-serve) over HTTP. Local `DIR` is ignored when a URL is set. Typical setup: serve on a remote host, SSH tunnel, then point the local CLI at the tunnel.
 
+Use an **`http://`** base (HTTPS is not enabled in the default client — tunnel remote serve to localhost instead of exposing TLS).
+
 ```bash
 # remote (or local)
 ublx serve /path/to/project --port 8787
