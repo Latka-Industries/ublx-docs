@@ -53,7 +53,49 @@ UBLX bundles the stack for normal use. You may install **nefaxer** or **zahirsca
 
 ## What terminal do I need?
 
-Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `resvg`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Install](/getting-started#prerequisites). Over SSH from WezTerm, prefer `wezterm ssh` (or set `WEZTERM_EXECUTABLE=1` if the Viewer falls back to halfblocks).
+Truecolor (24-bit) and image support are expected; a [**Nerd Font**](https://github.com/ryanoasis/nerd-fonts) is strongly recommended. Optional helpers (`tree`, `resvg`, `pdftoppm` / `mutool`, `ffmpeg`, etc.) improve previews — listed in [Install](/getting-started#prerequisites).
+
+Graphics-protocol previews (Kitty / iTerm2 / Sixel) need the terminal to answer capability queries. Over **SSH**, those queries often fail and the Viewer falls back to **halfblocks** unless the remote session still looks like your local terminal. See [Viewer images look blocky over SSH](#viewer-images-look-blocky-over-ssh).
+
+## Viewer images look blocky over SSH
+
+UBLX uses [ratatui-image](https://crates.io/crates/ratatui-image). If Settings → External apps shows **halfblocks** over SSH, the remote process did not detect Kitty / iTerm2 / WezTerm.
+
+**1. Prefer the terminal’s own SSH** (when available): `wezterm ssh`, Kitty’s `kitten ssh`, etc. Plain `ssh` can still work if env is forwarded.
+
+**2. Forward terminal identity (client + server)**
+
+On the **client** (`~/.ssh/config`):
+
+```sshconfig
+Host your-server
+  AddressFamily inet   # optional: avoid broken AAAA → connection refused
+  SendEnv TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM KITTY_WINDOW_ID
+  # WezTerm / iTerm-family hint if the local shell does not already export it:
+  SetEnv TERM_PROGRAM=WezTerm
+```
+
+Use the `TERM_PROGRAM` value that matches your app (`WezTerm`, `iTerm.app`, `kitty`, …). For Kitty, also forwarding `KITTY_WINDOW_ID` (and keeping `TERM=xterm-kitty`) helps.
+
+On the **server** (`/etc/ssh/sshd_config` or a drop-in under `sshd_config.d/`):
+
+```
+AcceptEnv TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM KITTY_WINDOW_ID
+```
+
+Then reload sshd (`sudo systemctl reload sshd` on Fedora/systemd).
+
+**3. Remote shell fallback** (if you mostly SSH from one graphics terminal):
+
+```bash
+# ~/.zshrc or ~/.bashrc on the remote
+if [[ -n $SSH_CONNECTION ]]; then
+  export TERM_PROGRAM="${TERM_PROGRAM:-WezTerm}"   # or kitty / iTerm.app
+  export WEZTERM_EXECUTABLE="${WEZTERM_EXECUTABLE:-1}"  # WezTerm only
+fi
+```
+
+After reconnecting, open an image in the Viewer and check Settings → **Image protocol** — you want Kitty, iTerm2, or Sixel, not halfblocks.
 
 ## Is UBLX stable?
 
