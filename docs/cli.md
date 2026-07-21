@@ -12,6 +12,7 @@ Usage: ublx [OPTIONS] [DIR] [COMMAND]
 Commands:
   query   Query the `.ublx` catalog (list / detail / delta / lenses)
   doctor  Diagnose `.ublx` DB / path / schema
+  serve   Local HTTP API over the `.ublx` catalog (panza)
   help    Print this message or the help of the given subcommand(s)
 
 Arguments:
@@ -38,6 +39,7 @@ Options:
 | `ublx -x [DIR]` | Headless **export** of Zahir JSON to `ublx-export/` |
 | `ublx query [DIR]` | Read the catalog (list / filter / detail) without the TUI |
 | `ublx doctor [DIR]` | Diagnose catalog path, schema, integrity |
+| `ublx serve [DIR]` | Local **HTTP API** over the catalog (default `127.0.0.1:8787`) |
 | `ublx --themes` | List theme names (light/dark groups) and exit |
 | `ublx --dev [DIR]` | TUI with dev logging (`tui-logger`, trace filter) |
 
@@ -94,7 +96,7 @@ Export uses whatever Zahir JSON is already in the catalog from the snapshot/enha
 
 ## Subcommands
 
-Catalog read tools. They **do not** create the DB — run `ublx` or `ublx -s` in `DIR` first. See `ublx query --help` / `ublx doctor --help` for the full flag list.
+Catalog tools. `query` / `doctor` / `serve` **do not** create the DB — run `ublx` or `ublx -s` in `DIR` first (or `POST /snapshot` once serve is up). See `ublx query --help` / `ublx doctor --help` / `ublx serve --help` for the full flag list.
 
 ### `ublx query`
 
@@ -103,14 +105,14 @@ List or inspect snapshot rows (and related tables) without the TUI. Useful for a
 | Mode / flag | Behavior |
 |-------------|----------|
 | _(default)_ | List entries: category, size, path |
-| `--category <NAME>` | Exact category filter |
+| `--category <NAME>` | Exact category filter (case-sensitive, e.g. `Code`) |
 | `--min-size` / `--max-size` | Size filters (bytes) |
 | `--contains <STR>` | Path substring filter |
 | `--path <REL>` | One row by exact relative path |
 | `--zahir` | With `--path`, include nested Zahir JSON |
 | `--categories` | List distinct categories |
 | `--lenses` / `--lens <NAME>` | List lens names, or paths in a lens |
-| `--delta` / `--delta-type` | List `delta_log` (`added` / `mod` / `removed`) |
+| `--delta` / `--delta-type` | List `delta_log` (`added` / `mod` / `removed`; `modified` accepted as alias for `mod`) |
 | `--json` | Machine-readable JSON (pretty-printed) |
 
 ```bash
@@ -139,6 +141,51 @@ ublx doctor --json .
 ublx doctor --fix .
 ```
 
+### `ublx serve`
+
+Local HTTP API over the current catalog (bind/health via [panza](https://crates.io/crates/panza)). Default listen: `http://127.0.0.1:8787`.
+
+| Flag | Description |
+|------|-------------|
+| `--host` | Bind address (default `127.0.0.1`) |
+| `-p` / `--port` | Port (default `8787`) |
+| `--open` | Open the listen URL in a browser after bind |
+
+```bash
+ublx serve .
+ublx serve /path/to/project --port 8787
+```
+
+| Method | Path | Behavior |
+|--------|------|----------|
+| `GET` | `/health` | Liveness (`ok`, service, version, uptime) — panza |
+| `GET` | `/roots` | Indexed project roots (`path`, `current`) — same source as TUI switch |
+| `GET` / `PUT` | `/roots/current` | Current root; `PUT` with `{"dir":"..."}` switches catalog (409 while snapshot running) |
+| `GET` | `/doctor` | Diagnose report for current root (no `--fix`) |
+| `POST` | `/snapshot` | Start background snapshot (**202**); optional `{"enhance_all":true}` |
+| `GET` | `/snapshot` | Job status: `idle` / `running` / `done` / `failed` + last counts |
+| `GET` | `/categories` | Distinct category strings for `?category=` |
+| `GET` | `/entries` | List/filter (`category`, `min_size`, `max_size`, `contains`) |
+| `GET` | `/entries/*path` | Detail; `?zahir=1` for nested Zahir JSON |
+| `GET` | `/delta` | Delta log; `?type=added\|mod\|removed` (`modified` → `mod`) |
+| `GET` | `/lenses` | Lens names |
+| `GET` | `/lenses/{name}` | Paths in a lens |
+
+```bash
+BASE=http://127.0.0.1:8787
+curl -sS "$BASE/health" | jq .
+curl -sS "$BASE/roots" | jq .
+curl -sS "$BASE/doctor" | jq '{summary}'
+curl -sS -X POST "$BASE/snapshot" -H 'content-type: application/json' -d '{}'
+curl -sS "$BASE/snapshot" | jq .   # poll until state != running
+curl -sS "$BASE/entries?category=Code&contains=src" | jq '.[0:5]'
+curl -sS -X PUT "$BASE/roots/current" \
+  -H 'content-type: application/json' \
+  -d '{"dir":"/path/to/other/indexed/project"}' | jq .
+```
+
+Categories are **exact / case-sensitive**. Root switch is blocked with **409** while a snapshot is `running`. Hard nefax failures in the orchestrator can still process-exit (same as TUI on-demand snapshot).
+
 ## Examples
 
 Interactive catalog (default):
@@ -166,6 +213,13 @@ Export after full enhance:
 ublx --full-snapshot --export /path/to/project
 ```
 
+HTTP API for agents / scripts:
+
+```bash
+ublx serve /path/to/project
+# then curl http://127.0.0.1:8787/...
+```
+
 List installable themes:
 
 ```bash
@@ -174,7 +228,7 @@ ublx --themes
 
 ## Config vs CLI
 
-Most behavior (theme, layout, `[[enhance_policy]]`, `hash`, excludes, etc.) lives in **global** and **local** `ublx.toml` files and hot-reloads in the TUI. Top-level flags cover **headless index/export**; `query` / `doctor` read the existing catalog.
+Most behavior (theme, layout, `[[enhance_policy]]`, `hash`, excludes, etc.) lives in **global** and **local** `ublx.toml` files and hot-reloads in the TUI. Top-level flags cover **headless index/export**; `query` / `doctor` / `serve` use the existing catalog (serve can also trigger a snapshot via `POST /snapshot`).
 
 | Topic | Doc |
 |-------|-----|
