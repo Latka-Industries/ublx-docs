@@ -12,7 +12,7 @@ UBLX is a **terminal catalog** for a project directory: index once, browse paths
 |------|------|
 | **Nefaxer** | Parallel directory walk → SQLite snapshot, change detection, optional content hashes |
 | **ZahirScan** | Template mining and per-format metadata when you batch- or on-demand enhance |
-| **UBLX** | TUI, lenses, Delta tab, config, headless `--snapshot-only` / `--export`, `query` / `doctor` / `serve`, per-root cache |
+| **UBLX** | TUI, lenses, Delta tab, config, headless `--snapshot-only` / `--export`, `query` / `doctor` / `serve` (`--url` client), per-root cache |
 
 See [Install](/getting-started), [Nefaxer UBLX integration](/nefaxer/ublx), and [ZahirScan UBLX integration](/zahirscan/ublx).
 
