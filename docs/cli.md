@@ -145,18 +145,17 @@ ublx doctor --fix .
 
 ### Remote client (`--url` / `UBLX_URL`)
 
-`query` and `doctor` can use the same flags against a running [`ublx serve`](#ublx-serve) over HTTP. Local `DIR` is ignored when a URL is set. Typical setup: serve on a remote host, SSH tunnel, then point the local CLI at the tunnel.
-
-Use an **`http://`** base (HTTPS is not enabled in the default client — tunnel remote serve to localhost instead of exposing TLS).
+`query` and `doctor` can use the same flags against a running [`ublx serve`](#ublx-serve) over HTTP(S). Local `DIR` is ignored when a URL is set. Typical setup: serve on a remote host, SSH tunnel to loopback, **or** point `--url` at an `https://` endpoint.
 
 ```bash
 # remote (or local)
 ublx serve /path/to/project --port 8787
 
-# local — tunnel if needed
+# local — tunnel if serve is only on the remote loopback
 ssh -N -L 8787:127.0.0.1:8787 user@host
 
 export UBLX_URL=http://127.0.0.1:8787
+# or: export UBLX_URL=https://serve.example.com
 ublx query --contains src --json
 ublx query --path README.md --zahir
 ublx doctor --json
