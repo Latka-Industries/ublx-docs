@@ -69,7 +69,6 @@ On the **client** (`~/.ssh/config`):
 
 ```sshconfig
 Host your-server
-  AddressFamily inet   # optional: avoid broken AAAA → connection refused
   SendEnv TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM KITTY_WINDOW_ID
   # WezTerm / iTerm-family hint if the local shell does not already export it:
   SetEnv TERM_PROGRAM=WezTerm
@@ -85,13 +84,23 @@ AcceptEnv TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM KITTY_WINDOW_ID
 
 Then reload sshd (`sudo systemctl reload sshd` on Fedora/systemd).
 
-**3. Remote shell fallback** (if you mostly SSH from one graphics terminal):
+**3. Remote shell fallback** (put in `~/.zshrc` / `~/.bashrc` on the remote, or a file you `source`):
 
 ```bash
-# ~/.zshrc or ~/.bashrc on the remote
-if [[ -n $SSH_CONNECTION ]]; then
+# Graphics-terminal hints for UBLX / ratatui-image over SSH
+if [[ -n ${SSH_CONNECTION:-} ]]; then
   export TERM_PROGRAM="${TERM_PROGRAM:-WezTerm}"   # or kitty / iTerm.app
-  export WEZTERM_EXECUTABLE="${WEZTERM_EXECUTABLE:-1}"  # WezTerm only
+  # WezTerm only — safe no-op for other terminals:
+  export WEZTERM_EXECUTABLE="${WEZTERM_EXECUTABLE:-1}"
+fi
+```
+
+For Kitty-only remotes, prefer:
+
+```bash
+if [[ -n ${SSH_CONNECTION:-} ]]; then
+  export TERM_PROGRAM="${TERM_PROGRAM:-kitty}"
+  export TERM="${TERM:-xterm-kitty}"
 fi
 ```
 
