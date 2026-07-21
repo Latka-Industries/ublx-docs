@@ -40,7 +40,7 @@ Focus: **v** / **t** / **m** / **w**. **Shift+Tab** cycles. **Shift+F** fullscre
 ## Navigation & actions
 
 - [Layout & keys](/tui/layout-and-keys) — pane focus, catalog search, scrolling, enhance workflow
-- [Command mode & context menus](/guides/command-mode-and-menus) — **Space**, **Ctrl+Space**, **Ctrl+A**
+- [Command mode & context menus](/guides/command-mode-and-menus) — **Space**, **Ctrl+Space**, **Ctrl+{leader}** (default **Ctrl+A**)
 - Press **`?`** in the TUI for the live help overlay (sections follow the active tab)
 
 ## Related

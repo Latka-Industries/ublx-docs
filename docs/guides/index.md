@@ -14,4 +14,4 @@ Cross-tool workflows for UBLX, Nefaxer, and ZahirScan.
 - [Enhance policies](/guides/enhance-policies) — `auto` vs `manual` per path prefix
 - [Headless snapshot + export](/guides/headless-snapshot-export) — CI-friendly `ublx --snapshot-only --export`
 - [CLI](/cli) — also `ublx query` / `ublx doctor` for catalog read and diagnosis
-- [Command mode & context menus](/guides/command-mode-and-menus) — Space, Ctrl+Space, Ctrl+A
+- [Command mode & context menus](/guides/command-mode-and-menus) — Space, Ctrl+Space, Ctrl+leader (default Ctrl+A)
