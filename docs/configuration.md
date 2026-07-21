@@ -18,6 +18,16 @@ Only keys present in each file override defaults. **Global-only** keys cannot be
 |-----|------|-------------|
 | `opacity_format` | string (optional) | When `bg_opacity` &lt; 1: `rgba` (default) or `hex8` (`#RRGGBBAA`) for OSC 11 background |
 | `ask_enhance_on_new_root` | bool (optional) | If `false`, skip first-run “Enhance all files?” and apply `enable_enhance_all` immediately. Default: prompt on new root |
+| `[command_mode].leader` | string (optional) | Single letter `a`–`z` for Command Mode (`Ctrl+{letter}`). Default `"a"`. **`j` and `k` are reserved** for jump-by-10 |
+
+Example:
+
+```toml
+[command_mode]
+leader = "a"
+```
+
+Edit from **Settings → Global** as well (Enter cycles; type a letter when the row is focused). Help and the Command Mode popup title show the active leader.
 
 ## Common keys (global and/or local)
 

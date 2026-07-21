@@ -53,6 +53,6 @@ See [Path-only vs full enhance](/guides/path-only-vs-full-enhance) and [Enhance 
 |-----------|------|
 | Context menu | **Space** on a row |
 | Multi-select | **Ctrl+Space**, then **Space** / **a** *(Snapshot & Lenses middle pane)* |
-| Command Mode | **Ctrl+A**, then a letter |
+| Command Mode | **Ctrl+{leader}** (default **Ctrl+A**), then a letter — [configure](/configuration#global-only-keys) |
 
 Full reference: [Command mode & context menus](/guides/command-mode-and-menus).

@@ -22,6 +22,7 @@ Changes hot-reload where supported (see [Configuration](/configuration)).
 | `show_hidden_files` | Include dotfiles in the index |
 | `run_snapshot_on_startup` | Snapshot when opening a catalog |
 | `typed_column_tables` | Metadata column tables: `none` / `abbrev` / `full` |
+| `command_mode.leader` | **Global only** — letter for Command Mode (`Ctrl+{letter}`; default `a`). Enter cycles; type a letter when focused. **`j`/`k` blocked** |
 
 ## Editing the file directly
 
@@ -29,7 +30,7 @@ Changes hot-reload where supported (see [Configuration](/configuration)).
 |-----|--------|
 | **e** | Open the active scope’s config file in `$EDITOR` |
 
-Theme picker without leaving Settings: **Ctrl+A**, **t** (Command Mode) — saves to **local** config on confirm.
+Theme picker without leaving Settings: Command Mode → **t** (default **Ctrl+A**, **t**) — saves to **local** config on confirm.
 
 ## Related
 

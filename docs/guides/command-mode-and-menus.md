@@ -1,6 +1,6 @@
 # Command mode & context menus
 
-UBLX has three overlapping ways to act on files and the catalog: **quick actions** (per-row **Space** menu), **multi-select** (bulk **Space** menu), and **Command Mode** (global **Ctrl+A**). Menus show only what applies to the current tab, row type, and config.
+UBLX has three overlapping ways to act on files and the catalog: **quick actions** (per-row **Space** menu), **multi-select** (bulk **Space** menu), and **Command Mode** (global **Ctrl+{leader}**, default **Ctrl+A**). Menus show only what applies to the current tab, row type, and config.
 
 Press **`?`** anytime for the in-app help overlay (sections change with the active main tab).
 
@@ -10,7 +10,7 @@ Press **`?`** anytime for the in-app help overlay (sections change with the acti
 |-----------|------|--------|
 | **Quick actions** (context menu) | **Space** on a row | One file, directory, lens name, or duplicate member |
 | **Multi-select** | **Ctrl+Space**, then **Space** / **a** | Many paths in **Snapshot** or **Lenses** (middle pane) |
-| **Command Mode** | **Ctrl+A**, then a letter | Whole session (snapshot, export, theme, …) |
+| **Command Mode** | **Ctrl+{leader}** (default **Ctrl+A**), then a letter | Whole session (snapshot, export, theme, …) |
 
 **Not available** while the catalog search bar (**/**) is active, or when another popup already has focus (help, theme picker, lens name input, rename/delete confirm, etc.).
 
@@ -98,11 +98,20 @@ Background enhance and delete operations show **toasts** when they finish.
 
 ---
 
-## Command Mode (Ctrl+A)
+## Command Mode (Ctrl+leader)
 
-**Command Mode** is a global “leader” chord: press **Ctrl+A**, then a second key. If you pause (~½s), a centered menu lists the same shortcuts.
+**Command Mode** is a global “leader” chord: press **Ctrl+{leader}**, then a second key. Default leader is **`a`** (**Ctrl+A**). If you pause (~½s), a centered menu lists the same shortcuts. Help and the popup title show the configured leader (e.g. `Command Mode (Ctrl+a)`).
 
-Unavailable while **/** search is active or another modal is open. **Esc** cancels without running an action.
+Change the leader in **Settings → Global → `command_mode.leader`** (Enter cycles; type a letter when the row is focused), or set it in global `ublx.toml`:
+
+```toml
+[command_mode]
+leader = "b"   # → Ctrl+B
+```
+
+**`j` and `k` are reserved** for jump-by-10 (**Ctrl+j** / **Ctrl+k**). The key is **global-only** (stripped from local project files). See [Configuration](/configuration#global-only-keys).
+
+Unavailable while **/** search is active, while **Settings** has focus (so typing a letter can set the leader), or another modal is open. **Esc** cancels without running an action.
 
 | Key | Action | Toast / result |
 |-----|--------|----------------|
@@ -115,11 +124,11 @@ Unavailable while **/** search is active or another modal is open. **Esc** cance
 | **p** | **Switch project** — recents / other indexed roots under `ubli/` | Error toast if the switch fails; otherwise the new root loads (snapshot per config) |
 
 ::: tip Viewer search is not Command Mode
-In-pane preview search uses **Shift+S** in the Viewer tab, not **Ctrl+A**.
+In-pane preview search uses **Shift+S** in the Viewer tab, not the Command Mode leader.
 :::
 
 ::: tip Enhance is not Command Mode
-**Enhance with ZahirScan** is **Space** → **z** on a row, or bulk **a** → **z** in multi-select — not a **Ctrl+A** chord.
+**Enhance with ZahirScan** is **Space** → **z** on a row, or bulk **a** → **z** in multi-select — not a Command Mode chord.
 :::
 
 ---
@@ -130,7 +139,7 @@ UBLX shows short **toasts** when background work completes. They appear in the t
 
 ### Snapshot (re-index)
 
-After **Ctrl+A** → **s** (or a startup snapshot when switching projects), you get:
+After **Ctrl+{leader}** → **s** (default **Ctrl+A** → **s**, or a startup snapshot when switching projects), you get:
 
 | Line | Meaning |
 |------|---------|
@@ -155,13 +164,13 @@ These are **not** Command Mode chords; they use **Space** or multi-select **a**:
 | **Space** → **l** (lens picker) | e.g. **Added to lens "…"** — [Making and exporting lenses](/guides/lenses) |
 | Bulk **r** | Bulk rename result |
 
-Command Mode actions (**Ctrl+A** → **d** / **s** / **x** / **l** / …) are listed in the [Command Mode](#command-mode-ctrla) table above.
+Command Mode actions (**Ctrl+{leader}** → **d** / **s** / **x** / **l** / …) are listed in the [Command Mode](#command-mode-ctrlleader) table above.
 
 ---
 
 ## Other navigation (often paired with menus)
 
-These are not popups, but they change what **Space** and **Ctrl+A** apply to:
+These are not popups, but they change what **Space** and Command Mode apply to:
 
 | Keys | Action |
 |------|--------|
