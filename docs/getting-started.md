@@ -18,6 +18,7 @@ UBLX is in active development — expect breaking changes. See the [UBLX repo](h
 | `tree` | Directory preview in the Viewer |
 | `pdftoppm` or `mutool` | PDF page raster preview |
 | `ffmpeg` | Video frame preview |
+| `resvg` | SVG raster preview (same backend as Yazi) |
 | `netcdf` / `libnetcdf` | Linked by default; build without: `cargo build --no-default-features` |
 
 ## Install UBLX

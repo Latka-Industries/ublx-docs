@@ -10,12 +10,17 @@ Available on [Snapshot](/tui/snapshot), [Lenses](/tui/lenses), and [Duplicates](
 |-------|---------|
 | Plain text / logs | Scrolled text; syntax highlighting where supported |
 | **Markdown** | Rendered preview |
-| **Images** | Terminal image via ratatui-image (downscaled to pane) |
+| **Images** (PNG/JPEG/WebP/…) | Terminal image via ratatui-image (downscaled to pane) |
+| **SVG** | Rasterized with **`resvg`**, then same image path |
+| **PDF** | Page raster via `pdftoppm` or `mutool` |
+| **Video** | Mid-timeline frame via `ffmpeg` |
 | **Code** | Syntect highlighting |
 | **`.tet`** (tetration) | Catalog summary (`tet info --all -n 0` style) — works from path before enhance |
 | **Directories** | `tree` layout when configured |
 
 Footer shows **size** and **last modified** when available.
+
+Settings → **External apps** shows which preview binaries and image protocol (Kitty / iTerm2 / Sixel / halfblocks) were detected.
 
 ## Keys
 
@@ -27,7 +32,7 @@ Footer shows **size** and **last modified** when available.
 
 ## Dependencies
 
-Optional tools improve previews (see [Install](/getting-started)): `tree`, image backends, etc.
+Optional tools improve previews (see [Install](/getting-started)): `tree`, `resvg`, `pdftoppm` / `mutool`, `ffmpeg`.
 
 ## Without ZahirScan JSON
 
