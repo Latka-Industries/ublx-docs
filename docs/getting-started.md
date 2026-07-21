@@ -54,7 +54,7 @@ ublx /path/to/your/project
 
 UBLX indexes the tree, stores a per-root SQLite snapshot under your user cache (`ubli/`), and opens the catalog. By default you get **path + filetype** only — fast and lightweight. Run **Enhance with ZahirScan** (or enable full enhance in config) when you need rich previews and metadata.
 
-Headless flags (`--snapshot-only`, `--full-snapshot`, `--export`): [CLI](/cli).
+Headless index/export (`--snapshot-only`, `--full-snapshot`, `--export`) and catalog tools (`ublx query`, `ublx doctor`): [CLI](/cli).
 
 ## What you get on day one
 
@@ -67,7 +67,7 @@ Headless flags (`--snapshot-only`, `--full-snapshot`, `--export`): [CLI](/cli).
 
 ## Next steps
 
-- [CLI](/cli) — full `ublx --help` reference, headless flags, examples
+- [CLI](/cli) — `ublx --help`, headless flags, `query` / `doctor`
 - [Configuration](/configuration) — `enable_enhance_all`, `[[enhance_policy]]`, themes, cache paths
 - [TUI & modes](/tui/) — Snapshot, Lenses, Delta, panes, keybindings
 - [ZahirScan](/zahirscan/) — metadata extraction and export
