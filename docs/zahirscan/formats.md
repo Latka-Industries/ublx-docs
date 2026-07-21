@@ -95,6 +95,8 @@ See [Python pickle metadata](/zahirscan/metadata/pickle).
 | Video | `.mp4`, `.mkv`, `.avi`, `.mov`, `.wmv`, `.flv`, `.webm`, `.m4v`, `.3gp`, `.ogv` |
 | Audio | `.mp3`, `.flac`, `.wav`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.ape`, `.dsd`, `.dsf`, `.aif`, `.aiff`, `.aifc` |
 
+SVG is classified as Image. Dimensions come from root `width`/`height`/`viewBox` when absolute; see [Media metadata](/zahirscan/metadata/media).
+
 ## Databases
 
 | Format | Extensions |
