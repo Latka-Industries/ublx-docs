@@ -1,8 +1,14 @@
-/* Same primary shell wash as ublx-web (`--shell-wash` / `--primary` over `--background`). */
-html,
-body {
-  min-height: 100%;
-  background:
+/*
+ * Same primary shell wash as ublx-web (`--shell-wash` / `--primary` over `--background`).
+ * Content/sidebar stay transparent so the wash shows through. Sticky top chrome uses the
+ * same fixed stack so scrolled headings cannot bleed through the nav.
+ */
+:root {
+  --vp-nav-bg-color: hsl(var(--background));
+  --vp-local-nav-bg-color: hsl(var(--background));
+  --vp-sidebar-bg-color: transparent;
+  --vp-c-bg: transparent;
+  --ublx-shell-bg:
     linear-gradient(
       180deg,
       hsl(var(--primary) / var(--shell-wash)) 0%,
@@ -11,21 +17,24 @@ body {
       hsl(var(--primary) / var(--shell-wash)) 100%
     ),
     hsl(var(--background));
-  background-attachment: fixed;
 }
 
-/* Let the wash show through VitePress chrome (panels/cards keep their own fills). */
-:root {
-  --vp-nav-bg-color: transparent;
-  --vp-local-nav-bg-color: transparent;
-  --vp-sidebar-bg-color: transparent;
-  --vp-c-bg: transparent;
+html,
+body {
+  min-height: 100%;
+  background: var(--ublx-shell-bg);
+  background-attachment: fixed;
 }
 
 .VPNavBar,
 .VPNavBar .wrapper,
 .VPNavBar .container,
-.VPLocalNav,
+.VPNavBar .content-body,
+.VPLocalNav {
+  background: var(--ublx-shell-bg) !important;
+  background-attachment: fixed !important;
+}
+
 .VPSidebar,
 .VPContent,
 .VPDoc,
