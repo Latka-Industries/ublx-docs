@@ -1,3 +1,5 @@
+import { applyFavicon } from './favicon'
+
 export type PaletteColors = Record<string, { rgb: number[]; hex: string }>
 
 export type PaletteEntry = {
@@ -180,6 +182,10 @@ export function applyUblxSiteTheme(entry: PaletteEntry): void {
     const v = vars[key]
     if (v) root.style.setProperty(key, v)
   }
+
+  const bg = entry.colors.background?.hex
+  const brand = entry.colors.title_brand?.hex
+  if (bg && brand) applyFavicon(bg, brand)
 }
 
 export function clearUblxSiteTheme(): void {
@@ -190,4 +196,5 @@ export function clearUblxSiteTheme(): void {
     root.style.removeProperty(key)
   }
   root.style.removeProperty('--ublx-primary-fg')
+  applyFavicon('#0a192f', '#a45ffa')
 }

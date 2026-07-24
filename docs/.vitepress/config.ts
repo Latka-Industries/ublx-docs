@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import tailwindcss from '@tailwindcss/vite'
 import { docsRsNavItem } from './docs-rs-nav'
 import { buildThemeInitScript } from './theme/composables/useUblxSiteTheme'
+import { DEFAULT_FAVICON_HREF } from './theme/utils/favicon'
 import { themesNavItem } from './themes-nav'
 import { metadataNavLink, metadataNavItems } from './metadata-nav'
 import { tuiNavItem } from './tui-nav'
@@ -13,6 +14,7 @@ export default defineConfig({
   base: '/',
   appearance: false,
   head: [
+    ['link', { rel: 'icon', href: DEFAULT_FAVICON_HREF }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [
