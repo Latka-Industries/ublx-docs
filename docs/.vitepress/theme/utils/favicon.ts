@@ -1,12 +1,18 @@
 /**
  * TUI / ublx-web favicon mark: rounded square in page bg, “U” in title_brand.
  * Mirrors crates/ublx-web/src/theme.rs `favicon_data_url`.
+ *
+ * Runtime updates use a blob: URL + fresh <link> node — browsers often ignore
+ * in-place href changes (and cache data: favicons) so the tab would stick on
+ * Oblivion Ink after the first paint.
  */
 
-export function faviconDataUrl(bgHex: string, brandHex: string): string {
+let previousBlobUrl: string | null = null
+
+export function faviconSvg(bgHex: string, brandHex: string): string {
   const bg = normalizeHex(bgHex)
   const fg = normalizeHex(brandHex)
-  const svg = [
+  return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">`,
     `<rect width="32" height="32" rx="4" fill="${bg}"/>`,
     `<text x="16" y="26" text-anchor="middle" `,
@@ -15,7 +21,10 @@ export function faviconDataUrl(bgHex: string, brandHex: string): string {
     `fill="${fg}">U</text>`,
     `</svg>`,
   ].join('')
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+}
+
+export function faviconDataUrl(bgHex: string, brandHex: string): string {
+  return `data:image/svg+xml,${encodeURIComponent(faviconSvg(bgHex, brandHex))}`
 }
 
 /** Oblivion Ink — same default as docs site default theme. */
@@ -23,14 +32,27 @@ export const DEFAULT_FAVICON_HREF = faviconDataUrl('#0a192f', '#a45ffa')
 
 export function applyFavicon(bgHex: string, brandHex: string): void {
   if (typeof document === 'undefined') return
-  const href = faviconDataUrl(bgHex, brandHex)
-  let link = document.querySelector<HTMLLinkElement>("link[rel='icon']")
-  if (!link) {
-    link = document.createElement('link')
-    link.rel = 'icon'
-    document.head.appendChild(link)
+
+  const svg = faviconSvg(bgHex, brandHex)
+  const blob = new Blob([svg], { type: 'image/svg+xml' })
+  const href = URL.createObjectURL(blob)
+
+  for (const el of document.querySelectorAll(
+    "link[rel='icon'], link[rel='shortcut icon']",
+  )) {
+    el.remove()
   }
+
+  if (previousBlobUrl) {
+    URL.revokeObjectURL(previousBlobUrl)
+  }
+  previousBlobUrl = href
+
+  const link = document.createElement('link')
+  link.rel = 'icon'
+  link.type = 'image/svg+xml'
   link.href = href
+  document.head.appendChild(link)
 }
 
 function normalizeHex(hex: string): string {
