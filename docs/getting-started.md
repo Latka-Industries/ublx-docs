@@ -30,18 +30,24 @@ brew tap Latka-Industries/ublx https://github.com/Latka-Industries/UBLX
 brew install Latka-Industries/ublx/ublx
 ```
 
+Homebrew builds with the embedded serve UI (`--features ui`) — TUI-shaped browser at `ublx serve --open`.
+
 ### Cargo
 
 ```bash
-cargo install ublx
+cargo install ublx                  # API-only serve (v0.2+)
+cargo install ublx --features ui    # + embedded Leptos SPA (assets in the crate; v0.2.1+)
 ```
+
+Default crates.io install stays **API-only** (`GET /` has no SPA). Homebrew and `--features ui` both ship the browser UI.
 
 Or build from source:
 
 ```bash
 git clone https://github.com/Latka-Industries/UBLX.git
 cd UBLX
-cargo install --path .
+./crates/ublx-web/build.sh          # WASM + Tailwind → assets/web-ui/
+cargo install --path . --features ui
 ```
 
 ## First run
