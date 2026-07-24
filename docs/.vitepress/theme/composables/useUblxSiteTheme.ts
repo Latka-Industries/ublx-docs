@@ -103,7 +103,20 @@ export function useUblxSiteTheme() {
 
 const darkThemeNames = (paletteData.dark as PaletteEntry[]).map((t) => t.name)
 
+/** Compact name → [bgHex, brandHex] for pre-hydrate favicon (matches ublx-web mark). */
+function faviconColorMap(): Record<string, [string, string]> {
+  const map: Record<string, [string, string]> = {}
+  for (const entry of allThemes) {
+    const bg = entry.colors.background?.hex
+    const brand = entry.colors.title_brand?.hex
+    if (bg && brand) map[entry.name] = [bg, brand]
+  }
+  return map
+}
+
 export function buildThemeInitScript(): string {
   const darkSet = JSON.stringify(darkThemeNames)
-  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;}catch(e){}})();`
+  const colors = JSON.stringify(faviconColorMap())
+  // Same SVG shape as theme/utils/favicon.ts / ublx-web favicon_data_url.
+  return `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var d=${JSON.stringify(DEFAULT_THEME_NAME)};var dark=new Set(${darkSet});var colors=${colors};var n=localStorage.getItem(k)||d;var r=document.documentElement;r.classList.toggle("dark",dark.has(n));r.dataset.ublxThemePending=n;var c=colors[n]||colors[d];if(c){var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="'+c[0]+'"/><text x="16" y="26" text-anchor="middle" font-family="ui-monospace,monospace" font-size="30" font-weight="900" stroke="'+c[1]+'" stroke-width="1.25" paint-order="stroke fill" fill="'+c[1]+'">U</text></svg>';var href='data:image/svg+xml,'+encodeURIComponent(svg);document.querySelectorAll("link[rel=\'icon\'],link[rel=\'shortcut icon\']").forEach(function(el){el.remove();});var link=document.createElement("link");link.rel="icon";link.type="image/svg+xml";link.href=href;document.head.appendChild(link);}}catch(e){}})();`
 }
