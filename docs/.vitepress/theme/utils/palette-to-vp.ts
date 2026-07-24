@@ -113,7 +113,8 @@ export function paletteToCssVars(entry: PaletteEntry): Record<string, string> {
   const brandSoft = rgba(focus, isDark ? 0.18 : 0.14)
 
   const vp: Record<string, string> = {
-    '--vp-c-bg': entry.colors.background!.hex,
+    // Transparent so html/body primary shell wash shows through (ublx-web parity).
+    '--vp-c-bg': 'transparent',
     '--vp-c-bg-alt': toHex(bgAlt),
     '--vp-c-bg-soft': toHex(bgSoft),
     '--vp-c-bg-elv': toHex(bgElv),

@@ -39,7 +39,7 @@ Options:
 | `ublx -x [DIR]` | Headless **export** of Zahir JSON to `ublx-export/` |
 | `ublx query [DIR]` | Read the catalog (list / filter / detail) without the TUI |
 | `ublx doctor [DIR]` | Diagnose catalog path, schema, integrity |
-| `ublx serve [DIR]` | Local **HTTP API** over the catalog (default `127.0.0.1:8787`) |
+| `ublx serve [DIR]` | Local **HTTP API** over the catalog (default `127.0.0.1:8787`); with `--features ui`, also the embedded browser UI |
 | `ublx --themes` | List theme names (light/dark groups) and exit |
 | `ublx --dev [DIR]` | TUI with dev logging (`tui-logger`, trace filter) |
 
@@ -168,6 +168,8 @@ Server needs `ublx serve` (**v0.1.13+**). The `--url` client needs **v0.1.14+**.
 
 Local HTTP API over the current catalog (bind/health via [panza](https://crates.io/crates/panza)). Default listen: `http://127.0.0.1:8787`.
 
+With **`--features ui`** (Homebrew default; or `cargo install ublx --features ui` from **v0.2.1+**), serve also embeds a Leptos SPA — same chrome/modes as the TUI. Without `ui`, `GET /` is **404** and only JSON routes respond. Dev loop: `UBLX_WEB_DIST=…/crates/ublx-web/dist` for a Dir mount (see UBLX `mise run web`).
+
 | Flag | Description |
 |------|-------------|
 | `--host` | Bind address (default `127.0.0.1`) |
@@ -176,7 +178,7 @@ Local HTTP API over the current catalog (bind/health via [panza](https://crates.
 
 ```bash
 ublx serve .
-ublx serve /path/to/project --port 8787
+ublx serve /path/to/project --port 8787 --open   # UI binary: opens the SPA
 ```
 
 | Method | Path | Behavior |
@@ -236,11 +238,11 @@ Export after full enhance:
 ublx --full-snapshot --export /path/to/project
 ```
 
-HTTP API for agents / scripts:
+HTTP API for agents / scripts (and browser UI when built with `--features ui`):
 
 ```bash
-ublx serve /path/to/project
-# then curl http://127.0.0.1:8787/...
+ublx serve /path/to/project --open
+# then curl http://127.0.0.1:8787/...  or browse /
 ```
 
 List installable themes:

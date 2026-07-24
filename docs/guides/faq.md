@@ -8,11 +8,11 @@ UBLX is a **terminal catalog** for a project directory: index once, browse paths
 
 ## How do the three projects fit together?
 
-| Tool | Role |
-|------|------|
-| **Nefaxer** | Parallel directory walk → SQLite snapshot, change detection, optional content hashes |
-| **ZahirScan** | Template mining and per-format metadata when you batch- or on-demand enhance |
-| **UBLX** | TUI, lenses, Delta tab, config, headless `--snapshot-only` / `--export`, `query` / `doctor` / `serve` (`--url` client), per-root cache |
+| Tool          | Role                                                                                                                                   |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nefaxer**   | Parallel directory walk → SQLite snapshot, change detection, optional content hashes                                                   |
+| **ZahirScan** | Template mining and per-format metadata when you batch- or on-demand enhance                                                           |
+| **UBLX**      | TUI, lenses, Delta tab, config, headless `--snapshot-only` / `--export`, `query` / `doctor` / `serve` (`--url` client), per-root cache |
 
 See [Install](/getting-started), [Nefaxer UBLX integration](/nefaxer/ublx), and [ZahirScan UBLX integration](/zahirscan/ublx).
 
@@ -42,6 +42,17 @@ ublx --full-snapshot --export /path/to/project
 ```
 
 See [Headless snapshot + export](/guides/headless-snapshot-export).
+
+## Why is `ublx serve` a blank page / 404 on `/`?
+
+The binary was built **without** `--features ui`. Default `cargo install ublx` is API-only. Install with UI:
+
+```bash
+brew install Latka-Industries/ublx/ublx          # includes UI
+cargo install ublx --features ui         # v0.2.1+
+```
+
+Then `ublx serve . --open`. Log should mention `serve UI static mount (Embedded)`.
 
 ## Where is the Rust API documentation?
 

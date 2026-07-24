@@ -1,3 +1,39 @@
+/* Same primary shell wash as ublx-web (`--shell-wash` / `--primary` over `--background`). */
+html,
+body {
+  min-height: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      hsl(var(--primary) / var(--shell-wash)) 0%,
+      transparent var(--shell-wash-inset),
+      transparent calc(100% - var(--shell-wash-inset)),
+      hsl(var(--primary) / var(--shell-wash)) 100%
+    ),
+    hsl(var(--background));
+  background-attachment: fixed;
+}
+
+/* Let the wash show through VitePress chrome (panels/cards keep their own fills). */
+:root {
+  --vp-nav-bg-color: transparent;
+  --vp-local-nav-bg-color: transparent;
+  --vp-sidebar-bg-color: transparent;
+  --vp-c-bg: transparent;
+}
+
+.VPNavBar,
+.VPNavBar .wrapper,
+.VPNavBar .container,
+.VPLocalNav,
+.VPSidebar,
+.VPContent,
+.VPDoc,
+.VPFooter {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* Home: markdown container holds feature cards, then repo cards */
 .VPHome {
   display: flex;
