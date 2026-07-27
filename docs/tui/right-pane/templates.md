@@ -27,7 +27,7 @@ Content comes from the snapshot’s Zahir JSON — not recomputed on every keypr
 - **Accordion**: expand several patterns at once
 - **Filter** box — substring match on pattern, placeholder names, and example values
 - **Expand all** / **Collapse all** (disabled when already fully expanded or collapsed)
-- Serve may attach parsed `template_views` on `GET /entries/*path?zahir=1` — see [CLI: serve](/cli#http-api)
+- Serve may attach parsed `template_views` on `GET /entries/*path?zahir=1` — see [CLI: `ublx serve`](/cli#ublx-serve)
 
 ## When the tab is empty
 
