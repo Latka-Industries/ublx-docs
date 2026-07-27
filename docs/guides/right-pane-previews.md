@@ -7,7 +7,7 @@ On **Snapshot**, **Lenses**, and **Duplicates**, selecting a file in the middle 
 | Tab | Key | Path-only snapshot | After enhance |
 |-----|-----|-------------------|---------------|
 | **Viewer** | **v** | Markdown, code, images, `.tet` summary from disk | Same + richer where Zahir adds context |
-| **Templates** | **t** | Empty or minimal | Structure / outline snippets from ZahirScan |
+| **Templates** | **t** | Empty or minimal | Structured patterns + examples from ZahirScan (**v0.2.4+**: TUI inline under selection; web accordion) |
 | **Metadata** | **m** | Empty or minimal | Typed key/value and column tables |
 | **Writing** | **w** | Empty or minimal | Word and character stats when available |
 
@@ -30,7 +30,7 @@ ZahirScan writes JSON into the snapshot DB; UBLX reads it on row select — it d
 
 | Tab | Source |
 |-----|--------|
-| Templates | [Template mining](/zahirscan/templates) — headers, patterns, column snippets |
+| Templates | [Template mining](/zahirscan/templates) — patterns, counts, placeholder examples |
 | Metadata | [Metadata extraction](/zahirscan/metadata/) — format-specific fields |
 | Writing | [Writing footprint](/zahirscan/writing-footprint) — counts and stats |
 

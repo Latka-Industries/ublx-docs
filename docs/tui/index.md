@@ -31,7 +31,7 @@ On **Snapshot**, **Lenses**, and **Duplicates**, selecting a file row in the mid
 | Tab | Doc |
 |-----|-----|
 | **Viewer** | [Viewer](/tui/right-pane/viewer) — previews (markdown, code, images, `.tet`, …) |
-| **Templates** | [Templates](/tui/right-pane/templates) — structure / outline snippets |
+| **Templates** | [Templates](/tui/right-pane/templates) — patterns + examples (TUI inline / web accordion, **v0.2.4+**) |
 | **Metadata** | [Metadata](/tui/right-pane/metadata) — key/value and typed column tables |
 | **Writing** | [Writing](/tui/right-pane/writing) — word/character stats when available |
 
