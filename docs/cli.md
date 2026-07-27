@@ -191,7 +191,7 @@ ublx serve /path/to/project --port 8787 --open   # UI binary: opens the SPA
 | `GET` | `/snapshot` | Job status: `idle` / `running` / `done` / `failed` + last counts |
 | `GET` | `/categories` | Distinct category strings for `?category=` |
 | `GET` | `/entries` | List/filter (`category`, `min_size`, `max_size`, `contains`) |
-| `GET` | `/entries/*path` | Detail; `?zahir=1` for nested Zahir JSON |
+| `GET` | `/entries/*path` | Detail; `?zahir=1` for nested Zahir JSON plus host-parsed `metadata_tables` / `writing_tables` / `template_views` (**v0.2.4+** for templates) when present |
 | `GET` | `/delta` | Delta log; `?type=added\|mod\|removed` (`modified` → `mod`) |
 | `GET` | `/lenses` | Lens names |
 | `GET` | `/lenses/{name}` | Paths in a lens |

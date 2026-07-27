@@ -22,7 +22,7 @@ Longest matching `path` prefix wins; otherwise global `enable_enhance_all` appli
 
 | UBLX pane | ZahirScan data |
 |-----------|----------------|
-| **Templates** | Structure / outline snippets |
+| **Templates** | Patterns + placeholder examples ([Templates](/tui/right-pane/templates), **v0.2.4+**) |
 | **Metadata** | Key/value and typed column tables |
 | **Writing** | Writing footprint stats |
 | **Viewer** | Format-specific previews (markdown, images, `.tet` summary, etc.) |

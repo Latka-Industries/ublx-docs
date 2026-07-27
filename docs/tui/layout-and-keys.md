@@ -26,8 +26,10 @@ Command Mode and quick-action menus are **disabled** while the search bar is act
 
 | Key | Action |
 |-----|--------|
-| **Shift+b** / **Shift+e** | Top / bottom of preview |
-| **Shift+↑↓** or **Shift+K/J** | Line up / down |
+| **Shift+b** / **Shift+e** | Top / bottom of preview *(Templates: scroll examples when ↑↓ on the frame)* |
+| **Shift+↑↓** or **Shift+K/J** | Line up / down *(Templates: previous / next pattern)* |
+
+On **Templates** with structured views (**v0.2.4+**), those Shift keys navigate patterns and example overflow instead of scrolling a flat JSON dump — see [Templates](/tui/right-pane/templates).
 
 ## Main tab cycling
 
