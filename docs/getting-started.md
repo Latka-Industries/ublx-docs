@@ -1,6 +1,6 @@
 # Install
 
-UBLX turns a directory into a flat, browsable catalog in the terminal. Indexing is powered by [Nefaxer](/nefaxer/); deep metadata comes from [ZahirScan](/zahirscan/) when you enhance.
+UBLX turns a directory into a flat, browsable catalog in the terminal. Indexing is powered by [Nefaxer](/nefaxer/); deep metadata comes from [ZahirScan](/zahirscan/) when you enhance. Headless `query` / `doctor` ship by default; optional `serve` exposes an HTTP API, and `ui` embeds a browser SPA.
 
 ::: warning Development status
 UBLX is in active development — expect breaking changes. See the [UBLX repo](https://github.com/Latka-Industries/UBLX) for the latest.
@@ -35,11 +35,13 @@ Homebrew builds with the embedded serve UI (`--features ui`) — TUI-shaped brow
 ### Cargo
 
 ```bash
-cargo install ublx                  # API-only serve (v0.2+)
-cargo install ublx --features ui    # + embedded Leptos SPA (assets in the crate; v0.2.1+)
+cargo install ublx                     # TUI + query/doctor (default)
+cargo install ublx --features serve    # + `ublx serve` HTTP API
+cargo install ublx --features ui       # + serve + embedded Leptos SPA
+cargo install ublx --no-default-features --features serve   # serve/query without TUI
 ```
 
-Default crates.io install stays **API-only** (`GET /` has no SPA). Homebrew and `--features ui` both ship the browser UI.
+Default crates.io install is **TUI + catalog CLI**. `serve` / `ui` are opt-in; `ui` implies `serve`. Catalog path resolve, SQLite ops, and headless open/read live in the internal `ublx-catalog` workspace crate — one published `ublx` binary.
 
 Or build from source:
 
@@ -60,7 +62,7 @@ ublx /path/to/your/project
 
 UBLX indexes the tree, stores a per-root SQLite snapshot under your user cache (`ubli/`), and opens the catalog. By default you get **path + filetype** only — fast and lightweight. Run **Enhance with ZahirScan** (or enable full enhance in config) when you need rich previews and metadata.
 
-Headless index/export (`--snapshot-only`, `--full-snapshot`, `--export`) and catalog tools (`ublx query`, `ublx doctor`, `ublx serve`, optional `--url` / `UBLX_URL`): [CLI](/cli).
+Headless index/export (`--snapshot-only`, `--full-snapshot`, `--export`) and catalog tools (`ublx query`, `ublx doctor`, optional `ublx serve` / `--url` / `UBLX_URL`): [CLI](/cli).
 
 ## What you get on day one
 

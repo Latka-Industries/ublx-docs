@@ -39,7 +39,7 @@ Options:
 | `ublx -x [DIR]` | Headless **export** of Zahir JSON to `ublx-export/` |
 | `ublx query [DIR]` | Read the catalog (list / filter / detail) without the TUI |
 | `ublx doctor [DIR]` | Diagnose catalog path, schema, integrity |
-| `ublx serve [DIR]` | Local **HTTP API** over the catalog (default `127.0.0.1:8787`); with `--features ui`, also the embedded browser UI |
+| `ublx serve [DIR]` | Local **HTTP API** over the catalog (default `127.0.0.1:8787`); requires `--features serve` (or `ui`). With `ui`, also the embedded browser UI |
 | `ublx --themes` | List theme names (light/dark groups) and exit |
 | `ublx --dev [DIR]` | TUI with dev logging (`tui-logger`, trace filter) |
 
@@ -96,7 +96,7 @@ Export uses whatever Zahir JSON is already in the catalog from the snapshot/enha
 
 ## Subcommands
 
-Catalog tools. `query` / `doctor` / `serve` **do not** create the DB — run `ublx` or `ublx -s` in `DIR` first (or `POST /snapshot` once serve is up). See `ublx query --help` / `ublx doctor --help` / `ublx serve --help` for the full flag list.
+Catalog tools. `query` / `doctor` / `serve` **do not** create the DB — run `ublx` or `ublx -s` in `DIR` first (or `POST /snapshot` once serve is up). `serve` is only present when the binary was built with `--features serve` or `ui`. See `ublx query --help` / `ublx doctor --help` / `ublx serve --help` for the full flag list.
 
 ### `ublx query`
 
@@ -168,7 +168,9 @@ Server needs `ublx serve` (**v0.1.13+**). The `--url` client needs **v0.1.14+**.
 
 Local HTTP API over the current catalog (bind/health via [panza](https://crates.io/crates/panza)). Default listen: `http://127.0.0.1:8787`.
 
-With **`--features ui`** (Homebrew default; or `cargo install ublx --features ui` from **v0.2.1+**), serve also embeds a Leptos SPA — same chrome/modes as the TUI. Without `ui`, `GET /` is **404** and only JSON routes respond. Dev loop: `UBLX_WEB_DIST=…/crates/ublx-web/dist` for a Dir mount (see UBLX `mise run web`).
+**Build features:** `serve` is opt-in (`cargo install ublx --features serve`). **`--features ui`** (Homebrew default) implies `serve` and embeds a Leptos SPA — same chrome/modes as the TUI. With `serve` but without `ui`, `GET /` is **404** and only JSON routes respond. Dev loop: `UBLX_WEB_DIST=…/crates/ublx-web/dist` for a Dir mount (see UBLX `mise run web`).
+
+Default `cargo install ublx` is TUI + `query` / `doctor` only — no `serve` subcommand until you enable the feature.
 
 | Flag | Description |
 |------|-------------|
@@ -238,9 +240,10 @@ Export after full enhance:
 ublx --full-snapshot --export /path/to/project
 ```
 
-HTTP API for agents / scripts (and browser UI when built with `--features ui`):
+HTTP API for agents / scripts (requires `--features serve` or `ui`; browser UI needs `ui`):
 
 ```bash
+cargo install ublx --features ui   # or: brew install …
 ublx serve /path/to/project --open
 # then curl http://127.0.0.1:8787/...  or browse /
 ```
