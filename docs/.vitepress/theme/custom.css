@@ -2,12 +2,11 @@
  * Same primary shell wash as ublx-web (`--shell-wash` / `--primary` over `--background`).
  * Content/sidebar stay transparent so the wash shows through. Sticky top chrome uses the
  * same fixed stack so scrolled headings cannot bleed through the nav.
+ *
+ * Local search dialog inherits `--vp-c-bg` by default — keep it opaque (same shell stack)
+ * or results are unreadable over the page.
  */
 :root {
-  --vp-nav-bg-color: hsl(var(--background));
-  --vp-local-nav-bg-color: hsl(var(--background));
-  --vp-sidebar-bg-color: transparent;
-  --vp-c-bg: transparent;
   --ublx-shell-bg:
     linear-gradient(
       180deg,
@@ -17,6 +16,14 @@
       hsl(var(--primary) / var(--shell-wash)) 100%
     ),
     hsl(var(--background));
+  --vp-nav-bg-color: hsl(var(--background));
+  --vp-local-nav-bg-color: hsl(var(--background));
+  --vp-sidebar-bg-color: transparent;
+  --vp-c-bg: transparent;
+  /* Local search uses --vp-c-bg by default; keep dialog/results opaque. */
+  --vp-local-search-bg: var(--ublx-shell-bg);
+  --vp-local-search-result-bg: hsl(var(--background));
+  --vp-local-search-result-selected-bg: hsl(var(--muted));
 }
 
 html,
@@ -33,6 +40,18 @@ body {
 .VPLocalNav {
   background: var(--ublx-shell-bg) !important;
   background-attachment: fixed !important;
+}
+
+/* VitePress local search modal (⌘K / Ctrl+K) */
+.VPLocalSearchBox .shell {
+  background: var(--ublx-shell-bg) !important;
+  background-attachment: fixed !important;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 12px 40px hsl(var(--background) / 0.55);
+}
+
+.VPLocalSearchBox .result {
+  background-color: hsl(var(--background)) !important;
 }
 
 .VPSidebar,
