@@ -184,8 +184,9 @@ export default defineConfig({
           if (env.frontmatter?.search === false) return ''
           const section = searchSectionLabel(env.relativePath)
           if (!section) return html
-          // Prepend an H1 so results show e.g. "UBLX › CLI" vs "Nefaxer › CLI".
-          return md.render(`# ${section}`) + html
+          // Inject as raw HTML with a fixed unique id — md.render(`# ${section}`)
+          // would slugify to the same id as overview H1s (MiniSearch: /guides/#guides).
+          return `<h1 id="ublx-search-section">${section}</h1>\n` + html
         },
       },
     },
