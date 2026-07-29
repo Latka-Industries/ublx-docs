@@ -8,6 +8,56 @@ import { metadataNavLink, metadataNavItems } from './metadata-nav'
 import { tuiNavItem } from './tui-nav'
 import { ublxSidebar } from './ublx-nav'
 
+/** Product / section label for local-search breadcrumbs (UBLX vs Nefaxer vs …). */
+function searchSectionLabel(relativePath: string): string | undefined {
+  const path = relativePath.replace(/\\/g, '/')
+  if (path === 'index.md') return undefined
+  if (path.startsWith('zahirscan/')) return 'ZahirScan'
+  if (path.startsWith('nefaxer/')) return 'Nefaxer'
+  if (path.startsWith('guides/')) return 'Guides'
+  return 'UBLX'
+}
+
+function searchSectionLabelFromFile(file: string): string | undefined {
+  const norm = file.replace(/\\/g, '/')
+  const marker = '/docs/'
+  const idx = norm.lastIndexOf(marker)
+  const relativePath = idx >= 0 ? norm.slice(idx + marker.length) : norm
+  return searchSectionLabel(relativePath)
+}
+
+// Mirrors VitePress local-search heading split so we can prepend a product label.
+const headingRegex = /<h(\d*).*?>(.*?<a.*? href="#.*?".*?>.*?<\/a>)<\/h\1>/gi
+const headingContentRegex = /(.*?)<a.*? href="#(.*?)".*?>.*?<\/a>/i
+
+function clearHtmlTags(str: string): string {
+  return str.replace(/<[^>]*>/g, '')
+}
+
+function* splitPageIntoSections(html: string) {
+  const result = html.split(headingRegex)
+  result.shift()
+  let parentTitles: string[] = []
+  for (let i = 0; i < result.length; i += 3) {
+    const level = parseInt(result[i]!, 10) - 1
+    const heading = result[i + 1]!
+    const headingResult = headingContentRegex.exec(heading)
+    const title = clearHtmlTags(headingResult?.[1] ?? '').trim()
+    const anchor = headingResult?.[2] ?? ''
+    const content = result[i + 2]!
+    if (!title || !content) continue
+    let titles = parentTitles.slice(0, level)
+    titles[level] = title
+    titles = titles.filter(Boolean)
+    yield { anchor, titles, text: clearHtmlTags(content) }
+    if (level === 0) {
+      parentTitles = [title]
+    } else {
+      parentTitles[level] = title
+    }
+  }
+}
+
 export default defineConfig({
   title: 'UBLX & Co',
   description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
@@ -169,6 +219,23 @@ export default defineConfig({
     },
     search: {
       provider: 'local',
+      options: {
+        // Custom _render must honor search: false itself.
+        async _render(src, env, md) {
+          const html = md.render(src, env)
+          if (env.frontmatter?.search === false) return ''
+          return html
+        },
+        miniSearch: {
+          // Prepend product so results show "UBLX › CLI" vs "Nefaxer › CLI".
+          *_splitIntoSections(file: string, html: string) {
+            const section = searchSectionLabelFromFile(file)
+            for (const part of splitPageIntoSections(html)) {
+              yield section ? { ...part, titles: [section, ...part.titles] } : part
+            }
+          },
+        },
+      },
     },
     footer: {
       message: 'UBLX · Nefaxer · ZahirScan',
