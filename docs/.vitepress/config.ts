@@ -8,6 +8,15 @@ import { metadataNavLink, metadataNavItems } from './metadata-nav'
 import { tuiNavItem } from './tui-nav'
 import { ublxSidebar } from './ublx-nav'
 
+/** Product / section label for local-search breadcrumbs (UBLX vs Nefaxer vs …). */
+function searchSectionLabel(relativePath: string): string | undefined {
+  if (relativePath === 'index.md') return undefined
+  if (relativePath.startsWith('zahirscan/')) return 'ZahirScan'
+  if (relativePath.startsWith('nefaxer/')) return 'Nefaxer'
+  if (relativePath.startsWith('guides/')) return 'Guides'
+  return 'UBLX'
+}
+
 export default defineConfig({
   title: 'UBLX & Co',
   description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
@@ -169,6 +178,16 @@ export default defineConfig({
     },
     search: {
       provider: 'local',
+      options: {
+        async _render(src, env, md) {
+          const html = md.render(src, env)
+          if (env.frontmatter?.search === false) return ''
+          const section = searchSectionLabel(env.relativePath)
+          if (!section) return html
+          // Prepend an H1 so results show e.g. "UBLX › CLI" vs "Nefaxer › CLI".
+          return md.render(`# ${section}`) + html
+        },
+      },
     },
     footer: {
       message: 'UBLX · Nefaxer · ZahirScan',
