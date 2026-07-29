@@ -10,11 +10,52 @@ import { ublxSidebar } from './ublx-nav'
 
 /** Product / section label for local-search breadcrumbs (UBLX vs Nefaxer vs …). */
 function searchSectionLabel(relativePath: string): string | undefined {
-  if (relativePath === 'index.md') return undefined
-  if (relativePath.startsWith('zahirscan/')) return 'ZahirScan'
-  if (relativePath.startsWith('nefaxer/')) return 'Nefaxer'
-  if (relativePath.startsWith('guides/')) return 'Guides'
+  const path = relativePath.replace(/\\/g, '/')
+  if (path === 'index.md') return undefined
+  if (path.startsWith('zahirscan/')) return 'ZahirScan'
+  if (path.startsWith('nefaxer/')) return 'Nefaxer'
+  if (path.startsWith('guides/')) return 'Guides'
   return 'UBLX'
+}
+
+function searchSectionLabelFromFile(file: string): string | undefined {
+  const norm = file.replace(/\\/g, '/')
+  const marker = '/docs/'
+  const idx = norm.lastIndexOf(marker)
+  const relativePath = idx >= 0 ? norm.slice(idx + marker.length) : norm
+  return searchSectionLabel(relativePath)
+}
+
+// Mirrors VitePress local-search heading split so we can prepend a product label.
+const headingRegex = /<h(\d*).*?>(.*?<a.*? href="#.*?".*?>.*?<\/a>)<\/h\1>/gi
+const headingContentRegex = /(.*?)<a.*? href="#(.*?)".*?>.*?<\/a>/i
+
+function clearHtmlTags(str: string): string {
+  return str.replace(/<[^>]*>/g, '')
+}
+
+function* splitPageIntoSections(html: string) {
+  const result = html.split(headingRegex)
+  result.shift()
+  let parentTitles: string[] = []
+  for (let i = 0; i < result.length; i += 3) {
+    const level = parseInt(result[i]!, 10) - 1
+    const heading = result[i + 1]!
+    const headingResult = headingContentRegex.exec(heading)
+    const title = clearHtmlTags(headingResult?.[1] ?? '').trim()
+    const anchor = headingResult?.[2] ?? ''
+    const content = result[i + 2]!
+    if (!title || !content) continue
+    let titles = parentTitles.slice(0, level)
+    titles[level] = title
+    titles = titles.filter(Boolean)
+    yield { anchor, titles, text: clearHtmlTags(content) }
+    if (level === 0) {
+      parentTitles = [title]
+    } else {
+      parentTitles[level] = title
+    }
+  }
 }
 
 export default defineConfig({
@@ -179,14 +220,20 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
+        // Custom _render must honor search: false itself.
         async _render(src, env, md) {
           const html = md.render(src, env)
           if (env.frontmatter?.search === false) return ''
-          const section = searchSectionLabel(env.relativePath)
-          if (!section) return html
-          // Inject as raw HTML with a fixed unique id — md.render(`# ${section}`)
-          // would slugify to the same id as overview H1s (MiniSearch: /guides/#guides).
-          return `<h1 id="ublx-search-section">${section}</h1>\n` + html
+          return html
+        },
+        miniSearch: {
+          // Prepend product so results show "UBLX › CLI" vs "Nefaxer › CLI".
+          *_splitIntoSections(file: string, html: string) {
+            const section = searchSectionLabelFromFile(file)
+            for (const part of splitPageIntoSections(html)) {
+              yield section ? { ...part, titles: [section, ...part.titles] } : part
+            }
+          },
         },
       },
     },
