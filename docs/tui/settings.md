@@ -20,6 +20,8 @@ Changes hot-reload where supported (see [Configuration](/configuration)).
 | `layout` | Left / middle / right pane width percentages |
 | `bg_opacity` | Page background opacity (`1.0` = solid) |
 | `show_hidden_files` | Include dotfiles in the index |
+| `hash` | Blake3 per file (duplicates / change detection) |
+| `follow_links` | Follow directory symlinks on walk (**v0.3.1+**; default off; next snapshot) |
 | `run_snapshot_on_startup` | Snapshot when opening a catalog |
 | `typed_column_tables` | Metadata column tables: `none` / `abbrev` / `full` |
 | `command_mode.leader` | **Global only** — letter for Command Mode (`Ctrl+{letter}`; default `a`). Enter cycles; type a letter when focused. **`j`/`k` blocked** |

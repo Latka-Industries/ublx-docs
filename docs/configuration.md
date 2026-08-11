@@ -38,13 +38,14 @@ Edit from **Settings → Global** as well (Enter cycles; type a letter when the 
 | `bg_opacity` | float (optional) | `0.0`–`1.0`; below `1.0` uses terminal default fill so wallpaper can show through |
 | `show_hidden_files` | bool | Include dotfiles in the index |
 | `hash` | bool | Compute blake3 per file (slower; needed for duplicates and change detection) |
+| `follow_links` | bool | Follow directory symlinks while walking (**v0.3.1+**; default `false`). Directory symlinks are still listed when off; the root path is always canonicalized on open. Takes effect on the **next snapshot** (same as `hash` / `show_hidden_files`) |
 | `exclude` | array of strings | Extra path patterns to exclude (**startup only**, not hot-reloadable) |
 | `editor_path` | string | Editor for “Open (Terminal)”; falls back to `$EDITOR` |
 | `enable_enhance_all` | bool | If `true`, ZahirScan all files on snapshot. Default `false` (path + filetype only) |
 | `run_snapshot_on_startup` | bool (optional) | Default `true`: background snapshot on TUI open and root switch. `false` keeps existing DB until you snapshot |
 | `typed_column_tables` | string (optional) | Metadata/Writing column stats: `none`, `abbrev` (default), or `full`. Alias: `column_stats` |
 
-All keys except `exclude` are **hot-reloadable** when saved in a loaded config file. A file watcher debounces reloads from global and local paths; invalid TOML keeps the last good cached overlay.
+All keys except `exclude` are **hot-reloadable** when saved in a loaded config file (`follow_links`, `hash`, and `show_hidden_files` apply on the **next snapshot**). A file watcher debounces reloads from global and local paths; invalid TOML keeps the last good cached overlay.
 
 ## Enhance policies
 

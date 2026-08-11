@@ -60,6 +60,8 @@ Full key reference: [Command mode & context menus](/guides/command-mode-and-menu
 
 After a re-snapshot, check the completion toast: open **Delta** only when it reports added/modified/removed counts — not when it says **No changes**.
 
+On the **embedded web UI** (**v0.3.1+**), Command Mode snapshot keeps your current Snapshot **category** (and selected path when it still exists) instead of jumping back to **All**.
+
 ### Toast when the snapshot finishes
 
 Background snapshots (**Ctrl+A** → **s**, or startup re-index) show a **toast** when the walk completes:

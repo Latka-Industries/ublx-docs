@@ -34,6 +34,10 @@ UBLX stores per-project SQLite under your user cache (`ubli/`; sanitized dir nam
 
 Set `hash = true` in UBLX config (or use Nefaxer with `-c`) so entries include Blake3 digests. UBLX duplicate detection (Command Mode **d**) uses those hashes.
 
+## Symlinks (`follow_links`)
+
+Nefaxer’s walk defaults to **not** descending directory symlinks. From **v0.3.1**, UBLX exposes the same knob as `follow_links` in Settings / `ublx.toml` (default **off**). Turn it on when you want the catalog to expand through linked trees; leave it off to avoid surprise expansion and cycles. The project **root** is still canonicalized on open either way. See [Configuration](/configuration) and [Nefaxer configuration](/nefaxer/configuration).
+
 ## Standalone vs through UBLX
 
 | Approach | Best for |

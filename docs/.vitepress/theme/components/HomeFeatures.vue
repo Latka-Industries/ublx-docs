@@ -223,7 +223,7 @@ const features: HomeFeature[] = [
         id: 'headless-ublx',
         product: 'UBLX',
         accent: '#7C3AED',
-        body: 'ublx --snapshot-only --export writes catalog output without opening the TUI — handy for pipelines and reviews.',
+        body: 'ublx --snapshot-only / --export for CI; ublx query and ublx doctor read the catalog without the TUI; optional ublx serve (--features serve or ui) exposes HTTP / a browser SPA.',
         link: '/guides/headless-snapshot-export',
         linkLabel: 'Headless snapshot + export',
         secondaryLink: '/cli',

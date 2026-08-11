@@ -45,14 +45,16 @@ See [Headless snapshot + export](/guides/headless-snapshot-export).
 
 ## Why is `ublx serve` a blank page / 404 on `/`?
 
-The binary was built **without** `--features ui`. Default `cargo install ublx` is API-only. Install with UI:
+Either the binary was built **without** `--features serve` / `ui` (so there is no `serve` subcommand), or it has `serve` but not `ui` (API-only: `GET /` is 404). Install with the SPA:
 
 ```bash
-brew install Latka-Industries/ublx/ublx          # includes UI
-cargo install ublx --features ui         # v0.2.1+
+brew install Latka-Industries/ublx/ublx   # includes UI
+cargo install ublx --features ui
 ```
 
 Then `ublx serve . --open`. Log should mention `serve UI static mount (Embedded)`.
+
+Default `cargo install ublx` is **TUI + query/doctor** — no HTTP server. Add `--features serve` for API-only, or `--features ui` for serve + browser UI.
 
 ## Where is the Rust API documentation?
 
