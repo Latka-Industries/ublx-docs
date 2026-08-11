@@ -30,6 +30,10 @@ Selecting a row in the middle updates all four right-pane tabs when Zahir JSON e
 3. Read previews or metadata on the right.
 4. **Space** for per-file actions (open, enhance, lens, copy path, …).
 
+## Web UI (**v0.3.1+**)
+
+In the embedded serve SPA (`ublx serve` with `--features ui`), a Command Mode snapshot (**Ctrl+A** → **s**) keeps your current **category** (and path when it still exists) after the catalog refreshes. You only fall back to **All** if that category disappears from the post-snapshot list. Soft **root switch** still starts Snapshot at All; categories refresh for the new root without needing another snapshot.
+
 ## Multi-select
 
 **Ctrl+Space** on the middle pane enters multi-select (Snapshot and [Lenses](/tui/lenses) only). **Space** toggles rows; **a** opens the bulk menu. See [Command mode & context menus](/guides/command-mode-and-menus#multi-select--bulk-menu).

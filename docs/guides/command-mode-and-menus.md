@@ -117,11 +117,11 @@ Unavailable while **/** search is active, while **Settings** has focus (so typin
 |-----|--------|----------------|
 | **d** | Run **duplicate detection** (background) | **No duplicates found**, or groups load and the **Duplicates** tab can appear |
 | **t** | **Theme selector** — writes theme to local config on confirm | Confirmation when the theme is saved |
-| **s** | **Take snapshot** (background) — re-index the project | **Snapshot finished**, then **No changes** or diff counts — [below](#snapshot-re-index) |
+| **s** | **Take snapshot** (background) — re-index the project | **Snapshot finished**, then **No changes** or diff counts — [below](#snapshot-re-index). On the **web UI** (**v0.3.1+**), keeps the current Snapshot category/path when they still exist after refresh |
 | **r** | **Reload config** from disk (global + local `ublx.toml`) | **Config reloaded** (or validation errors if the file is invalid) |
 | **x** | Export Zahir JSON to **`ublx-export/`** | Exported *N* file(s), nothing to export, or error — [Headless snapshot + export](/guides/headless-snapshot-export) |
 | **l** | Export lenses to **`ublx-lenses/`** | Exported *N* lens file(s), **No lenses to export**, or error — [Making and exporting lenses](/guides/lenses) |
-| **p** | **Switch project** — recents / other indexed roots under `ubli/` | Error toast if the switch fails; otherwise the new root loads (snapshot per config) |
+| **p** | **Switch project** — recents / other indexed roots under `ubli/` | Error toast if the switch fails; otherwise the new root loads (snapshot per config). Web (**v0.3.1+**): categories refresh for the new root without requiring another snapshot |
 
 ::: tip Viewer search is not Command Mode
 In-pane preview search uses **Shift+S** in the Viewer tab, not the Command Mode leader.
