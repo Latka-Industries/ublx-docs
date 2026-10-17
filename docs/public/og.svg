@@ -32,12 +32,6 @@
     Index once. Enrich on demand. Browse in the terminal.
   </text>
 
-  <text x="96" y="410"
-        font-family="'Noto Sans', Lato, system-ui, sans-serif"
-        font-size="26" font-weight="400" fill="#8b9bb0">
-    Docs for the Latka Industries catalog stack
-  </text>
-
   <g font-family="'Noto Sans', Lato, system-ui, sans-serif" font-size="24" font-weight="600">
     <text x="96" y="520" fill="#66ffdb">UBLX</text>
     <text x="196" y="520" fill="#5a6a80">/</text>
