@@ -58,9 +58,15 @@ function* splitPageIntoSections(html: string) {
   }
 }
 
+const SITE_URL = 'https://ublx.dev'
+const SITE_TITLE = 'UBLX & Co'
+const SITE_DESCRIPTION =
+  'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.'
+const OG_IMAGE = `${SITE_URL}/og.png`
+
 export default defineConfig({
-  title: 'UBLX & Co',
-  description: 'Documentation for UBLX, Nefaxer, and ZahirScan — the Latka Industries catalog stack.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   base: '/',
   appearance: false,
   head: [
@@ -79,7 +85,40 @@ export default defineConfig({
       { id: 'ublx-site-theme-init' },
       buildThemeInitScript(),
     ],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: SITE_TITLE }],
+    ['meta', { property: 'og:title', content: SITE_TITLE }],
+    ['meta', { property: 'og:description', content: SITE_DESCRIPTION }],
+    ['meta', { property: 'og:url', content: `${SITE_URL}/` }],
+    ['meta', { property: 'og:image', content: OG_IMAGE }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:alt', content: `${SITE_TITLE} documentation` }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: SITE_TITLE }],
+    ['meta', { name: 'twitter:description', content: SITE_DESCRIPTION }],
+    ['meta', { name: 'twitter:image', content: OG_IMAGE }],
+    ['meta', { name: 'twitter:image:alt', content: `${SITE_TITLE} documentation` }],
   ],
+  transformPageData(pageData) {
+    const title = pageData.title
+      ? `${pageData.title} | ${SITE_TITLE}`
+      : SITE_TITLE
+    const description = pageData.description || SITE_DESCRIPTION
+    const path = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, '$1')
+      .replace(/\.md$/, '')
+    const url = path ? `${SITE_URL}/${path}` : `${SITE_URL}/`
+
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push(
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }],
+    )
+  },
   vite: {
     plugins: [tailwindcss()],
   },
