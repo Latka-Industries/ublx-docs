@@ -3,8 +3,8 @@
  * Content/sidebar stay transparent so the wash shows through. Sticky top chrome uses the
  * same fixed stack so scrolled headings cannot bleed through the nav.
  *
- * Local search dialog inherits `--vp-c-bg` by default — keep it opaque (same shell stack)
- * or results are unreadable over the page.
+ * Local search + mobile hamburger overlay inherit `--vp-c-bg` by default — keep them
+ * opaque (same shell stack) or content underneath shows through.
  */
 :root {
   --ublx-shell-bg:
@@ -18,6 +18,8 @@
     hsl(var(--background));
   --vp-nav-bg-color: hsl(var(--background));
   --vp-local-nav-bg-color: hsl(var(--background));
+  /* Defaults to --vp-c-bg; must stay opaque while page bg is transparent. */
+  --vp-nav-screen-bg-color: hsl(var(--background));
   --vp-sidebar-bg-color: transparent;
   --vp-c-bg: transparent;
   /* Local search uses --vp-c-bg by default; keep dialog/results opaque. */
@@ -37,7 +39,8 @@ body {
 .VPNavBar .wrapper,
 .VPNavBar .container,
 .VPNavBar .content-body,
-.VPLocalNav {
+.VPLocalNav,
+.VPNavScreen {
   background: var(--ublx-shell-bg) !important;
   background-attachment: fixed !important;
 }

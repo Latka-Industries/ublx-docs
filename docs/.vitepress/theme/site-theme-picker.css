@@ -153,6 +153,8 @@
   max-width: min(18rem, calc(100vw - 2rem));
   padding-left: 8px !important;
   padding-right: 10px !important;
+  /* Solid popover so list items never sit over page content (esp. mobile nav). */
+  background-color: hsl(var(--popover)) !important;
 }
 
 .site-theme-picker__menu-item-name {

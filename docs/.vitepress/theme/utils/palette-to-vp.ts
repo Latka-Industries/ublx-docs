@@ -93,6 +93,8 @@ const SHADCN_KEYS = [
   '--border',
   '--input',
   '--ring',
+  '--popover',
+  '--popover-foreground',
 ] as const
 
 export function paletteToCssVars(entry: PaletteEntry): Record<string, string> {
@@ -162,6 +164,8 @@ export function paletteToCssVars(entry: PaletteEntry): Record<string, string> {
     '--border': rgbToHslParts(border),
     '--input': rgbToHslParts(border),
     '--ring': rgbToHslParts(focus),
+    '--popover': rgbToHslParts(bgElv),
+    '--popover-foreground': rgbToHslParts(text),
   }
 
   return { ...vp, ...shadcn, '--ublx-primary-fg': primaryFg }
