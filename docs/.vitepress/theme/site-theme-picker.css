@@ -63,12 +63,13 @@
     width: 100%;
     height: auto;
     justify-content: center;
+    gap: 8px;
     padding: 0.5rem 0 0.75rem;
   }
 
   .VPNavScreenMenu .nav-bar-trailing__social {
-    width: auto;
-    height: auto;
+    width: 36px;
+    height: 36px;
     margin: 0;
   }
 }
