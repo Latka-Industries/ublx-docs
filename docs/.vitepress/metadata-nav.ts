@@ -1,3 +1,5 @@
+import { navLink } from './nav-card'
+
 /** ZahirScan metadata sidebar / nav — keep in sync with `docs/zahirscan/metadata/`. */
 export const metadataNavItems = [
   { text: 'Overview', link: '/zahirscan/metadata/' },
@@ -17,8 +19,10 @@ export const metadataNavItems = [
   { text: 'Archives', link: '/zahirscan/metadata/archives' },
 ]
 
-/** Top nav: single link — nested submenu is too tall and hides items below. */
-export const metadataNavLink = {
-  text: 'Metadata extraction',
-  link: '/zahirscan/metadata/',
-}
+/** Top nav: single card — nested submenu is too tall and hides items below. */
+export const metadataNavLink = navLink(
+  'Metadata extraction',
+  'Per-format field catalogs',
+  '/zahirscan/metadata/',
+  '^/zahirscan/metadata/',
+)
