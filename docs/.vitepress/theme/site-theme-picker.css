@@ -10,19 +10,22 @@
   display: none !important;
 }
 
-/* Inside nav row: GitHub dropdown | Palette | icon */
+/* Inside nav row: GitHub dropdown | Palette | mail | GitHub */
 .VPNavBarMenu .nav-bar-trailing {
   height: var(--vp-nav-height);
 }
 
-.VPNavBarMenu .nav-bar-trailing__github {
+.VPNavBarMenu .nav-bar-trailing__social {
   width: 36px;
   height: var(--vp-nav-height);
+}
+
+.VPNavBarMenu .nav-bar-trailing__github {
   margin-right: -8px;
 }
 
-.VPNavBarMenu .nav-bar-trailing__github :deep([class^='vpi-social-']),
-.VPNavBarMenu .nav-bar-trailing__github :deep(svg) {
+.VPNavBarMenu .nav-bar-trailing__social :deep([class^='vpi-social-']),
+.VPNavBarMenu .nav-bar-trailing__social :deep(svg) {
   width: 20px;
   height: 20px;
 }
@@ -50,12 +53,12 @@
     display: none !important;
   }
 
-  /* Picker hidden on mobile; drop orphaned dividers beside GitHub in the menu row */
+  /* Picker hidden on mobile; drop orphaned dividers beside the social icons */
   .nav-bar-trailing__sep {
     display: none !important;
   }
 
-  /* GitHub is the only item left in the hamburger menu row — center it */
+  /* Mail and GitHub are the items left in the hamburger menu row — center them */
   .VPNavScreenMenu .nav-bar-trailing {
     width: 100%;
     height: auto;
@@ -63,7 +66,7 @@
     padding: 0.5rem 0 0.75rem;
   }
 
-  .VPNavScreenMenu .nav-bar-trailing__github {
+  .VPNavScreenMenu .nav-bar-trailing__social {
     width: auto;
     height: auto;
     margin: 0;
