@@ -278,7 +278,7 @@ export default defineConfig({
     },
     footer: {
       message: 'UBLX · Nefaxer · ZahirScan',
-      copyright: 'Copyright © 2026 Alexander Hurowitz',
+      copyright: 'Copyright © 2026 Latka Industries',
     },
   },
 })
