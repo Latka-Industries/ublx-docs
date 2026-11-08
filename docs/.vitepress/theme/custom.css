@@ -261,6 +261,13 @@ body {
   }
 }
 
+/* 404: drop the default quote, divider, and "Take me home" link */
+.NotFound .quote,
+.NotFound .action,
+.NotFound .divider {
+  display: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .VPNavBarMenu .VPFlyout .menu {
     transition:

@@ -281,5 +281,11 @@ export default defineConfig({
       message: 'UBLX · Nefaxer · ZahirScan',
       copyright: 'Copyright © 2026 Latka Industries',
     },
+    notFound: {
+      title: 'Page not found',
+      quote: '',
+      linkText: '',
+      linkLabel: '',
+    },
   },
 })
